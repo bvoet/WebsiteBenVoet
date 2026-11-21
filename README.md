@@ -2,6 +2,8 @@
 
 Design and play synthesizers in your browser. No plugins, no installs: just the Web Audio API.
 
+**▶ Play it at [benvoet.be](https://benvoet.be)**
+
 Synth Lab is the centerpiece of my personal site. It's a rack of instruments styled after vintage hardware, each one a different kind of synthesis you can tweak, play and share.
 
 ## Instruments
@@ -53,13 +55,15 @@ Then open <http://localhost:8000>.
 
 There is no build step and no dependencies. Edit a file and refresh the page.
 
-## Deploying (GitHub Pages)
+## Deploying
 
-1. Push to `main`.
-2. In the repo, open **Settings → Pages → Build and deployment**.
-3. Choose **Deploy from a branch**, branch `main`, folder `/ (root)`.
+The site is live at **<https://benvoet.be>**, served by GitHub Pages from `main` / `(root)`. Every push to `main` deploys automatically within a minute or two.
 
-The site is served at `https://<user>.github.io/WebsiteBenVoet/`. All asset paths are relative, so the sub-path works without config.
+- **Custom domain:** the `CNAME` file in the repo root holds `benvoet.be`. Don't delete it, or Pages falls back to `bvoet.github.io/WebsiteBenVoet/`.
+- **DNS** (at the registrar): four `A` records for the apex domain pointing to GitHub Pages (`185.199.108–111.153`), plus a `www` CNAME to `bvoet.github.io`.
+- **HTTPS** is enforced. GitHub issues and renews the certificate automatically.
+
+All asset paths are relative, so the site also works under the `github.io` sub-path.
 
 ## Browser support
 

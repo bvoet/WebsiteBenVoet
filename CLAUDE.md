@@ -11,7 +11,9 @@ Ben is an experienced musician (12+ years guitar) and knows synth terminology. U
 ## Stack and hard rules
 
 - **Plain HTML / CSS / ES-module JS + Web Audio API.** No framework, bundler, TypeScript or npm dependencies unless Ben explicitly asks.
-- **Relative paths only** (`css/...`, `./js/...`). The site is served from the sub-path `/WebsiteBenVoet/` on GitHub Pages, so a leading `/` will 404 in production.
+- **Relative paths only** (`css/...`, `./js/...`). The site is live at https://benvoet.be, but it must also keep working under the fallback sub-path `bvoet.github.io/WebsiteBenVoet/`.
+- **Never delete or edit the `CNAME` file.** It binds the custom domain `benvoet.be`.
+- **Pushing to `main` deploys to the live site.**
 - **Filename case must match imports exactly.** Windows forgives mismatches; GitHub Pages doesn't.
 - External resources: Google Fonts only. Don't add CDN scripts without asking.
 - **Don't commit or push unless asked.** Deploys come from `main` / root via GitHub Pages.
