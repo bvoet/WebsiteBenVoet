@@ -99,6 +99,7 @@ window.addEventListener('popstate', () => {
 // ─── Albums ──────────────────────────────────────────────────────────────
 
 const COVER_URL = (mbid, size = 250) => `https://coverartarchive.org/release-group/${mbid}/front-${size}`;
+const LOCAL_COVER = (mbid) => `images/covers/${mbid}.jpg`;
 
 function albumSlug(name) {
   return name.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase()
@@ -143,15 +144,29 @@ function albumCover(album, size, cls) {
   fallback.className = 'album-cover-fallback';
   fallback.textContent = album.name;
   wrap.appendChild(fallback);
-  if (album.meta?.mbid) {
+  const mbid = album.meta?.mbid;
+  if (mbid) {
+    // Local 250 px thumbnail first (fast); the Cover Art Archive is the fallback,
+    // and supplies the sharper 500 px version for the big album header.
     const img = document.createElement('img');
-    img.src = COVER_URL(album.meta.mbid, size);
     img.alt = `${album.name} cover`;
-    img.loading = 'lazy';
+    img.loading = size > 250 ? 'eager' : 'lazy';
     img.decoding = 'async';
+    let triedRemote = false;
     img.addEventListener('load', () => wrap.classList.add('has-img'));
-    img.addEventListener('error', () => img.remove());
+    img.addEventListener('error', () => {
+      if (triedRemote) return img.remove();
+      triedRemote = true;
+      img.src = COVER_URL(mbid, size);
+    });
+    img.src = LOCAL_COVER(mbid);
     wrap.appendChild(img);
+
+    if (size > 250) {
+      const big = new Image();
+      big.addEventListener('load', () => { img.src = big.src; triedRemote = true; });
+      big.src = COVER_URL(mbid, size);
+    }
   }
   return wrap;
 }

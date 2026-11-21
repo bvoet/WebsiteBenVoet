@@ -3,6 +3,7 @@
 #
 # Usage (from the repo root):
 #   python tools/songx_albums.py
+# Also downloads missing 250 px cover thumbnails into songx/images/covers/.
 # Re-run after adding albums or songs. Responses are cached in your temp folder,
 # and MusicBrainz is queried at most about once per second.
 import json, sys, time, re, unicodedata, difflib, urllib.request, urllib.parse, os, tempfile
@@ -112,3 +113,23 @@ for album in data['albums']:
     print(f"{name:34} {rg['title'][:30]:30} {(rg.get('first-release-date') or '')[:4]} rel={rel.get('date')} tracks={len(tracks)} matched={len(album['song_ids'])-len(remaining)}/{len(album['song_ids'])}" + (f" UNMATCHED={[by_id[i]['title'] for i in remaining]}" if remaining else ''))
 
 json.dump({'source': 'MusicBrainz (CC0)', 'albums': out}, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+
+# Album cover thumbnails (250 px), hosted next to the site so the album grid loads fast.
+# The Cover Art Archive redirects twice per image, which makes hotlinking slow.
+COVERS = os.path.join(os.path.dirname(OUT), '..', 'images', 'covers')
+os.makedirs(COVERS, exist_ok=True)
+for entry in out:
+    mbid = entry.get('mbid')
+    if not mbid:
+        continue
+    path = os.path.join(COVERS, mbid + '.jpg')
+    if os.path.exists(path):
+        continue
+    url = f'https://coverartarchive.org/release-group/{mbid}/front-250'
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': UA})
+        data = urllib.request.urlopen(req, timeout=60).read()
+        open(path, 'wb').write(data)
+        print('cover', entry['name'], len(data) // 1024, 'KB')
+    except Exception as e:
+        print('no cover', entry['name'], e, file=sys.stderr)
