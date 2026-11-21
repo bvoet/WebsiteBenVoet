@@ -24,7 +24,6 @@ const azView = document.getElementById('az-view');
 const searchView = document.getElementById('search-view');
 const songViewContainer = document.getElementById('song-view-container');
 const mainBrowseArea = document.getElementById('main-browse-area');
-const themeToggleBtn = document.getElementById('theme-toggle');
 const toastEl = document.getElementById('toast');
 
 // Song View elements
@@ -40,30 +39,6 @@ const btnAutoScroll = document.getElementById('btn-autoscroll');
 const albumDetailView = document.getElementById('album-detail');
 const tuningSelect = document.getElementById('tuning-filter');
 const chordPop = document.getElementById('chord-pop');
-
-// Init Theme
-function initTheme() {
-  let stored = null;
-  try { stored = localStorage.getItem('songx_theme'); } catch { /* storage blocked */ }
-  const savedTheme = stored ||
-    (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  setTheme(savedTheme);
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'light';
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  }
-}
-
-function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  try { localStorage.setItem('songx_theme', theme); } catch { /* storage blocked */ }
-  if (themeToggleBtn) {
-    themeToggleBtn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
-  }
-}
 
 function showToast(msg) {
   if (!toastEl) return;
@@ -1023,7 +998,6 @@ function setupEvents() {
 
 // Startup
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme();
   setupEvents();
   loadData();
 });
