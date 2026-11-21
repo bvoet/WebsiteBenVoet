@@ -1,0 +1,3405 @@
+{
+ "source": "MusicBrainz (CC0)",
+ "albums": [
+  {
+   "name": "Buffalo Springfield",
+   "year": "1966",
+   "mbid": "045b64e4-2bec-3b56-a94c-7a892a5f47c2",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Go and Say Goodbye"
+    },
+    {
+     "n": "A2",
+     "title": "Sit Down I Think I Love You"
+    },
+    {
+     "n": "A3",
+     "title": "Leave"
+    },
+    {
+     "n": "A4",
+     "title": "Nowadays Clancy Can’t Even Sing",
+     "song_id": 272
+    },
+    {
+     "n": "A5",
+     "title": "Hot Dusty Roads"
+    },
+    {
+     "n": "A6",
+     "title": "Everybody’s Wrong"
+    },
+    {
+     "n": "B1",
+     "title": "Flying on the Ground Is Wrong",
+     "song_id": 127
+    },
+    {
+     "n": "B2",
+     "title": "Burned",
+     "song_id": 49
+    },
+    {
+     "n": "B3",
+     "title": "Do I Have to Come Right Out and Say It",
+     "song_id": 87
+    },
+    {
+     "n": "B4",
+     "title": "Baby Don’t Scold Me"
+    },
+    {
+     "n": "B5",
+     "title": "Out of My Mind",
+     "song_id": 293
+    },
+    {
+     "n": "B6",
+     "title": "Pay the Price"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Buffalo Springfield Again",
+   "year": "1967",
+   "mbid": "28768f4d-dd43-382d-a56f-79ddfa6597a9",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Mr. Soul",
+     "song_id": 258
+    },
+    {
+     "n": "A2",
+     "title": "A Child’s Claim to Fame"
+    },
+    {
+     "n": "A3",
+     "title": "Everydays"
+    },
+    {
+     "n": "A4",
+     "title": "Expecting to Fly",
+     "song_id": 114
+    },
+    {
+     "n": "A5",
+     "title": "Bluebird"
+    },
+    {
+     "n": "B1",
+     "title": "Hung Upside Down"
+    },
+    {
+     "n": "B2",
+     "title": "Sad Memory"
+    },
+    {
+     "n": "B3",
+     "title": "Good Time Boy"
+    },
+    {
+     "n": "B4",
+     "title": "Rock & Roll Woman"
+    },
+    {
+     "n": "B5",
+     "title": "Broken Arrow",
+     "song_id": 47
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Neil Young",
+   "year": "1968",
+   "mbid": "52418ea0-7f00-3265-92ae-485de63fcb13",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "The Emperor of Wyoming",
+     "song_id": 375
+    },
+    {
+     "n": "A2",
+     "title": "The Loner",
+     "song_id": 378
+    },
+    {
+     "n": "A3",
+     "title": "If I Could Have Her Tonight",
+     "song_id": 186
+    },
+    {
+     "n": "A4",
+     "title": "I’ve Been Waiting for You",
+     "song_id": 198
+    },
+    {
+     "n": "A5",
+     "title": "The Old Laughing Lady",
+     "song_id": 384
+    },
+    {
+     "n": "B1",
+     "title": "String Quartet From Whiskey Boot Hill"
+    },
+    {
+     "n": "B2",
+     "title": "Here We Are in the Years",
+     "song_id": 164
+    },
+    {
+     "n": "B3",
+     "title": "What Did You Do to My Life?",
+     "song_id": 432
+    },
+    {
+     "n": "B4",
+     "title": "I’ve Loved Her So Long",
+     "song_id": 199
+    },
+    {
+     "n": "B5",
+     "title": "The Last Trip to Tulsa",
+     "song_id": 377
+    }
+   ],
+   "extras": [
+    360
+   ]
+  },
+  {
+   "name": "Last Time Around",
+   "year": "1968",
+   "mbid": "fb39d4c7-d68c-36d1-a2c2-93fc7ccbdcc8",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "On the Way Home",
+     "song_id": 289
+    },
+    {
+     "n": "A2",
+     "title": "It’s So Hard to Wait",
+     "song_id": 197
+    },
+    {
+     "n": "A3",
+     "title": "Pretty Girl Why"
+    },
+    {
+     "n": "A4",
+     "title": "Four Days Gone"
+    },
+    {
+     "n": "A5",
+     "title": "Carefree Country Day"
+    },
+    {
+     "n": "A6",
+     "title": "Special Care"
+    },
+    {
+     "n": "B1",
+     "title": "The Hour of Not Quite Rain"
+    },
+    {
+     "n": "B2",
+     "title": "Questions"
+    },
+    {
+     "n": "B3",
+     "title": "I Am a Child",
+     "song_id": 184
+    },
+    {
+     "n": "B4",
+     "title": "Merry‐Go‐Round"
+    },
+    {
+     "n": "B5",
+     "title": "Uno mundo"
+    },
+    {
+     "n": "B6",
+     "title": "Kind Woman"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Everybody Knows This Is Nowhere",
+   "year": "1969",
+   "mbid": "f61603ab-ef6b-386b-a5e0-aaefc00543f1",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Cinnamon Girl",
+     "song_id": 57
+    },
+    {
+     "n": "A2",
+     "title": "Everybody Knows This Is Nowhere",
+     "song_id": 110
+    },
+    {
+     "n": "A3",
+     "title": "Round & Round (It Won't Be Long)"
+    },
+    {
+     "n": "A4",
+     "title": "Down by the River",
+     "song_id": 97
+    },
+    {
+     "n": "B1",
+     "title": "The Losing End (When You're On)",
+     "song_id": 379
+    },
+    {
+     "n": "B2",
+     "title": "Running Dry (Requiem for the Rockets)",
+     "song_id": 326
+    },
+    {
+     "n": "B3",
+     "title": "Cowgirl in the Sand",
+     "song_id": 70
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "After the Gold Rush",
+   "year": "1970",
+   "mbid": "b6a3952b-9977-351c-a80a-73e023143858",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Tell Me Why",
+     "song_id": 370
+    },
+    {
+     "n": "A2",
+     "title": "After the Gold Rush",
+     "song_id": 5
+    },
+    {
+     "n": "A3",
+     "title": "Only Love Can Break Your Heart",
+     "song_id": 287
+    },
+    {
+     "n": "A4",
+     "title": "Southern Man",
+     "song_id": 352
+    },
+    {
+     "n": "A5",
+     "title": "Till the Morning Comes",
+     "song_id": 402
+    },
+    {
+     "n": "B1",
+     "title": "Oh, Lonesome Me",
+     "song_id": 278
+    },
+    {
+     "n": "B2",
+     "title": "Don't Let It Bring You Down",
+     "song_id": 92
+    },
+    {
+     "n": "B3",
+     "title": "Birds",
+     "song_id": 36
+    },
+    {
+     "n": "B4",
+     "title": "When You Dance I Can Really Love",
+     "song_id": 438
+    },
+    {
+     "n": "B5",
+     "title": "I Believe in You",
+     "song_id": 185
+    },
+    {
+     "n": "B6",
+     "title": "Cripple Creek Ferry",
+     "song_id": 73
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Déjà Vu (CSNY)",
+   "year": "1970",
+   "mbid": "3412fd44-c6e6-3a3b-b91a-964a055192ec",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Carry On"
+    },
+    {
+     "n": "A2",
+     "title": "Teach Your Children"
+    },
+    {
+     "n": "A3",
+     "title": "Almost Cut My Hair"
+    },
+    {
+     "n": "A4",
+     "title": "Helpless",
+     "song_id": 162
+    },
+    {
+     "n": "A5",
+     "title": "Woodstock"
+    },
+    {
+     "n": "B1",
+     "title": "Déjà vu"
+    },
+    {
+     "n": "B2",
+     "title": "Our House"
+    },
+    {
+     "n": "B3",
+     "title": "4 + 20"
+    },
+    {
+     "n": "B4",
+     "title": "Country Girl: Whiskey Boot Hill – Down, Down, Down – “Country Girl” (I Think You’re Pretty)",
+     "song_id": 67
+    },
+    {
+     "n": "B5",
+     "title": "Everybody I Love You",
+     "song_id": 109
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Harvest",
+   "year": "1972",
+   "mbid": "b25419cf-71bf-3a54-8cd4-2161c61056a0",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Out on the Weekend",
+     "song_id": 294
+    },
+    {
+     "n": "A2",
+     "title": "Harvest",
+     "song_id": 156
+    },
+    {
+     "n": "A3",
+     "title": "A Man Needs a Maid",
+     "song_id": 11
+    },
+    {
+     "n": "A4",
+     "title": "Heart of Gold",
+     "song_id": 160
+    },
+    {
+     "n": "A5",
+     "title": "Are You Ready for the Country?",
+     "song_id": 19
+    },
+    {
+     "n": "B1",
+     "title": "Old Man",
+     "song_id": 280
+    },
+    {
+     "n": "B2",
+     "title": "There’s a World",
+     "song_id": 389
+    },
+    {
+     "n": "B3",
+     "title": "Alabama",
+     "song_id": 7
+    },
+    {
+     "n": "B4",
+     "title": "The Needle and the Damage Done",
+     "song_id": 381
+    },
+    {
+     "n": "B5",
+     "title": "Words (Between the Lines of Age)",
+     "song_id": 448
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Time Fades Away",
+   "year": "1973",
+   "mbid": "d24d0560-f58f-3f33-8009-54ef756ce245",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Time Fades Away",
+     "song_id": 403
+    },
+    {
+     "n": "A2",
+     "title": "Journey Through the Past",
+     "song_id": 205
+    },
+    {
+     "n": "A3",
+     "title": "Yonder Stands the Sinner",
+     "song_id": 451
+    },
+    {
+     "n": "A4",
+     "title": "L.A.",
+     "song_id": 209
+    },
+    {
+     "n": "A5",
+     "title": "Love in Mind",
+     "song_id": 240
+    },
+    {
+     "n": "B1",
+     "title": "Don’t Be Denied",
+     "song_id": 89
+    },
+    {
+     "n": "B2",
+     "title": "The Bridge",
+     "song_id": 374
+    },
+    {
+     "n": "B3",
+     "title": "Last Dance",
+     "song_id": 211
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "On the Beach",
+   "year": "1974",
+   "mbid": "f4174531-b783-3786-b75f-4fe61a8f6333",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Walk On",
+     "song_id": 424
+    },
+    {
+     "n": "A2",
+     "title": "See the Sky About to Rain",
+     "song_id": 336
+    },
+    {
+     "n": "A3",
+     "title": "Revolution Blues",
+     "song_id": 317
+    },
+    {
+     "n": "A4",
+     "title": "For the Turnstiles",
+     "song_id": 132
+    },
+    {
+     "n": "A5",
+     "title": "Vampire Blues",
+     "song_id": 420
+    },
+    {
+     "n": "B1",
+     "title": "On the Beach",
+     "song_id": 288
+    },
+    {
+     "n": "B2",
+     "title": "Motion Pictures",
+     "song_id": 254
+    },
+    {
+     "n": "B3",
+     "title": "Ambulance Blues",
+     "song_id": 13
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Tonight's the Night",
+   "year": "1975",
+   "mbid": "e0207e33-af06-3862-baba-f42ca722de0d",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Tonight’s the Night",
+     "song_id": 406
+    },
+    {
+     "n": "A2",
+     "title": "Speakin’ Out",
+     "song_id": 354
+    },
+    {
+     "n": "A3",
+     "title": "World on a String",
+     "song_id": 449
+    },
+    {
+     "n": "A4",
+     "title": "Borrowed Tune",
+     "song_id": 41
+    },
+    {
+     "n": "A5",
+     "title": "Come On Baby Let’s Go Downtown",
+     "song_id": 60
+    },
+    {
+     "n": "A6",
+     "title": "Mellow My Mind",
+     "song_id": 247
+    },
+    {
+     "n": "B1",
+     "title": "Roll Another Number (for the Road)"
+    },
+    {
+     "n": "B2",
+     "title": "Albuquerque",
+     "song_id": 8
+    },
+    {
+     "n": "B3",
+     "title": "New Mama",
+     "song_id": 267
+    },
+    {
+     "n": "B4",
+     "title": "Lookout Joe",
+     "song_id": 233
+    },
+    {
+     "n": "B5",
+     "title": "Tired Eyes",
+     "song_id": 405
+    },
+    {
+     "n": "B6",
+     "title": "Tonight’s the Night, Part II"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Zuma",
+   "year": "1975",
+   "mbid": "13b7462a-0764-3ece-946e-314aa01079cf",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Don't Cry No Tears",
+     "song_id": 91
+    },
+    {
+     "n": "A2",
+     "title": "Danger Bird",
+     "song_id": 78
+    },
+    {
+     "n": "A3",
+     "title": "Pardon My Heart",
+     "song_id": 296
+    },
+    {
+     "n": "A4",
+     "title": "Lookin' for a Love",
+     "song_id": 230
+    },
+    {
+     "n": "A5",
+     "title": "Barstool Blues",
+     "song_id": 28
+    },
+    {
+     "n": "B1",
+     "title": "Stupid Girl",
+     "song_id": 362
+    },
+    {
+     "n": "B2",
+     "title": "Drive Back",
+     "song_id": 103
+    },
+    {
+     "n": "B3",
+     "title": "Cortez the Killer",
+     "song_id": 65
+    },
+    {
+     "n": "B4",
+     "title": "Through My Sails",
+     "song_id": 400
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Long May You Run",
+   "year": "1976",
+   "mbid": "4c0ceea5-76a2-3474-82c4-b99049e26c89",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Long May You Run",
+     "song_id": 226
+    },
+    {
+     "n": "A2",
+     "title": "Make Love to You"
+    },
+    {
+     "n": "A3",
+     "title": "Midnight on the Bay",
+     "song_id": 250
+    },
+    {
+     "n": "A4",
+     "title": "Black Coral"
+    },
+    {
+     "n": "A5",
+     "title": "Ocean Girl",
+     "song_id": 275
+    },
+    {
+     "n": "B1",
+     "title": "Let It Shine",
+     "song_id": 214
+    },
+    {
+     "n": "B2",
+     "title": "12/8 Blues (All the Same)"
+    },
+    {
+     "n": "B3",
+     "title": "Fontainebleau",
+     "song_id": 128
+    },
+    {
+     "n": "B4",
+     "title": "Guardian Angel"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "American Stars 'n Bars",
+   "year": "1977",
+   "mbid": "8e457784-baae-3ab0-b171-da2a76bedc01",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "The Old Country Waltz",
+     "song_id": 382
+    },
+    {
+     "n": "A2",
+     "title": "Saddle Up the Palomino",
+     "song_id": 327
+    },
+    {
+     "n": "A3",
+     "title": "Hey Babe",
+     "song_id": 167
+    },
+    {
+     "n": "A4",
+     "title": "Hold Back the Tears",
+     "song_id": 175
+    },
+    {
+     "n": "A5",
+     "title": "Bite the Bullet",
+     "song_id": 37
+    },
+    {
+     "n": "B1",
+     "title": "Star of Bethlehem",
+     "song_id": 357
+    },
+    {
+     "n": "B2",
+     "title": "Will to Love",
+     "song_id": 442
+    },
+    {
+     "n": "B3",
+     "title": "Like a Hurricane",
+     "song_id": 219
+    },
+    {
+     "n": "B4",
+     "title": "Homegrown",
+     "song_id": 179
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Comes a Time",
+   "year": "1978",
+   "mbid": "51d6fa96-4a5c-3d0c-ac05-b237314122cf",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Goin' Back",
+     "song_id": 144
+    },
+    {
+     "n": "A2",
+     "title": "Comes a Time",
+     "song_id": 61
+    },
+    {
+     "n": "A3",
+     "title": "Look Out for My Love",
+     "song_id": 232
+    },
+    {
+     "n": "A4",
+     "title": "Lotta Love",
+     "song_id": 236
+    },
+    {
+     "n": "A5",
+     "title": "Peace of Mind",
+     "song_id": 299
+    },
+    {
+     "n": "B1",
+     "title": "Human Highway",
+     "song_id": 182
+    },
+    {
+     "n": "B2",
+     "title": "Already One",
+     "song_id": 10
+    },
+    {
+     "n": "B3",
+     "title": "Field of Opportunity",
+     "song_id": 124
+    },
+    {
+     "n": "B4",
+     "title": "Motorcycle Mama",
+     "song_id": 256
+    },
+    {
+     "n": "B5",
+     "title": "Four Strong Winds",
+     "song_id": 133
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Rust Never Sleeps",
+   "year": "1979",
+   "mbid": "a710c7c7-46e6-36ca-9c3c-87c8e79f8daf",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "My My, Hey Hey (Out of the Blue)",
+     "song_id": 263
+    },
+    {
+     "n": "A2",
+     "title": "Thrasher",
+     "song_id": 399
+    },
+    {
+     "n": "A3",
+     "title": "Ride My Llama",
+     "song_id": 318
+    },
+    {
+     "n": "A4",
+     "title": "Pocahontas",
+     "song_id": 481
+    },
+    {
+     "n": "A5",
+     "title": "Sail Away",
+     "song_id": 330
+    },
+    {
+     "n": "B1",
+     "title": "Powderfinger",
+     "song_id": 304
+    },
+    {
+     "n": "B2",
+     "title": "Welfare Mothers",
+     "song_id": 428
+    },
+    {
+     "n": "B3",
+     "title": "Sedan Delivery",
+     "song_id": 335
+    },
+    {
+     "n": "B4",
+     "title": "Hey Hey, My My (Into the Black)",
+     "song_id": 169
+    }
+   ],
+   "extras": [
+    303
+   ]
+  },
+  {
+   "name": "Live Rust",
+   "year": "1979",
+   "mbid": "20a61e55-29f9-3eb6-ab77-82816ebfac8a",
+   "tracks": [
+    {
+     "n": "A1",
+     "disc": 1,
+     "title": "Sugar Mountain",
+     "song_id": 364
+    },
+    {
+     "n": "A2",
+     "disc": 1,
+     "title": "I Am a Child"
+    },
+    {
+     "n": "A3",
+     "disc": 1,
+     "title": "Comes a Time"
+    },
+    {
+     "n": "A4",
+     "disc": 1,
+     "title": "After the Gold Rush"
+    },
+    {
+     "n": "A5",
+     "disc": 1,
+     "title": "My My, Hey Hey (Out of the Blue)"
+    },
+    {
+     "n": "B1",
+     "disc": 1,
+     "title": "When You Dance I Can Really Love"
+    },
+    {
+     "n": "B2",
+     "disc": 1,
+     "title": "The Loner"
+    },
+    {
+     "n": "B3",
+     "disc": 1,
+     "title": "The Needle and the Damage Done"
+    },
+    {
+     "n": "B4",
+     "disc": 1,
+     "title": "Lotta Love"
+    },
+    {
+     "n": "B5",
+     "disc": 1,
+     "title": "Sedan Delivery"
+    },
+    {
+     "n": "C1",
+     "disc": 2,
+     "title": "Powderfinger"
+    },
+    {
+     "n": "C2",
+     "disc": 2,
+     "title": "Cortez the Killer"
+    },
+    {
+     "n": "C3",
+     "disc": 2,
+     "title": "Cinnamon Girl"
+    },
+    {
+     "n": "D1",
+     "disc": 2,
+     "title": "Like a Hurricane"
+    },
+    {
+     "n": "D2",
+     "disc": 2,
+     "title": "Hey Hey, My My (Into the Black)"
+    },
+    {
+     "n": "D3",
+     "disc": 2,
+     "title": "Tonight's the Night"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Hawks & Doves",
+   "year": "1980",
+   "mbid": "3b3d31fd-3cae-30b4-a827-dc1484c5dcfb",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Little Wing",
+     "song_id": 222
+    },
+    {
+     "n": "A2",
+     "title": "The Old Homestead",
+     "song_id": 383
+    },
+    {
+     "n": "A3",
+     "title": "Lost in Space",
+     "song_id": 235
+    },
+    {
+     "n": "A4",
+     "title": "Captain Kennedy",
+     "song_id": 53
+    },
+    {
+     "n": "B1",
+     "title": "Stayin’ Power"
+    },
+    {
+     "n": "B2",
+     "title": "Coastline"
+    },
+    {
+     "n": "B3",
+     "title": "Union Man",
+     "song_id": 418
+    },
+    {
+     "n": "B4",
+     "title": "Comin’ Apart at Every Nail",
+     "song_id": 62
+    },
+    {
+     "n": "B5",
+     "title": "Hawks & Doves",
+     "song_id": 159
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Re·ac·tor",
+   "year": "1981",
+   "mbid": "c6fd0515-a278-397c-a396-420c28b6f9c1",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Opera Star",
+     "song_id": 290
+    },
+    {
+     "n": "A2",
+     "title": "Surfer Joe and Moe the Sleaze",
+     "song_id": 367
+    },
+    {
+     "n": "A3",
+     "title": "T-Bone",
+     "song_id": 369
+    },
+    {
+     "n": "A4",
+     "title": "Get Back on It",
+     "song_id": 139
+    },
+    {
+     "n": "B1",
+     "title": "Southern Pacific",
+     "song_id": 353
+    },
+    {
+     "n": "B2",
+     "title": "Motor City",
+     "song_id": 255
+    },
+    {
+     "n": "B3",
+     "title": "Rapid Transit",
+     "song_id": 314
+    },
+    {
+     "n": "B4",
+     "title": "Shots",
+     "song_id": 341
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Trans",
+   "year": "1982",
+   "mbid": "246568c5-1fe6-35b2-b056-c94d6c484eac",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Little Thing Called Love",
+     "song_id": 221
+    },
+    {
+     "n": "2",
+     "title": "Computer Age",
+     "song_id": 63
+    },
+    {
+     "n": "3",
+     "title": "We R in Control",
+     "song_id": 430
+    },
+    {
+     "n": "4",
+     "title": "Transformer Man",
+     "song_id": 413
+    },
+    {
+     "n": "5",
+     "title": "Computer Cowboy (a.k.a. Syscrusher)",
+     "song_id": 64
+    },
+    {
+     "n": "6",
+     "title": "Hold on to Your Love",
+     "song_id": 176
+    },
+    {
+     "n": "7",
+     "title": "Sample and Hold",
+     "song_id": 331
+    },
+    {
+     "n": "8",
+     "title": "Mr. Soul"
+    },
+    {
+     "n": "9",
+     "title": "Like an Inca"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Everybody's Rockin'",
+   "year": "1983",
+   "mbid": "6bf5b30b-e2c7-330e-8417-163618f14a45",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Betty Lou’s Got a New Pair of Shoes",
+     "song_id": 31
+    },
+    {
+     "n": "2",
+     "title": "Rainin’ in My Heart",
+     "song_id": 313
+    },
+    {
+     "n": "3",
+     "title": "Payola Blues",
+     "song_id": 297
+    },
+    {
+     "n": "4",
+     "title": "Wonderin’",
+     "song_id": 447
+    },
+    {
+     "n": "5",
+     "title": "Kinda Fonda Wanda"
+    },
+    {
+     "n": "6",
+     "title": "Jellyroll Man",
+     "song_id": 202
+    },
+    {
+     "n": "7",
+     "title": "Bright Lights, Big City"
+    },
+    {
+     "n": "8",
+     "title": "Cry, Cry, Cry"
+    },
+    {
+     "n": "9",
+     "title": "Mystery Train",
+     "song_id": 264
+    },
+    {
+     "n": "10",
+     "title": "Everybody’s Rockin’",
+     "song_id": 112
+    }
+   ],
+   "extras": [
+    24,
+    45
+   ]
+  },
+  {
+   "name": "Old Ways",
+   "year": "1985",
+   "mbid": "6c6b3e71-f1b9-3e22-b34c-17cdbd209e9e",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "The Wayward Wind",
+     "song_id": 394
+    },
+    {
+     "n": "A2",
+     "title": "Get Back to the Country",
+     "song_id": 140
+    },
+    {
+     "n": "A3",
+     "title": "Are There Any More Real Cowboys?",
+     "song_id": 17
+    },
+    {
+     "n": "A4",
+     "title": "Once an Angel",
+     "song_id": 283
+    },
+    {
+     "n": "A5",
+     "title": "Misfits",
+     "song_id": 251
+    },
+    {
+     "n": "B1",
+     "title": "California Sunset",
+     "song_id": 50
+    },
+    {
+     "n": "B2",
+     "title": "Old Ways",
+     "song_id": 281
+    },
+    {
+     "n": "B3",
+     "title": "My Boy",
+     "song_id": 261
+    },
+    {
+     "n": "B4",
+     "title": "Bound for Glory",
+     "song_id": 42
+    },
+    {
+     "n": "B5",
+     "title": "Where Is the Highway Tonight?",
+     "song_id": 440
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Landing on Water",
+   "year": "1986",
+   "mbid": "968a1103-f76f-3b23-92db-a3b195b55654",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Weight of the World",
+     "song_id": 427
+    },
+    {
+     "n": "2",
+     "title": "Violent Side",
+     "song_id": 421
+    },
+    {
+     "n": "3",
+     "title": "Hippie Dream",
+     "song_id": 172
+    },
+    {
+     "n": "4",
+     "title": "Bad News Beat",
+     "song_id": 25
+    },
+    {
+     "n": "5",
+     "title": "Touch the Night",
+     "song_id": 409
+    },
+    {
+     "n": "6",
+     "title": "People on the Street",
+     "song_id": 300
+    },
+    {
+     "n": "7",
+     "title": "Hard Luck Stories",
+     "song_id": 155
+    },
+    {
+     "n": "8",
+     "title": "I Got a Problem",
+     "song_id": 188
+    },
+    {
+     "n": "9",
+     "title": "Pressure",
+     "song_id": 306
+    },
+    {
+     "n": "10",
+     "title": "Drifter"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Life",
+   "year": "1987",
+   "mbid": "cd3d642b-df7e-3a5f-93c2-16b6f4a4b984",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Mideast Vacation"
+    },
+    {
+     "n": "2",
+     "title": "Long Walk Home",
+     "song_id": 228
+    },
+    {
+     "n": "3",
+     "title": "Around the World",
+     "song_id": 20
+    },
+    {
+     "n": "4",
+     "title": "Inca Queen",
+     "song_id": 192
+    },
+    {
+     "n": "5",
+     "title": "Too Lonely",
+     "song_id": 408
+    },
+    {
+     "n": "6",
+     "title": "Prisoners of Rock ’n’ Roll"
+    },
+    {
+     "n": "7",
+     "title": "Cryin’ Eyes",
+     "song_id": 75
+    },
+    {
+     "n": "8",
+     "title": "When Your Lonely Heart Breaks",
+     "song_id": 439
+    },
+    {
+     "n": "9",
+     "title": "We Never Danced",
+     "song_id": 429
+    }
+   ],
+   "extras": [
+    407
+   ]
+  },
+  {
+   "name": "American Dream (CSNY)",
+   "year": "1988",
+   "mbid": "c6156273-c3ff-3d0c-98df-b2f85787b668",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "American Dream",
+     "song_id": 14
+    },
+    {
+     "n": "2",
+     "title": "Got It Made",
+     "song_id": 149
+    },
+    {
+     "n": "3",
+     "title": "Name of Love",
+     "song_id": 265
+    },
+    {
+     "n": "4",
+     "title": "Don’t Say Good-Bye"
+    },
+    {
+     "n": "5",
+     "title": "This Old House",
+     "song_id": 397
+    },
+    {
+     "n": "6",
+     "title": "Nighttime for Generals"
+    },
+    {
+     "n": "7",
+     "title": "Shadowland"
+    },
+    {
+     "n": "8",
+     "title": "Drivin’ Thunder",
+     "song_id": 104
+    },
+    {
+     "n": "9",
+     "title": "Clear Blue Skies"
+    },
+    {
+     "n": "10",
+     "title": "That Girl"
+    },
+    {
+     "n": "11",
+     "title": "Compass"
+    },
+    {
+     "n": "12",
+     "title": "Soldiers of Peace"
+    },
+    {
+     "n": "13",
+     "title": "Feel Your Love",
+     "song_id": 123
+    },
+    {
+     "n": "14",
+     "title": "Night Song",
+     "song_id": 268
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "This Note's for You",
+   "year": "1988",
+   "mbid": "62810843-fe3f-3b4c-8537-182eedfad223",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Ten Men Workin’",
+     "song_id": 371
+    },
+    {
+     "n": "2",
+     "title": "This Note’s for You",
+     "song_id": 395
+    },
+    {
+     "n": "3",
+     "title": "Coupe de Ville",
+     "song_id": 69
+    },
+    {
+     "n": "4",
+     "title": "Life in the City",
+     "song_id": 217
+    },
+    {
+     "n": "5",
+     "title": "Twilight",
+     "song_id": 416
+    },
+    {
+     "n": "6",
+     "title": "Married Man",
+     "song_id": 244
+    },
+    {
+     "n": "7",
+     "title": "Sunny Inside",
+     "song_id": 366
+    },
+    {
+     "n": "8",
+     "title": "Can’t Believe Your Lyin’"
+    },
+    {
+     "n": "9",
+     "title": "Hey Hey",
+     "song_id": 168
+    },
+    {
+     "n": "10",
+     "title": "One Thing",
+     "song_id": 286
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Freedom",
+   "year": "1989",
+   "mbid": "6ae11dfd-4dc8-3b0b-be8c-456d6254ac9f",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Rockin’ in the Free World",
+     "song_id": 320
+    },
+    {
+     "n": "2",
+     "title": "Crime in the City (Sixty to Zero, Part I)",
+     "song_id": 71
+    },
+    {
+     "n": "3",
+     "title": "Don’t Cry",
+     "song_id": 90
+    },
+    {
+     "n": "4",
+     "title": "Hangin’ on a Limb",
+     "song_id": 154
+    },
+    {
+     "n": "5",
+     "title": "Eldorado",
+     "song_id": 106
+    },
+    {
+     "n": "6",
+     "title": "The Ways of Love",
+     "song_id": 393
+    },
+    {
+     "n": "7",
+     "title": "Someday",
+     "song_id": 348
+    },
+    {
+     "n": "8",
+     "title": "On Broadway"
+    },
+    {
+     "n": "9",
+     "title": "Wrecking Ball",
+     "song_id": 450
+    },
+    {
+     "n": "10",
+     "title": "No More",
+     "song_id": 269
+    },
+    {
+     "n": "11",
+     "title": "Too Far Gone"
+    },
+    {
+     "n": "12",
+     "title": "Rockin’ in the Free World",
+     "song_id": 480
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Ragged Glory",
+   "year": "1990",
+   "mbid": "91fdfd77-a868-3678-b9f2-11ad92118955",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Country Home",
+     "song_id": 68
+    },
+    {
+     "n": "2",
+     "title": "White Line",
+     "song_id": 441
+    },
+    {
+     "n": "3",
+     "title": "F*!#in’ Up"
+    },
+    {
+     "n": "4",
+     "title": "Over and Over",
+     "song_id": 295
+    },
+    {
+     "n": "5",
+     "title": "Love to Burn",
+     "song_id": 242
+    },
+    {
+     "n": "6",
+     "title": "Farmer John",
+     "song_id": 121
+    },
+    {
+     "n": "7",
+     "title": "Mansion on the Hill",
+     "song_id": 243
+    },
+    {
+     "n": "8",
+     "title": "Days That Used to Be",
+     "song_id": 79
+    },
+    {
+     "n": "9",
+     "title": "Love and Only Love",
+     "song_id": 237
+    },
+    {
+     "n": "10",
+     "title": "Mother Earth (Natural Anthem)",
+     "song_id": 253
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Harvest Moon",
+   "year": "1992",
+   "mbid": "6c153d3a-cf36-37ea-8409-0e48b428315f",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Unknown Legend"
+    },
+    {
+     "n": "2",
+     "title": "From Hank to Hendrix",
+     "song_id": 134
+    },
+    {
+     "n": "3",
+     "title": "You and Me",
+     "song_id": 452
+    },
+    {
+     "n": "4",
+     "title": "Harvest Moon",
+     "song_id": 157
+    },
+    {
+     "n": "5",
+     "title": "War of Man",
+     "song_id": 425
+    },
+    {
+     "n": "6",
+     "title": "One of These Days",
+     "song_id": 285
+    },
+    {
+     "n": "7",
+     "title": "Such a Woman",
+     "song_id": 363
+    },
+    {
+     "n": "8",
+     "title": "Old King",
+     "song_id": 279
+    },
+    {
+     "n": "9",
+     "title": "Dreamin' Man",
+     "song_id": 101
+    },
+    {
+     "n": "10",
+     "title": "Natural Beauty",
+     "song_id": 266
+    }
+   ],
+   "extras": [
+    339
+   ]
+  },
+  {
+   "name": "Sleeps with Angels",
+   "year": "1994",
+   "mbid": "8d08ec3a-aeab-37cc-9d28-ff20040196d4",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "My Heart",
+     "song_id": 262
+    },
+    {
+     "n": "2",
+     "title": "Prime of Life",
+     "song_id": 307
+    },
+    {
+     "n": "3",
+     "title": "Driveby",
+     "song_id": 105
+    },
+    {
+     "n": "4",
+     "title": "Sleeps With Angels",
+     "song_id": 344
+    },
+    {
+     "n": "5",
+     "title": "Western Hero",
+     "song_id": 431
+    },
+    {
+     "n": "6",
+     "title": "Change Your Mind",
+     "song_id": 55
+    },
+    {
+     "n": "7",
+     "title": "Blue Eden",
+     "song_id": 39
+    },
+    {
+     "n": "8",
+     "title": "Safeway Cart",
+     "song_id": 329
+    },
+    {
+     "n": "9",
+     "title": "Train of Love"
+    },
+    {
+     "n": "10",
+     "title": "Trans Am",
+     "song_id": 412
+    },
+    {
+     "n": "11",
+     "title": "Piece of Crap",
+     "song_id": 302
+    },
+    {
+     "n": "12",
+     "title": "A Dream That Can Last",
+     "song_id": 2
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Mirror Ball",
+   "year": "1995",
+   "mbid": "9962e46d-d42b-3d94-a6c7-8c81cc292fdb",
+   "tracks": [
+    {
+     "n": "A1",
+     "disc": 1,
+     "title": "Song X",
+     "song_id": 349
+    },
+    {
+     "n": "A2",
+     "disc": 1,
+     "title": "Act of Love",
+     "song_id": 1
+    },
+    {
+     "n": "B1",
+     "disc": 1,
+     "title": "I'm the Ocean",
+     "song_id": 191
+    },
+    {
+     "n": "B2",
+     "disc": 1,
+     "title": "Big Green Country",
+     "song_id": 33
+    },
+    {
+     "n": "B3",
+     "disc": 1,
+     "title": "Truth Be Known",
+     "song_id": 414
+    },
+    {
+     "n": "A1",
+     "disc": 2,
+     "title": "Downtown",
+     "song_id": 99
+    },
+    {
+     "n": "A2",
+     "disc": 2,
+     "title": "What Happened Yesterday",
+     "song_id": 434
+    },
+    {
+     "n": "A3",
+     "disc": 2,
+     "title": "Peace and Love"
+    },
+    {
+     "n": "B1",
+     "disc": 2,
+     "title": "Throw Your Hatred Down",
+     "song_id": 401
+    },
+    {
+     "n": "B2",
+     "disc": 2,
+     "title": "Scenery",
+     "song_id": 333
+    },
+    {
+     "n": "B3",
+     "disc": 2,
+     "title": "Fallen Angel",
+     "song_id": 116
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Broken Arrow",
+   "year": "1996",
+   "mbid": "65920f83-a9d1-3127-8496-ee9cada5920b",
+   "tracks": [
+    {
+     "n": "A1",
+     "disc": 1,
+     "title": "Big Time",
+     "song_id": 35
+    },
+    {
+     "n": "A2",
+     "disc": 1,
+     "title": "Loose Change",
+     "song_id": 234
+    },
+    {
+     "n": "B1",
+     "disc": 1,
+     "title": "Slip Away"
+    },
+    {
+     "n": "B2",
+     "disc": 1,
+     "title": "Changing Highways"
+    },
+    {
+     "n": "B3",
+     "disc": 1,
+     "title": "Scattered (Let’s Think About Livin’)",
+     "song_id": 332
+    },
+    {
+     "n": "C1",
+     "disc": 2,
+     "title": "This Town",
+     "song_id": 398
+    },
+    {
+     "n": "C2",
+     "disc": 2,
+     "title": "Music Arcade",
+     "song_id": 259
+    },
+    {
+     "n": "C3",
+     "disc": 2,
+     "title": "Baby What You Want Me to Do",
+     "song_id": 22
+    },
+    {
+     "n": "D",
+     "disc": 2,
+     "title": "Interstate",
+     "song_id": 193
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Silver & Gold",
+   "year": "2000",
+   "mbid": "8467e990-ceec-3424-beec-c0d805810c57",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Good to See You",
+     "song_id": 147
+    },
+    {
+     "n": "A2",
+     "title": "Silver & Gold",
+     "song_id": 342
+    },
+    {
+     "n": "A3",
+     "title": "Daddy Went Walkin'",
+     "song_id": 76
+    },
+    {
+     "n": "A4",
+     "title": "Buffalo Springfield Again",
+     "song_id": 48
+    },
+    {
+     "n": "A5",
+     "title": "The Great Divide",
+     "song_id": 376
+    },
+    {
+     "n": "B1",
+     "title": "Horseshoe Man",
+     "song_id": 181
+    },
+    {
+     "n": "B2",
+     "title": "Red Sun",
+     "song_id": 316
+    },
+    {
+     "n": "B3",
+     "title": "Distant Camera",
+     "song_id": 85
+    },
+    {
+     "n": "B4",
+     "title": "Razor Love",
+     "song_id": 315
+    },
+    {
+     "n": "B5",
+     "title": "Without Rings",
+     "song_id": 446
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Are You Passionate?",
+   "year": "2002",
+   "mbid": "9d37eb02-1e98-35ef-8214-9c757b5a6084",
+   "tracks": [
+    {
+     "n": "A1",
+     "disc": 1,
+     "title": "You're My Girl",
+     "song_id": 453
+    },
+    {
+     "n": "A2",
+     "disc": 1,
+     "title": "Mr. Disappointment"
+    },
+    {
+     "n": "A3",
+     "disc": 1,
+     "title": "Differently",
+     "song_id": 83
+    },
+    {
+     "n": "B1",
+     "disc": 1,
+     "title": "Quit (Don't Say You Love Me)",
+     "song_id": 311
+    },
+    {
+     "n": "B2",
+     "disc": 1,
+     "title": "Let's Roll",
+     "song_id": 216
+    },
+    {
+     "n": "B3",
+     "disc": 1,
+     "title": "Are You Passionate?",
+     "song_id": 18
+    },
+    {
+     "n": "C1",
+     "disc": 2,
+     "title": "Goin' Home",
+     "song_id": 145
+    },
+    {
+     "n": "C2",
+     "disc": 2,
+     "title": "When I Hold You in My Arms",
+     "song_id": 436
+    },
+    {
+     "n": "C3",
+     "disc": 2,
+     "title": "Be With You",
+     "song_id": 32
+    },
+    {
+     "n": "D1",
+     "disc": 2,
+     "title": "Two Old Friends"
+    },
+    {
+     "n": "D2",
+     "disc": 2,
+     "title": "She's a Healer",
+     "song_id": 338
+    }
+   ],
+   "extras": [
+    636
+   ]
+  },
+  {
+   "name": "Greendale",
+   "year": "2003",
+   "mbid": "18ce8eaf-ac67-3bd6-ada7-75d4a46296f9",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Falling From Above",
+     "song_id": 117
+    },
+    {
+     "n": "2",
+     "title": "Double E",
+     "song_id": 96
+    },
+    {
+     "n": "3",
+     "title": "Devil’s Sidewalk",
+     "song_id": 82
+    },
+    {
+     "n": "4",
+     "title": "Leave the Driving",
+     "song_id": 212
+    },
+    {
+     "n": "5",
+     "title": "Carmichael",
+     "song_id": 54
+    },
+    {
+     "n": "6",
+     "title": "Bandit",
+     "song_id": 26
+    },
+    {
+     "n": "7",
+     "title": "Grandpa’s Interview",
+     "song_id": 150
+    },
+    {
+     "n": "8",
+     "title": "Bringin’ Down Dinner"
+    },
+    {
+     "n": "9",
+     "title": "Sun Green",
+     "song_id": 365
+    },
+    {
+     "n": "10",
+     "title": "Be the Rain",
+     "song_id": 30
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Prairie Wind",
+   "year": "2005",
+   "mbid": "449a4ba1-f2a9-3ef2-a7a5-91e94634a854",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "The Painter",
+     "song_id": 386
+    },
+    {
+     "n": "2",
+     "title": "No Wonder",
+     "song_id": 274
+    },
+    {
+     "n": "3",
+     "title": "Falling Off of the Face of the Earth"
+    },
+    {
+     "n": "4",
+     "title": "Far From Home",
+     "song_id": 120
+    },
+    {
+     "n": "5",
+     "title": "It’s a Dream",
+     "song_id": 196
+    },
+    {
+     "n": "6",
+     "title": "Prairie Wind",
+     "song_id": 305
+    },
+    {
+     "n": "7",
+     "title": "Here for You",
+     "song_id": 163
+    },
+    {
+     "n": "8",
+     "title": "This Old Guitar",
+     "song_id": 396
+    },
+    {
+     "n": "9",
+     "title": "He Was the King",
+     "song_id": 165
+    },
+    {
+     "n": "10",
+     "title": "When God Made Me",
+     "song_id": 435
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Living with War",
+   "year": "2006",
+   "mbid": "216257f0-a33b-3b29-b7ff-5d133fef3691",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "After the Garden",
+     "song_id": 4
+    },
+    {
+     "n": "2",
+     "title": "Living With War",
+     "song_id": 224
+    },
+    {
+     "n": "3",
+     "title": "The Restless Consumer",
+     "song_id": 390
+    },
+    {
+     "n": "4",
+     "title": "Shock and Awe",
+     "song_id": 340
+    },
+    {
+     "n": "5",
+     "title": "Families",
+     "song_id": 119
+    },
+    {
+     "n": "6",
+     "title": "Flags of Freedom",
+     "song_id": 126
+    },
+    {
+     "n": "7",
+     "title": "Let's Impeach the President",
+     "song_id": 215
+    },
+    {
+     "n": "8",
+     "title": "Lookin' for a Leader",
+     "song_id": 229
+    },
+    {
+     "n": "9",
+     "title": "Roger and Out",
+     "song_id": 322
+    },
+    {
+     "n": "10",
+     "title": "America the Beautiful",
+     "song_id": 15
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Chrome Dreams II",
+   "year": "2007",
+   "mbid": "96c4d48d-12fc-36ec-8871-bc7ffd3af976",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Beautiful Bluebird",
+     "song_id": 29
+    },
+    {
+     "n": "2",
+     "title": "Boxcar",
+     "song_id": 43
+    },
+    {
+     "n": "3",
+     "title": "Ordinary People",
+     "song_id": 291
+    },
+    {
+     "n": "4",
+     "title": "Shining Light"
+    },
+    {
+     "n": "5",
+     "title": "The Believer",
+     "song_id": 373
+    },
+    {
+     "n": "6",
+     "title": "Spirit Road",
+     "song_id": 355
+    },
+    {
+     "n": "7",
+     "title": "Dirty Old Man",
+     "song_id": 84
+    },
+    {
+     "n": "8",
+     "title": "Ever After",
+     "song_id": 108
+    },
+    {
+     "n": "9",
+     "title": "No Hidden Path",
+     "song_id": 273
+    },
+    {
+     "n": "10",
+     "title": "The Way",
+     "song_id": 392
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Fork in the Road",
+   "year": "2009",
+   "mbid": "1a008644-4e8b-3b25-af5d-cca8c6c07565",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "When Worlds Collide",
+     "song_id": 437
+    },
+    {
+     "n": "2",
+     "title": "Fuel Line",
+     "song_id": 136
+    },
+    {
+     "n": "3",
+     "title": "Just Singing a Song",
+     "song_id": 206
+    },
+    {
+     "n": "4",
+     "title": "Johnny Magic",
+     "song_id": 204
+    },
+    {
+     "n": "5",
+     "title": "Cough Up the Bucks",
+     "song_id": 66
+    },
+    {
+     "n": "6",
+     "title": "Get Behind the Wheel",
+     "song_id": 141
+    },
+    {
+     "n": "7",
+     "title": "Off the Road",
+     "song_id": 276
+    },
+    {
+     "n": "8",
+     "title": "Hit the Road",
+     "song_id": 173
+    },
+    {
+     "n": "9",
+     "title": "Light a Candle",
+     "song_id": 218
+    },
+    {
+     "n": "10",
+     "title": "Fork in the Road",
+     "song_id": 131
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Le Noise",
+   "year": "2010",
+   "mbid": "5e99955a-e88c-45a7-9875-cac4561cc6fc",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Walk With Me",
+     "song_id": 489
+    },
+    {
+     "n": "2",
+     "title": "Sign of Love",
+     "song_id": 486
+    },
+    {
+     "n": "3",
+     "title": "Someone’s Gonna Rescue You",
+     "song_id": 491
+    },
+    {
+     "n": "4",
+     "title": "Love and War",
+     "song_id": 485
+    },
+    {
+     "n": "5",
+     "title": "Angry World",
+     "song_id": 492
+    },
+    {
+     "n": "6",
+     "title": "Hitchhiker",
+     "song_id": 174
+    },
+    {
+     "n": "7",
+     "title": "Peaceful Valley Boulevard",
+     "song_id": 484
+    },
+    {
+     "n": "8",
+     "title": "Rumblin’",
+     "song_id": 488
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Psychedelic Pill",
+   "year": "2012",
+   "mbid": "4c5857a3-d19e-4b46-bb26-c0a972e22c66",
+   "tracks": [
+    {
+     "n": "1",
+     "disc": 1,
+     "title": "Driftin' Back",
+     "song_id": 521
+    },
+    {
+     "n": "2",
+     "disc": 1,
+     "title": "Psychedelic Pill",
+     "song_id": 519
+    },
+    {
+     "n": "3",
+     "disc": 1,
+     "title": "Ramada Inn",
+     "song_id": 517
+    },
+    {
+     "n": "4",
+     "disc": 1,
+     "title": "Born in Ontario",
+     "song_id": 520
+    },
+    {
+     "n": "1",
+     "disc": 2,
+     "title": "Twisted Road",
+     "song_id": 518
+    },
+    {
+     "n": "2",
+     "disc": 2,
+     "title": "She's Always Dancing",
+     "song_id": 522
+    },
+    {
+     "n": "3",
+     "disc": 2,
+     "title": "For the Love of Man",
+     "song_id": 201
+    },
+    {
+     "n": "4",
+     "disc": 2,
+     "title": "Walk Like a Giant",
+     "song_id": 516
+    },
+    {
+     "n": "5",
+     "disc": 2,
+     "title": "Psychedelic Pill (alternate mix)"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Americana",
+   "year": "2012",
+   "mbid": "ef8ed8fa-e3df-43e3-9a81-43161e1646e4",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Oh Susannah",
+     "song_id": 504
+    },
+    {
+     "n": "2",
+     "title": "Clementine",
+     "song_id": 505
+    },
+    {
+     "n": "3",
+     "title": "Tom Dula",
+     "song_id": 506
+    },
+    {
+     "n": "4",
+     "title": "Gallows Pole",
+     "song_id": 507
+    },
+    {
+     "n": "5",
+     "title": "Get a Job",
+     "song_id": 508
+    },
+    {
+     "n": "6",
+     "title": "Travel On",
+     "song_id": 509
+    },
+    {
+     "n": "7",
+     "title": "High Flyin’ Bird",
+     "song_id": 510
+    },
+    {
+     "n": "8",
+     "title": "Jesus’ Chariot"
+    },
+    {
+     "n": "9",
+     "title": "This Land Is Your Land",
+     "song_id": 512
+    },
+    {
+     "n": "10",
+     "title": "Wayfarin’ Stranger",
+     "song_id": 513
+    },
+    {
+     "n": "11",
+     "title": "God Save the Queen",
+     "song_id": 514
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Storytone",
+   "year": "2014",
+   "mbid": "7214755f-759a-4f60-8b70-f17e4bc9b968",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Plastic Flowers",
+     "song_id": 544
+    },
+    {
+     "n": "2",
+     "title": "Who’s Gonna Stand Up?",
+     "song_id": 541
+    },
+    {
+     "n": "3",
+     "title": "I Want to Drive My Car",
+     "song_id": 545
+    },
+    {
+     "n": "4",
+     "title": "Glimmer",
+     "song_id": 546
+    },
+    {
+     "n": "5",
+     "title": "Say Hello to Chicago",
+     "song_id": 547
+    },
+    {
+     "n": "6",
+     "title": "Tumbleweed",
+     "song_id": 548
+    },
+    {
+     "n": "7",
+     "title": "Like You Used to Do",
+     "song_id": 549
+    },
+    {
+     "n": "8",
+     "title": "I'm Glad I Found You",
+     "song_id": 542
+    },
+    {
+     "n": "9",
+     "title": "When I Watch You Sleeping",
+     "song_id": 543
+    },
+    {
+     "n": "10",
+     "title": "All Those Dreams",
+     "song_id": 550
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "A Letter Home",
+   "year": "2014",
+   "mbid": "7205caa1-c399-4b8c-bd2c-9711394669e2",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "A Letter Home (intro)"
+    },
+    {
+     "n": "2",
+     "title": "Changes",
+     "song_id": 531
+    },
+    {
+     "n": "3",
+     "title": "Girl From the North Country",
+     "song_id": 532
+    },
+    {
+     "n": "4",
+     "title": "Needle of Death",
+     "song_id": 530
+    },
+    {
+     "n": "5",
+     "title": "Early Morning Rain",
+     "song_id": 533
+    },
+    {
+     "n": "6",
+     "title": "Crazy",
+     "song_id": 534
+    },
+    {
+     "n": "7",
+     "title": "A Letter Home (intro #2) / Reason to Believe"
+    },
+    {
+     "n": "8",
+     "title": "On the Road Again",
+     "song_id": 536
+    },
+    {
+     "n": "9",
+     "title": "If You Could Read My Mind",
+     "song_id": 540
+    },
+    {
+     "n": "10",
+     "title": "Since I Met You Baby",
+     "song_id": 537
+    },
+    {
+     "n": "11",
+     "title": "My Hometown",
+     "song_id": 538
+    },
+    {
+     "n": "12",
+     "title": "I Wonder If I Care as Much",
+     "song_id": 539
+    }
+   ],
+   "extras": [
+    535
+   ]
+  },
+  {
+   "name": "The Monsanto Years",
+   "year": "2015",
+   "mbid": "0418e242-9fc7-4468-b96c-7357122e0f82",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "A New Day for Love",
+     "song_id": 556
+    },
+    {
+     "n": "2",
+     "title": "Wolf Moon",
+     "song_id": 557
+    },
+    {
+     "n": "3",
+     "title": "People Want to Hear About Love",
+     "song_id": 558
+    },
+    {
+     "n": "4",
+     "title": "Big Box",
+     "song_id": 551
+    },
+    {
+     "n": "5",
+     "title": "A Rock Star Bucks a Coffee Shop",
+     "song_id": 552
+    },
+    {
+     "n": "6",
+     "title": "Workin’ Man",
+     "song_id": 554
+    },
+    {
+     "n": "7",
+     "title": "Rules of Change",
+     "song_id": 553
+    },
+    {
+     "n": "8",
+     "title": "Monsanto Years"
+    },
+    {
+     "n": "9",
+     "title": "If I Don’t Know",
+     "song_id": 559
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Peace Trail",
+   "year": "2016",
+   "mbid": "d45f18c5-249d-490b-83ce-efabd0f8f650",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Peace Trail",
+     "song_id": 570
+    },
+    {
+     "n": "2",
+     "title": "Can’t Stop Workin’",
+     "song_id": 588
+    },
+    {
+     "n": "3",
+     "title": "Indian Givers"
+    },
+    {
+     "n": "4",
+     "title": "Show Me",
+     "song_id": 569
+    },
+    {
+     "n": "5",
+     "title": "Texas Rangers",
+     "song_id": 571
+    },
+    {
+     "n": "6",
+     "title": "Terrorist Suicide Hang Gliders",
+     "song_id": 572
+    },
+    {
+     "n": "7",
+     "title": "John Oaks",
+     "song_id": 574
+    },
+    {
+     "n": "8",
+     "title": "My Pledge",
+     "song_id": 575
+    },
+    {
+     "n": "9",
+     "title": "Glass Accident",
+     "song_id": 573
+    },
+    {
+     "n": "10",
+     "title": "My New Robot",
+     "song_id": 576
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "The Visitor",
+   "year": "2017",
+   "mbid": "a122d799-ec7d-4c36-a593-c7c6f9a4ab6b",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Already Great",
+     "song_id": 579
+    },
+    {
+     "n": "2",
+     "title": "Fly by Night Deal",
+     "song_id": 580
+    },
+    {
+     "n": "3",
+     "title": "Almost Always",
+     "song_id": 581
+    },
+    {
+     "n": "4",
+     "title": "Stand Tall",
+     "song_id": 582
+    },
+    {
+     "n": "5",
+     "title": "Change of Heart",
+     "song_id": 583
+    },
+    {
+     "n": "6",
+     "title": "Carnival",
+     "song_id": 584
+    },
+    {
+     "n": "7",
+     "title": "Diggin’ a Hole",
+     "song_id": 585
+    },
+    {
+     "n": "8",
+     "title": "Children of Destiny",
+     "song_id": 577
+    },
+    {
+     "n": "9",
+     "title": "When Bad Got Good",
+     "song_id": 586
+    },
+    {
+     "n": "10",
+     "title": "Forever",
+     "song_id": 587
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Hitchhiker",
+   "year": "2017",
+   "mbid": "0ac81b52-8ed5-4d97-8731-cb328878d60e",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Pocahontas"
+    },
+    {
+     "n": "2",
+     "title": "Powderfinger"
+    },
+    {
+     "n": "3",
+     "title": "Captain Kennedy"
+    },
+    {
+     "n": "4",
+     "title": "Hawaii",
+     "song_id": 578
+    },
+    {
+     "n": "5",
+     "title": "Give Me Strength",
+     "song_id": 143
+    },
+    {
+     "n": "6",
+     "title": "Ride My Llama"
+    },
+    {
+     "n": "7",
+     "title": "Hitchhiker"
+    },
+    {
+     "n": "8",
+     "title": "Campaigner",
+     "song_id": 51
+    },
+    {
+     "n": "9",
+     "title": "Human Highway"
+    },
+    {
+     "n": "10",
+     "title": "The Old Country Waltz"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Colorado",
+   "year": "2019",
+   "mbid": "2925051b-6052-4ac7-ac64-465a1e5173ed",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Think of Me",
+     "song_id": 601
+    },
+    {
+     "n": "2",
+     "title": "She Showed Me Love",
+     "song_id": 602
+    },
+    {
+     "n": "3",
+     "title": "Olden Days",
+     "song_id": 600
+    },
+    {
+     "n": "4",
+     "title": "Help Me Lose My Mind",
+     "song_id": 603
+    },
+    {
+     "n": "5",
+     "title": "Green Is Blue",
+     "song_id": 599
+    },
+    {
+     "n": "6",
+     "title": "Shut It Down",
+     "song_id": 604
+    },
+    {
+     "n": "7",
+     "title": "Milky Way",
+     "song_id": 605
+    },
+    {
+     "n": "8",
+     "title": "Eternity",
+     "song_id": 606
+    },
+    {
+     "n": "9",
+     "title": "Rainbow of Colors",
+     "song_id": 607
+    },
+    {
+     "n": "10",
+     "title": "I Do",
+     "song_id": 608
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Homegrown",
+   "year": "2020",
+   "mbid": "de8c4624-9d37-416b-b87c-7711bd6c1743",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Separate Ways",
+     "song_id": 337
+    },
+    {
+     "n": "2",
+     "title": "Try",
+     "song_id": 415
+    },
+    {
+     "n": "3",
+     "title": "Mexico",
+     "song_id": 248
+    },
+    {
+     "n": "4",
+     "title": "Love Is a Rose",
+     "song_id": 241
+    },
+    {
+     "n": "5",
+     "title": "Homegrown"
+    },
+    {
+     "n": "6",
+     "title": "Florida",
+     "song_id": 615
+    },
+    {
+     "n": "7",
+     "title": "Kansas",
+     "song_id": 207
+    },
+    {
+     "n": "8",
+     "title": "We Don’t Smoke It No More",
+     "song_id": 616
+    },
+    {
+     "n": "9",
+     "title": "White Line"
+    },
+    {
+     "n": "10",
+     "title": "Vacancy",
+     "song_id": 614
+    },
+    {
+     "n": "11",
+     "title": "Little Wing"
+    },
+    {
+     "n": "12",
+     "title": "Star of Bethlehem"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Barn",
+   "year": "2021",
+   "mbid": "f1c2f62b-60e5-4273-8365-1bf16bc61664",
+   "tracks": [
+    {
+     "n": "A1",
+     "title": "Song of the Seasons",
+     "song_id": 626
+    },
+    {
+     "n": "A2",
+     "title": "Heading West",
+     "song_id": 627
+    },
+    {
+     "n": "A3",
+     "title": "Change Ain’t Never Gonna"
+    },
+    {
+     "n": "A4",
+     "title": "Canerican"
+    },
+    {
+     "n": "A5",
+     "title": "Shape of You",
+     "song_id": 633
+    },
+    {
+     "n": "A6",
+     "title": "They Might Be Lost",
+     "song_id": 628
+    },
+    {
+     "n": "B1",
+     "title": "Human Race",
+     "song_id": 632
+    },
+    {
+     "n": "B2",
+     "title": "Tumblin’ Thru the Years",
+     "song_id": 630
+    },
+    {
+     "n": "B3",
+     "title": "Welcome Back",
+     "song_id": 634
+    },
+    {
+     "n": "B4",
+     "title": "Don’t Forget Love",
+     "song_id": 631
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "World Record",
+   "year": "2022",
+   "mbid": "d6482158-f345-42ef-a37c-553c0db8b95d",
+   "tracks": [
+    {
+     "n": "1",
+     "disc": 1,
+     "title": "Love Earth",
+     "song_id": 639
+    },
+    {
+     "n": "2",
+     "disc": 1,
+     "title": "Overhead",
+     "song_id": 641
+    },
+    {
+     "n": "3",
+     "disc": 1,
+     "title": "I Walk With You (Earth Ringtone)",
+     "song_id": 642
+    },
+    {
+     "n": "4",
+     "disc": 1,
+     "title": "This Old Planet (Changing Days)",
+     "song_id": 643
+    },
+    {
+     "n": "5",
+     "disc": 1,
+     "title": "The World (Is in Trouble Now)",
+     "song_id": 644
+    },
+    {
+     "n": "6",
+     "disc": 1,
+     "title": "Break the Chain",
+     "song_id": 640
+    },
+    {
+     "n": "7",
+     "disc": 1,
+     "title": "The Long Day Before",
+     "song_id": 645
+    },
+    {
+     "n": "8",
+     "disc": 1,
+     "title": "Walkin’ on the Road (To the Future)",
+     "song_id": 646
+    },
+    {
+     "n": "9",
+     "disc": 1,
+     "title": "The Wonder Won’t Wait",
+     "song_id": 647
+    },
+    {
+     "n": "1",
+     "disc": 2,
+     "title": "Chevrolet",
+     "song_id": 648
+    },
+    {
+     "n": "2",
+     "disc": 2,
+     "title": "This Old Planet (reprise)",
+     "song_id": 649
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Toast",
+   "year": "2022",
+   "mbid": "6ec783cd-e2ac-4bc3-87a1-517fd9b943db",
+   "tracks": [
+    {
+     "n": "A1",
+     "disc": 1,
+     "title": "Quit"
+    },
+    {
+     "n": "A2",
+     "disc": 1,
+     "title": "Standing in the Light of Love",
+     "song_id": 356
+    },
+    {
+     "n": "A3",
+     "disc": 1,
+     "title": "Goin' Home"
+    },
+    {
+     "n": "B4",
+     "disc": 1,
+     "title": "Timberline",
+     "song_id": 638
+    },
+    {
+     "n": "B5",
+     "disc": 1,
+     "title": "Gateway of Love",
+     "song_id": 137
+    },
+    {
+     "n": "C1",
+     "disc": 2,
+     "title": "How Ya Doin' ?",
+     "song_id": 637
+    },
+    {
+     "n": "C2",
+     "disc": 2,
+     "title": "Boom Boom Boom"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Before and After",
+   "year": "2023",
+   "mbid": "39448dab-2a97-4465-90f9-b4288261f2e0",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "I'm the Ocean"
+    },
+    {
+     "n": "2",
+     "title": "Homefires",
+     "song_id": 178
+    },
+    {
+     "n": "3",
+     "title": "Burned"
+    },
+    {
+     "n": "4",
+     "title": "On the Way Home"
+    },
+    {
+     "n": "5",
+     "title": "If You Got Love",
+     "song_id": 187
+    },
+    {
+     "n": "6",
+     "title": "A Dream that Can Last"
+    },
+    {
+     "n": "7",
+     "title": "Birds"
+    },
+    {
+     "n": "8",
+     "title": "My Heart"
+    },
+    {
+     "n": "9",
+     "title": "When I Hold you in my Arms"
+    },
+    {
+     "n": "10",
+     "title": "Mother Earth"
+    },
+    {
+     "n": "11",
+     "title": "Mr. Soul"
+    },
+    {
+     "n": "12",
+     "title": "Comes a Time"
+    },
+    {
+     "n": "13",
+     "title": "Don't Forget Love"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Early Daze",
+   "year": "2024",
+   "mbid": "307f6655-57db-430b-b8ce-35bead8b732c",
+   "tracks": [
+    {
+     "n": "1",
+     "title": "Dance Dance Dance",
+     "song_id": 77
+    },
+    {
+     "n": "2",
+     "title": "Come On Baby Let’s Go Downtown"
+    },
+    {
+     "n": "3",
+     "title": "Winterlong",
+     "song_id": 443
+    },
+    {
+     "n": "4",
+     "title": "Everybody’s Alone",
+     "song_id": 111
+    },
+    {
+     "n": "5",
+     "title": "Wonderin’"
+    },
+    {
+     "n": "6",
+     "title": "Cinnamon Girl"
+    },
+    {
+     "n": "7",
+     "title": "Look at All the Things",
+     "song_id": 664
+    },
+    {
+     "n": "8",
+     "title": "Helpless"
+    },
+    {
+     "n": "9",
+     "title": "Birds"
+    },
+    {
+     "n": "10",
+     "title": "Down by the River"
+    }
+   ],
+   "extras": []
+  },
+  {
+   "name": "Fuckin' Up",
+   "year": "2024",
+   "mbid": null,
+   "tracks": [],
+   "extras": []
+  },
+  {
+   "name": "Unreleased & Rarities",
+   "year": "",
+   "mbid": null,
+   "tracks": [],
+   "extras": [
+    467,
+    468,
+    3,
+    6,
+    12,
+    16,
+    21,
+    23,
+    27,
+    654,
+    665,
+    653,
+    40,
+    662,
+    46,
+    457,
+    52,
+    629,
+    463,
+    635,
+    56,
+    58,
+    59,
+    625,
+    72,
+    74,
+    657,
+    624,
+    668,
+    380,
+    80,
+    81,
+    88,
+    94,
+    95,
+    98,
+    459,
+    102,
+    669,
+    107,
+    115,
+    456,
+    118,
+    656,
+    125,
+    658,
+    129,
+    623,
+    135,
+    567,
+    138,
+    142,
+    651,
+    620,
+    148,
+    152,
+    153,
+    158,
+    161,
+    166,
+    170,
+    562,
+    171,
+    177,
+    523,
+    183,
+    189,
+    194,
+    200,
+    461,
+    563,
+    462,
+    190,
+    460,
+    568,
+    652,
+    564,
+    203,
+    458,
+    208,
+    622,
+    210,
+    122,
+    213,
+    487,
+    146,
+    655,
+    618,
+    220,
+    565,
+    223,
+    225,
+    227,
+    231,
+    238,
+    239,
+    245,
+    246,
+    249,
+    252,
+    619,
+    555,
+    661,
+    257,
+    566,
+    260,
+    270,
+    271,
+    277,
+    284,
+    292,
+    298,
+    301,
+    308,
+    309,
+    310,
+    312,
+    621,
+    319,
+    321,
+    323,
+    324,
+    325,
+    328,
+    334,
+    529,
+    666,
+    561,
+    465,
+    659,
+    515,
+    343,
+    345,
+    466,
+    346,
+    350,
+    347,
+    670,
+    351,
+    358,
+    361,
+    368,
+    660,
+    663,
+    93,
+    667,
+    388,
+    391,
+    387,
+    404,
+    410,
+    411,
+    617,
+    417,
+    419,
+    422,
+    426,
+    34,
+    650,
+    433,
+    469,
+    445,
+    444,
+    483,
+    455,
+    454
+   ]
+  },
+  {
+   "name": "Covers & Traditional",
+   "year": "",
+   "mbid": null,
+   "tracks": [],
+   "extras": [
+    9,
+    482,
+    38,
+    44,
+    100,
+    86,
+    113,
+    130,
+    151,
+    180,
+    195,
+    511,
+    282,
+    359,
+    372
+   ]
+  }
+ ]
+}

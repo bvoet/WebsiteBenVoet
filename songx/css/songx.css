@@ -887,6 +887,357 @@ body {
   }
 }
 
+/* ── Tuning filter ─────────────────────────────────────────────────── */
+
+.tuning-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tuning-filter select {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+}
+
+.tuning-filter select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Album covers ──────────────────────────────────────────────────── */
+
+.cover-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem 1rem;
+}
+
+.cover-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.album-cover {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--bg-meta), var(--bg-card-hover));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.album-cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.album-cover.has-img .album-cover-fallback {
+  visibility: hidden;
+}
+
+.cover-card:hover .album-cover,
+.cover-card:focus-visible .album-cover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.cover-card:focus-visible {
+  outline: none;
+}
+
+.cover-card:focus-visible .album-cover {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.cover-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cover-name {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.cover-card:hover .cover-name {
+  color: var(--accent);
+}
+
+.cover-meta {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+/* ── One album ─────────────────────────────────────────────────────── */
+
+.album-back {
+  margin-bottom: 1.25rem;
+}
+
+.album-detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.album-cover--large {
+  width: min(260px, 100%);
+}
+
+.album-cover--large .album-cover-fallback {
+  font-size: 2rem;
+}
+
+.album-detail-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 2.6rem;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.album-detail-sub {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.tracklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 640px;
+  border-top: 1px solid var(--border);
+}
+
+.track {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.track-num {
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  text-align: right;
+  padding-right: 0.8rem;
+}
+
+.track .song-link {
+  border-radius: 0;
+}
+
+.track-title {
+  padding: 0.4rem 0.6rem;
+  font-size: 1.05rem;
+}
+
+.track.is-missing .track-title {
+  color: var(--text-dim);
+}
+
+.track.is-missing .track-title::after {
+  content: 'not transcribed';
+  margin-left: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+.track.is-dim {
+  opacity: 0.45;
+}
+
+.tracklist-disc {
+  padding: 1rem 0 0.35rem 3.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.data-credit {
+  margin-top: 2.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.data-credit a {
+  color: inherit;
+}
+
+/* ── Chord diagrams ────────────────────────────────────────────────── */
+
+.chords-display .chord,
+.chord-def-pill.chord {
+  cursor: help;
+}
+
+.chords-display .chord:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.chord-def-pill.chord:hover {
+  border-color: var(--accent);
+}
+
+.chord-pop {
+  position: fixed;
+  z-index: 50;
+  padding: 0.6rem 0.7rem 0.55rem;
+  min-width: 130px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  text-align: center;
+  pointer-events: none;
+}
+
+.chord-pop[hidden] {
+  display: none;
+}
+
+.chord-pop-name {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--chord-color);
+}
+
+.chord-pop-code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.chord-pop-note {
+  max-width: 150px;
+  margin: 0.2rem auto 0;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.2;
+  color: var(--text-dim);
+}
+
+.chord-svg {
+  display: block;
+  margin: 0.15rem auto 0;
+}
+
+.chord-svg .fret,
+.chord-svg .string {
+  stroke: var(--text-dim);
+  stroke-width: 1;
+}
+
+.chord-svg .nut {
+  fill: var(--text-main);
+}
+
+.chord-svg .dot {
+  fill: var(--chord-color);
+}
+
+.chord-svg .open {
+  fill: none;
+  stroke: var(--text-main);
+  stroke-width: 1.4;
+}
+
+.chord-svg .mark,
+.chord-svg .pos,
+.chord-svg .tuning {
+  fill: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.chord-svg .mark {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 768px) {
+  .cover-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1rem 0.75rem;
+  }
+
+  .album-detail-title {
+    font-size: 2rem;
+  }
+
+  .album-cover--large {
+    width: min(200px, 60vw);
+  }
+}
+
+@media print {
+  .chord-pop {
+    display: none !important;
+  }
+}
+
 /* Print Styles */
 @media print {
   body {

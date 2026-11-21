@@ -19,7 +19,14 @@ const SHARP_SCALE = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#',
 const FLAT_SCALE  = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 
 // Chord token regex: root note (A-G with optional # or b) followed by quality, optional bass note
-const CHORD_TOKEN_REGEX = /^([A-G][#b]?)(m|maj|min|dim|aug|sus[24]?|add[0-9]+|[0-9]+|M[0-9]+|\+|°)?(?:\/([A-G][#b]?))?$/;
+// Covers m7, maj7, 7sus4, m7b5, 7#9 / 7+9, add9, 6, 5, dim7, aug, slash chords.
+const CHORD_TOKEN_REGEX = /^([A-G][#b]?)((?:maj|min|m|M|dim|aug|sus|add|°|ø|\+)?(?:[0-9]{1,2})?(?:(?:maj|sus|add|b|#|\+|-)[0-9]{1,2})*)(?:\/([A-G][#b]?))?$/;
+
+// Splits a token like "(Am7)," into ["(", "Am7", "),"].
+export function splitChordToken(token) {
+  const m = token.match(/^([(\[]*)(.*?)([)\],.]*)$/);
+  return m ? [m[1], m[2], m[3]] : ['', token, ''];
+}
 
 export function isChord(token) {
   return CHORD_TOKEN_REGEX.test(token.trim());
@@ -60,7 +67,7 @@ export function isChordLine(line) {
 
   let chordCount = 0;
   for (const t of tokens) {
-    const clean = t.replace(/[(),]/g, '');
+    const clean = splitChordToken(t)[1];
     if (isChord(clean) || /^(INTRO|VERSE|CHORUS|BRIDGE|OUTRO|SOLO|RIFF):?$/i.test(clean) || /^(x[0-9]+|\(x[0-9]+\))$/i.test(clean)) {
       chordCount++;
     }
@@ -75,13 +82,33 @@ export function isChordLine(line) {
 export function transposeChordLine(line, delta, preferFlat = false) {
   if (delta === 0) return line;
 
-  // We find matches of words and replace chord words
-  return line.replace(/\b([A-G][#b]?(?:m|maj|min|dim|aug|sus[24]?|add[0-9]+|[0-9]+|M[0-9]+|\+)??(?:\/[A-G][#b]?)?)\b/g, (match) => {
-    if (isChord(match)) {
-      return transposeChord(match, delta, preferFlat);
+  // Token by token, so sharps and extensions (F#m7, E7#9) transpose as a whole.
+  // When a chord grows or shrinks, the following spaces absorb the difference
+  // so the chords stay above the right syllables.
+  const parts = line.split(/(\s+)/);
+  let carry = 0; // characters the previous chord grew by
+  for (let i = 0; i < parts.length; i++) {
+    const p = parts[i];
+    if (!p) continue;
+    if (/^\s+$/.test(p)) {
+      if (carry > 0) {
+        const keep = Math.max(1, p.length - carry);
+        carry -= p.length - keep;
+        parts[i] = ' '.repeat(keep);
+      } else if (carry < 0) {
+        parts[i] = p + ' '.repeat(-carry);
+        carry = 0;
+      }
+      continue;
     }
-    return match;
-  });
+    const [pre, core, post] = splitChordToken(p);
+    if (core && isChord(core)) {
+      const next = transposeChord(core, delta, preferFlat);
+      carry += next.length - core.length;
+      parts[i] = pre + next + post;
+    }
+  }
+  return parts.join('');
 }
 
 /**

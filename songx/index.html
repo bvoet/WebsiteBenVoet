@@ -86,6 +86,13 @@
             <button class="tab-btn" data-filter="latest" type="button">Latest Added</button>
           </div>
 
+          <label class="tuning-filter">
+            <span>Tuning</span>
+            <select id="tuning-filter" aria-label="Filter by tuning">
+              <option value="all">All tunings</option>
+            </select>
+          </label>
+
           <span id="count-badge" class="count-badge">625 songs</span>
         </div>
       </div>
@@ -96,11 +103,19 @@
       <!-- View 1: Albums -->
       <section id="album-view" class="view-panel active"></section>
 
+      <!-- View 1b: One album, in tracklist order -->
+      <section id="album-detail" class="album-detail" style="display: none;"></section>
+
       <!-- View 2: A-Z Song List -->
       <section id="az-view" class="view-panel"></section>
 
       <!-- View 3: Live Search Results -->
       <section id="search-view" class="view-panel"></section>
+
+      <p class="data-credit">
+        Album art and track order from <a href="https://musicbrainz.org" target="_blank" rel="noopener noreferrer">MusicBrainz</a>
+        and the <a href="https://coverartarchive.org" target="_blank" rel="noopener noreferrer">Cover Art Archive</a>.
+      </p>
     </main>
 
     <!-- Song Sheet Detail View (Single Song) -->
@@ -173,6 +188,9 @@
 
   <!-- Toast Message -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Chord diagram popover -->
+  <div id="chord-pop" class="chord-pop" role="tooltip" hidden></div>
 
   <!-- App Script -->
   <script type="module" src="js/songx.js"></script>
