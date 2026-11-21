@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Synth Lab — Ben Voet</title>
-  <meta name="description" content="Synth Lab: design and play synthesizers in your browser. Built by Ben Voet." />
+  <meta name="description" content="Synth Lab: subtractive, FM, additive, wavetable and drum synthesizers with a step sequencer, right in your browser. Built by Ben Voet." />
   <meta name="theme-color" content="#15120e" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,17 +16,11 @@
   <div class="room">
     <header class="site-head">
       <a class="site-mark" href="./">Ben Voet <span>/ Synth Lab</span></a>
-      <nav class="rack-tabs" aria-label="Instruments">
-        <button type="button" class="rack-tab is-active" aria-current="page"><b>SL-1</b> Subtractive</button>
-        <button type="button" class="rack-tab" disabled title="Coming soon"><b>FM-2</b> FM</button>
-        <button type="button" class="rack-tab" disabled title="Coming soon"><b>AD-3</b> Additive</button>
-        <button type="button" class="rack-tab" disabled title="Coming soon"><b>WT-4</b> Wavetable</button>
-        <button type="button" class="rack-tab" disabled title="Coming soon"><b>DR-5</b> Drums</button>
-      </nav>
+      <nav class="rack-tabs" id="rack-tabs" aria-label="Instruments"></nav>
     </header>
 
     <main>
-      <section class="synth" aria-label="SL-1 subtractive synthesizer">
+      <section class="synth" aria-label="Synthesizer">
         <div class="cheek cheek--l" aria-hidden="true"></div>
 
         <div class="chassis">
@@ -34,8 +28,8 @@
             <div class="brand">
               <div class="brand__stripes" aria-hidden="true"><i></i><i></i><i></i></div>
               <div>
-                <div class="brand__model">SL-1</div>
-                <div class="brand__sub">Subtractive Synthesizer</div>
+                <div class="brand__model" id="brand-model">SL-1</div>
+                <div class="brand__sub" id="brand-sub">Subtractive Synthesizer</div>
               </div>
             </div>
 
@@ -97,6 +91,8 @@
               <div id="piano" aria-label="Keyboard"></div>
             </div>
           </div>
+
+          <section id="seq" aria-label="Sequencer and arpeggiator"></section>
         </div>
 
         <div class="cheek cheek--r" aria-hidden="true"></div>
@@ -116,6 +112,10 @@
           <p>Drag knobs up/down, <kbd>Shift</kbd> for fine control, scroll wheel works too. Double-click resets a control.</p>
         </div>
         <div class="card">
+          <h3>Sequence</h3>
+          <p>Every instrument has its own pattern and they all play together: build a DR-5 beat, switch to SL-1 and jam on top. <b>Rec</b> writes the notes you play into the steps.</p>
+        </div>
+        <div class="card">
           <h3>Plug in</h3>
           <p>Hit <b>MIDI</b> to use a hardware keyboard: velocity, pitch bend, mod wheel and sustain pedal all work.</p>
         </div>
@@ -124,7 +124,7 @@
 
     <footer class="site-foot">
       <span>© Ben Voet</span>
-      <span>Web Audio, no plugins. More instruments on the way.</span>
+      <span>Web Audio, no plugins, no samples: every sound is synthesized live.</span>
     </footer>
   </div>
 

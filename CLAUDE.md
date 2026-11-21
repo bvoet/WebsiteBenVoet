@@ -30,9 +30,11 @@ ES modules don't load over `file://`.
 
 - 2-space indent, single quotes, semicolons, trailing commas in multi-line literals.
 - UI widgets in `js/ui/` stay audio-agnostic (definition + `onChange`). Instruments in `js/synths/` never touch the DOM. `main.js` wires them together.
-- New SL-1 parameters: add to `PARAMS`, handle in `_apply()` / `Voice.apply*`, and add to `LAYOUT` in `main.js`. The panel is generated from these, so don't hand-write knob HTML.
+- Each instrument lives in `js/synths/<name>.js` with its own `PARAMS`, `LAYOUT` and `PRESETS`, and is registered in `js/synths/index.js`. New parameters: add to `PARAMS`, handle in `applyParam()` (or read in the voice's `trigger()`), and add to `LAYOUT`. The panel is generated from these, so don't hand-write knob HTML.
+- Melodic instruments extend `VoiceSynth` / `BaseVoice` (`voice-synth.js`). Register voice nodes with `source()` / `node()` / `link()` so `dispose()` cleans them up.
+- Instruments must accept an optional AudioContext time on `noteOn(note, vel, t)` / `noteOff(note, t)`. The sequencer schedules ahead with it.
 - Wrap every `localStorage` access in `try/catch`.
-- Validate anything from a URL or storage through `sanitizePatch()`.
+- Validate anything from a URL or storage through `sanitizePatch()` / `sanitizePattern()`.
 - Never use blocking dialogs (`alert` / `confirm` / `prompt`). Use inline UI and the LCD `flash()` instead.
 
 ## Web Audio pitfalls (already handled — keep them handled)
@@ -51,6 +53,7 @@ There's no test suite. Audio can't be verified by ear here, so check it programm
 
 1. Serve locally and load the page. Check the console for errors.
 2. In the console (or via DevTools Protocol), use `window.synthLab`:
+   - `switchTo(id)` for each instrument (`sl1 fm2 ad3 wt4 dr5`).
    - `synth.noteOn(60)`, then read the analyser RMS (`engine.analyser.getFloatTimeDomainData`). It should be non-zero.
    - `synth.noteOff(60)`, wait past the release, and confirm `synth.activeVoices === 0` and RMS ≈ 0.
 3. Test real key handling with **trusted** input (CDP `Input.dispatchKeyEvent`). Synthetic `KeyboardEvent`s skip browser default actions, such as button activation and select type-ahead.
@@ -60,4 +63,6 @@ Tell Ben plainly what couldn't be verified (e.g. Firefox/Safari, actual sound qu
 
 ## Roadmap
 
-Instruments are named in the header tabs: FM-2 (FM), AD-3 (additive), WT-4 (wavetable / draw your own), DR-5 (drums). After those: a step sequencer, then a modular patch-cable editor. See "Adding a new instrument" in ARCHITECTURE.md. `main.js` still needs refactoring so it can switch instruments.
+Done: SL-1, FM-2, AD-3, WT-4, DR-5, plus the step sequencer (a track per instrument) and the arpeggiator.
+
+Next: a modular patch-cable editor, song mode (chaining patterns), and personal pages (about/projects; Ben supplies the content).

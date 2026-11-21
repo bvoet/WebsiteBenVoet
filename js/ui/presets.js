@@ -1,48 +1,57 @@
-// User preset storage (localStorage) and shareable patch links (URL hash).
+// Per-instrument storage (user presets, sequencer patterns) in localStorage,
+// and shareable patch links in the URL hash: #<instrumentId>=<base64url JSON>.
+// Every storage access is wrapped: storage can be unavailable (private mode).
 
-const KEY = 'synthlab.sl1.userPresets';
+const presetKey = (id) => `synthlab.${id}.userPresets`;
+const patternKey = (id) => `synthlab.${id}.pattern`;
+const LAST_KEY = 'synthlab.lastInstrument';
 
-export function loadUserPresets() {
+function read(key, fallback) {
   try {
-    const raw = JSON.parse(localStorage.getItem(KEY) || '[]');
-    return Array.isArray(raw) ? raw.filter((p) => p && typeof p.name === 'string' && p.patch) : [];
+    const raw = localStorage.getItem(key);
+    return raw == null ? fallback : JSON.parse(raw);
   } catch {
-    return [];
+    return fallback;
   }
 }
 
-export function saveUserPresets(list) {
+function write(key, value) {
   try {
-    localStorage.setItem(KEY, JSON.stringify(list));
+    localStorage.setItem(key, JSON.stringify(value));
     return true;
   } catch {
     return false;
   }
 }
 
-/** Only store values that differ from defaults → short links. */
-export function diffPatch(params, defaults) {
-  const out = {};
-  for (const [k, v] of Object.entries(params)) {
-    if (v !== defaults[k]) out[k] = typeof v === 'number' ? Number(v.toPrecision(5)) : v;
-  }
-  return out;
+export function loadUserPresets(id) {
+  const raw = read(presetKey(id), []);
+  return Array.isArray(raw) ? raw.filter((p) => p && typeof p.name === 'string' && p.patch && typeof p.patch === 'object') : [];
 }
+
+export const saveUserPresets = (id, list) => write(presetKey(id), list);
+export const loadPattern = (id) => read(patternKey(id), null);
+export const savePattern = (id, p) => write(patternKey(id), p);
+export const loadLastInstrument = () => read(LAST_KEY, null);
+export const saveLastInstrument = (id) => write(LAST_KEY, id);
 
 const toB64Url = (s) => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const fromB64Url = (s) => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
 
-export function encodeShare(name, patch) {
-  return toB64Url(JSON.stringify({ n: name, p: patch }));
+export function encodeShare(id, name, patch, pattern) {
+  const obj = { n: name, p: patch };
+  if (pattern) obj.s = pattern;
+  return `#${id}=${toB64Url(JSON.stringify(obj))}`;
 }
 
-export function decodeShare(hash) {
-  const m = /(?:^#|&)sl1=([A-Za-z0-9_-]+)/.exec(hash || '');
-  if (!m) return null;
+/** @returns {{id, name, patch, pattern}|null} — values are untrusted; sanitize before use. */
+export function decodeShare(hash, validIds) {
+  const m = /^#([a-z0-9]+)=([A-Za-z0-9_-]+)$/.exec(hash || '');
+  if (!m || !validIds.includes(m[1])) return null;
   try {
-    const obj = JSON.parse(fromB64Url(m[1]));
+    const obj = JSON.parse(fromB64Url(m[2]));
     if (!obj || typeof obj !== 'object') return null;
-    return { name: typeof obj.n === 'string' ? obj.n.slice(0, 40) : 'Shared patch', patch: obj.p };
+    return { id: m[1], name: typeof obj.n === 'string' ? obj.n.slice(0, 40) : 'Shared patch', patch: obj.p, pattern: obj.s };
   } catch {
     return null;
   }

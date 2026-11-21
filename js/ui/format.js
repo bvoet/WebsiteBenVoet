@@ -27,6 +27,13 @@ export const WAVE_LABELS = {
   24: '24dB',
   poly: 'POLY',
   mono: 'MONO',
+  stack: 'STACK',
+  parallel: 'PARA',
+  up: 'UP',
+  down: 'DN',
+  updown: 'U/D',
+  random: 'RND',
+  order: 'ORD',
 };
 
 // Small SVG glyphs for waveform buttons.

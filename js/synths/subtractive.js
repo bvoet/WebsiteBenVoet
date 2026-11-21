@@ -1,22 +1,19 @@
 // SL-1: a two-oscillator subtractive synth.
 //
 // Per voice:  osc1 ┐
-//             osc2 ┼→ mixer → filter (12/24 dB) → VCA → voice bus
+//             osc2 ┼→ mixer → filter (12/24 dB) → VCA → out
 //             noise┘            ↑ env + LFO        ↑ amp env
 //
 // Shared:     LFO → pitch / filter / amp depth gains, pitch bend, tremolo.
 
 import { Envelope } from '../engine/envelope.js';
 import { fmt } from '../ui/format.js';
+import { FX_PARAMS, VOICE_PARAMS } from './params.js';
+import { VoiceSynth, BaseVoice } from './voice-synth.js';
 
-const MAX_VOICES = 10;
 const FILTER_ENV_CENTS = 6000; // full env amount = ±5 octaves
 const LFO_FILTER_CENTS = 4800;
-const BEND_CENTS = 200;
 
-export const mtof = (n) => 440 * Math.pow(2, (n - 69) / 12);
-
-/** Parameter definitions. UI metadata lives here so the panel can be generated. */
 export const PARAMS = {
   // Oscillators
   osc1Wave: { label: 'Wave', type: 'select', options: ['sawtooth', 'square', 'triangle', 'sine'], def: 'sawtooth' },
@@ -58,76 +55,46 @@ export const PARAMS = {
   lfoFilter: { label: '→ Filter', min: 0, max: 1, def: 0, format: fmt.pct },
   lfoAmp: { label: '→ Amp', min: 0, max: 1, def: 0, format: fmt.pct },
 
-  // Voicing
-  voiceMode: { label: 'Mode', type: 'select', options: ['poly', 'mono'], def: 'poly' },
-  glide: { label: 'Glide', min: 0, max: 2, curve: 'pow', exp: 3, def: 0, format: fmt.time },
-  velocity: { label: 'Vel Sens', min: 0, max: 1, def: 0.6, format: fmt.pct },
-
-  // Effects (handled by the shared engine)
-  drive: { label: 'Drive', min: 0, max: 1, def: 0, format: fmt.pct, fx: true },
-  delayTime: { label: 'Time', min: 0.02, max: 1.5, curve: 'log', def: 0.32, format: fmt.time, fx: true },
-  delayFeedback: { label: 'Fdbk', min: 0, max: 0.92, def: 0.35, format: fmt.pct, fx: true },
-  delayMix: { label: 'Mix', min: 0, max: 1, def: 0, format: fmt.pct, fx: true },
-  reverbSize: { label: 'Size', min: 0.3, max: 8, curve: 'log', def: 2.5, format: fmt.time, fx: true },
-  reverbMix: { label: 'Mix', min: 0, max: 1, def: 0.15, format: fmt.pct, fx: true },
-  volume: { label: 'Volume', min: 0, max: 1, def: 0.75, format: fmt.pct, fx: true, size: 'lg' },
+  ...VOICE_PARAMS,
+  ...FX_PARAMS,
 };
 
-export function defaultParams() {
-  const p = {};
-  for (const [k, d] of Object.entries(PARAMS)) p[k] = d.def;
-  return p;
-}
-
-/** Validate & clamp a (possibly untrusted, e.g. from a share link) patch. */
-export function sanitizePatch(raw) {
-  const out = defaultParams();
-  if (!raw || typeof raw !== 'object') return out;
-  for (const [k, d] of Object.entries(PARAMS)) {
-    if (!(k in raw)) continue;
-    const v = raw[k];
-    if (d.type === 'select') {
-      if (d.options.includes(String(v))) out[k] = String(v);
-    } else if (typeof v === 'number' && Number.isFinite(v)) {
-      out[k] = Math.min(d.max, Math.max(d.min, v));
-    }
-  }
-  return out;
-}
+export const LAYOUT = [
+  { title: 'Oscillator 1', keys: ['osc1Wave', 'osc1Oct'] },
+  { title: 'Oscillator 2', keys: ['osc2Wave', 'osc2Oct', 'osc2Semi', 'osc2Fine'] },
+  { title: 'Mixer', keys: ['osc1Level', 'osc2Level', 'noiseLevel'] },
+  { title: 'Filter', keys: ['filterType', 'filterSlope', 'cutoff', 'resonance', 'envAmount', 'keyTrack'], wide: true },
+  { title: 'Filter Env', keys: ['fAttack', 'fDecay', 'fSustain', 'fRelease'] },
+  { title: 'Amp Env', keys: ['aAttack', 'aDecay', 'aSustain', 'aRelease'] },
+  { title: 'LFO', keys: ['lfoWave', 'lfoRate', 'lfoPitch', 'lfoFilter', 'lfoAmp'] },
+  { title: 'Voice', keys: ['voiceMode', 'glide', 'velocity'] },
+];
 
 // ─── Voice ────────────────────────────────────────────────────────────────
 
-class Voice {
+class Voice extends BaseVoice {
   constructor(synth, note, velocity, t) {
-    const ctx = synth.ctx;
-    const p = synth.params;
-    this.synth = synth;
-    this.note = note;
-    this.freq = mtof(note);
-    this.velocity = velocity;
-    this.startedAt = t;
-    this.released = false;
-    this.disposed = false;
-    this.timer = 0;
+    super(synth, note, velocity, t);
+    const ctx = this.ctx;
 
-    this.osc1 = ctx.createOscillator();
-    this.osc2 = ctx.createOscillator();
+    this.osc1 = this.source(ctx.createOscillator());
+    this.osc2 = this.source(ctx.createOscillator());
     this.noise = ctx.createBufferSource();
-    this.noise.buffer = synth.noiseBuffer;
+    this.noise.buffer = synth.engine.noiseBuffer;
     this.noise.loop = true;
+    this.noiseOffset = Math.random() * 1.5;
 
     this.g1 = ctx.createGain();
     this.g2 = ctx.createGain();
     this.gn = ctx.createGain();
-
     this.f1 = ctx.createBiquadFilter();
     this.f2 = ctx.createBiquadFilter();
 
     // Filter envelope drives a constant source summed into both filters' detune.
-    this.fEnvSrc = ctx.createConstantSource();
+    this.fEnvSrc = this.source(ctx.createConstantSource());
     this.fEnvSrc.offset.value = 0;
 
-    this.vca = ctx.createGain();
+    this.vca = this.node(ctx.createGain());
     this.vca.gain.value = 0;
 
     this.osc1.connect(this.g1).connect(this.f1);
@@ -135,31 +102,32 @@ class Voice {
     this.noise.connect(this.gn).connect(this.f1);
     this.f1.connect(this.f2).connect(this.vca).connect(synth.voiceBus);
 
-    synth.pitchMod.connect(this.osc1.detune);
-    synth.pitchMod.connect(this.osc2.detune);
-    synth.filterMod.connect(this.f1.detune);
-    synth.filterMod.connect(this.f2.detune);
+    this.link(synth.pitchMod, this.osc1.detune);
+    this.link(synth.pitchMod, this.osc2.detune);
+    this.link(synth.filterMod, this.f1.detune);
+    this.link(synth.filterMod, this.f2.detune);
     this.fEnvSrc.connect(this.f1.detune);
     this.fEnvSrc.connect(this.f2.detune);
 
     this.ampEnv = new Envelope(this.vca.gain, 0);
     this.filterEnv = new Envelope(this.fEnvSrc.offset, 0);
 
-    this.applyAll(true);
+    this.applyAll(t);
+  }
 
-    const offset = Math.random() * 1.5;
-    this.osc1.start(t);
-    this.osc2.start(t);
-    this.noise.start(t, offset);
-    this.fEnvSrc.start(t);
+  startSources(t) {
+    super.startSources(t);
+    this.noise.start(t, this.noiseOffset);
+  }
 
-    this.trigger(t);
+  dispose() {
+    try { this.noise.stop(); } catch { /* not started */ }
+    this.noise.disconnect();
+    super.dispose();
   }
 
   trigger(t) {
     const p = this.synth.params;
-    this.released = false;
-    clearTimeout(this.timer);
     const vel = 1 - p.velocity + p.velocity * this.velocity;
     this.ampEnv.trigger(t, { a: p.aAttack, d: p.aDecay, s: p.aSustain, r: p.aRelease }, 0.32 * vel);
     this.filterEnv.trigger(
@@ -169,49 +137,18 @@ class Voice {
     );
   }
 
-  release(t) {
-    if (this.released) return;
-    this.released = true;
-    const endAmp = this.ampEnv.release(t);
+  releaseEnvelopes(t) {
+    const end = this.ampEnv.release(t);
     this.filterEnv.release(t);
-    this.scheduleDispose(endAmp);
+    return end;
   }
 
-  kill(t) {
-    this.released = true;
-    this.scheduleDispose(this.ampEnv.kill(t));
-  }
-
-  scheduleDispose(atTime) {
-    clearTimeout(this.timer);
-    const ms = Math.max(0, (atTime - this.synth.ctx.currentTime) * 1000) + 30;
-    this.timer = setTimeout(() => {
-      if (this.released) this.dispose();
-    }, ms);
-  }
-
-  dispose() {
-    if (this.disposed) return;
-    this.disposed = true;
-    clearTimeout(this.timer);
-    const s = this.synth;
-    for (const src of [this.osc1, this.osc2, this.noise, this.fEnvSrc]) {
-      try { src.stop(); } catch { /* already stopped */ }
-      src.disconnect();
-    }
-    // Detach shared modulators so they don't keep dead voices alive.
-    safeDisconnect(s.pitchMod, this.osc1.detune);
-    safeDisconnect(s.pitchMod, this.osc2.detune);
-    safeDisconnect(s.filterMod, this.f1.detune);
-    safeDisconnect(s.filterMod, this.f2.detune);
-    this.vca.disconnect();
-    s._removeVoice(this);
+  killEnvelopes(t) {
+    return this.ampEnv.kill(t);
   }
 
   setNote(note, glide, t) {
-    this.note = note;
-    this.freq = mtof(note);
-    this.applyPitch(t, glide);
+    super.setNote(note, glide, t);
     this.applyFilter(t);
   }
 
@@ -262,47 +199,26 @@ class Voice {
     this.osc2.type = p.osc2Wave;
   }
 
-  applyAll(immediate = false) {
-    const t = this.synth.ctx.currentTime;
+  applyAll(t) {
     this.applyWaves();
-    this.applyPitch(t, 0, immediate);
-    this.applyFilter(t, immediate);
-    this.applyMix(t, immediate);
+    this.applyPitch(t, 0, true);
+    this.applyFilter(t, true);
+    this.applyMix(t, true);
   }
-}
-
-function safeDisconnect(node, dest) {
-  try { node.disconnect(dest); } catch { /* not connected */ }
 }
 
 // ─── Synth ────────────────────────────────────────────────────────────────
 
-export class SubtractiveSynth {
+export class SubtractiveSynth extends VoiceSynth {
   constructor() {
-    this.params = defaultParams();
-    this.voices = [];
-    this.ctx = null;
-    this.engine = null;
-    this.monoStack = [];
-    this.sustain = false;
-    this.sustained = new Set();
-    this.modWheel = 0;
-    this.onVoiceCount = null;
+    super(PARAMS);
   }
 
-  get activeVoices() {
-    return this.voices.length;
-  }
-
-  /** Build shared nodes once the AudioContext exists. */
-  attach(engine) {
-    if (this.ctx) return;
-    this.engine = engine;
-    const ctx = (this.ctx = engine.ctx);
-
+  build() {
+    const ctx = this.ctx;
     this.voiceBus = ctx.createGain();
     this.tremolo = ctx.createGain();
-    this.voiceBus.connect(this.tremolo).connect(engine.input);
+    this.voiceBus.connect(this.tremolo).connect(this.out);
 
     this.lfo = ctx.createOscillator();
     this.lfoPitchDepth = ctx.createGain();
@@ -313,224 +229,67 @@ export class SubtractiveSynth {
     this.lfo.connect(this.lfoAmpDepth).connect(this.tremolo.gain);
     this.lfo.start();
 
-    this.bend = ctx.createConstantSource();
-    this.bend.offset.value = 0;
-    this.bend.start();
-
-    this.pitchMod = ctx.createGain();
     this.filterMod = ctx.createGain();
     this.lfoPitchDepth.connect(this.pitchMod);
-    this.bend.connect(this.pitchMod);
     this.lfoFilterDepth.connect(this.filterMod);
-
-    const len = ctx.sampleRate * 2;
-    this.noiseBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
-    const d = this.noiseBuffer.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
-
-    for (const k of Object.keys(this.params)) this._apply(k, true);
   }
 
-  set(name, value) {
-    if (!(name in PARAMS)) return;
-    const prev = this.params[name];
-    this.params[name] = value;
-    if (this.ctx) this._apply(name, false, prev);
+  createVoice(note, velocity, t) {
+    return new Voice(this, note, velocity, t);
   }
 
-  /** Load a whole patch. */
-  load(patch) {
-    const p = sanitizePatch(patch);
-    const modeChanged = p.voiceMode !== this.params.voiceMode;
-    if (modeChanged) this.allNotesOff();
-    for (const [k, v] of Object.entries(p)) this.set(k, v);
-  }
-
-  _apply(name, immediate = false, prev) {
+  applyParam(name, immediate) {
     const p = this.params;
-    const def = PARAMS[name];
     const t = this.ctx.currentTime;
-    if (def.fx) {
-      this.engine.setFx(name, p[name], immediate);
-      return;
-    }
-    const each = (fn) => this.voices.forEach((v) => fn(v));
+    const tc = immediate ? 0.001 : 0.02;
     switch (name) {
       case 'osc1Wave':
       case 'osc2Wave':
-        each((v) => v.applyWaves());
+        this.forEachVoice((v) => v.applyWaves());
         break;
       case 'osc1Oct':
       case 'osc2Oct':
       case 'osc2Semi':
       case 'osc2Fine':
-        each((v) => v.applyPitch(t));
+        this.forEachVoice((v) => v.applyPitch(t));
         break;
       case 'osc1Level':
       case 'osc2Level':
       case 'noiseLevel':
-        each((v) => v.applyMix(t));
+        this.forEachVoice((v) => v.applyMix(t));
         break;
       case 'filterType':
       case 'filterSlope':
       case 'cutoff':
       case 'resonance':
       case 'keyTrack':
-        each((v) => v.applyFilter(t));
+        this.forEachVoice((v) => v.applyFilter(t));
         break;
       case 'lfoWave':
         this.lfo.type = p.lfoWave;
         break;
       case 'lfoRate':
-        this.lfo.frequency.setTargetAtTime(p.lfoRate, t, immediate ? 0.001 : 0.02);
+        this.lfo.frequency.setTargetAtTime(p.lfoRate, t, tc);
         break;
       case 'lfoPitch':
-        this._applyPitchDepth(immediate);
+        this.applyModWheel(immediate);
         break;
       case 'lfoFilter':
-        this.lfoFilterDepth.gain.setTargetAtTime(p.lfoFilter * LFO_FILTER_CENTS, t, immediate ? 0.001 : 0.02);
+        this.lfoFilterDepth.gain.setTargetAtTime(p.lfoFilter * LFO_FILTER_CENTS, t, tc);
         break;
       case 'lfoAmp': {
         const d = p.lfoAmp / 2;
-        this.lfoAmpDepth.gain.setTargetAtTime(d, t, immediate ? 0.001 : 0.02);
-        this.tremolo.gain.setTargetAtTime(1 - d, t, immediate ? 0.001 : 0.02);
+        this.lfoAmpDepth.gain.setTargetAtTime(d, t, tc);
+        this.tremolo.gain.setTargetAtTime(1 - d, t, tc);
         break;
       }
-      case 'voiceMode':
-        if (prev !== undefined && prev !== p.voiceMode) this.allNotesOff();
-        break;
       // Envelopes, glide, velocity and env amount apply from the next note.
     }
   }
 
-  _applyPitchDepth(immediate = false) {
+  applyModWheel(immediate = false) {
     const cents = this.params.lfoPitch * 1200 + this.modWheel * 60;
     this.lfoPitchDepth.gain.setTargetAtTime(cents, this.ctx.currentTime, immediate ? 0.001 : 0.02);
-  }
-
-  // ── Performance controls ──
-
-  setPitchBend(amount /* -1..1 */) {
-    if (!this.ctx) return;
-    this.bend.offset.setTargetAtTime(amount * BEND_CENTS, this.ctx.currentTime, 0.005);
-  }
-
-  setModWheel(amount /* 0..1 */) {
-    this.modWheel = amount;
-    if (this.ctx) this._applyPitchDepth();
-  }
-
-  setSustain(on) {
-    this.sustain = on;
-    if (!on) {
-      const notes = [...this.sustained];
-      this.sustained.clear();
-      for (const n of notes) this._release(n);
-    }
-  }
-
-  // ── Notes ──
-
-  noteOn(note, velocity = 0.8) {
-    if (!this.ctx) return;
-    const t = this.ctx.currentTime;
-    this.sustained.delete(note);
-
-    if (this.params.voiceMode === 'mono') {
-      const wasHeld = this.monoStack.length > 0;
-      this.monoStack = this.monoStack.filter((n) => n !== note);
-      this.monoStack.push(note);
-      const v = this.voices[this.voices.length - 1];
-      if (v && !v.disposed) {
-        v.velocity = velocity;
-        v.setNote(note, this.params.glide, t);
-        // Legato: only retrigger envelopes when no other key was held.
-        if (!wasHeld || v.released) v.trigger(t);
-        return;
-      }
-      this._spawn(note, velocity, t);
-      return;
-    }
-
-    // Poly: re-striking a held note releases the old voice first.
-    for (const v of this.voices) if (v.note === note && !v.released) v.release(t);
-    if (this.voices.length >= MAX_VOICES) this._steal(t);
-    this._spawn(note, velocity, t);
-  }
-
-  noteOff(note) {
-    if (!this.ctx) return;
-    if (this.sustain) {
-      this.sustained.add(note);
-      if (this.params.voiceMode === 'mono') this._monoRemove(note, true);
-      return;
-    }
-    this._release(note);
-  }
-
-  _release(note) {
-    const t = this.ctx.currentTime;
-    if (this.params.voiceMode === 'mono') {
-      this._monoRemove(note, false);
-      return;
-    }
-    for (const v of this.voices) if (v.note === note && !v.released) v.release(t);
-  }
-
-  _monoRemove(note, sustained) {
-    const t = this.ctx.currentTime;
-    const wasTop = this.monoStack[this.monoStack.length - 1] === note;
-    this.monoStack = this.monoStack.filter((n) => n !== note);
-    const v = this.voices[this.voices.length - 1];
-    if (!v) return;
-    if (this.monoStack.length && wasTop) {
-      v.setNote(this.monoStack[this.monoStack.length - 1], this.params.glide, t);
-    } else if (!this.monoStack.length && !sustained) {
-      v.release(t);
-    }
-  }
-
-  _spawn(note, velocity, t) {
-    const v = new Voice(this, note, velocity, t);
-    this.voices.push(v);
-    this.onVoiceCount?.(this.voices.length);
-    return v;
-  }
-
-  _steal(t) {
-    // Prefer the oldest releasing voice, otherwise the oldest voice.
-    const victim = this.voices.find((v) => v.released && !v.disposed) || this.voices[0];
-    if (!victim) return;
-    victim.kill(t);
-    // Remove immediately from accounting so the cap holds.
-    this.voices = this.voices.filter((v) => v !== victim);
-    this.onVoiceCount?.(this.voices.length);
-  }
-
-  _removeVoice(v) {
-    const before = this.voices.length;
-    this.voices = this.voices.filter((x) => x !== v);
-    if (this.voices.length !== before) this.onVoiceCount?.(this.voices.length);
-  }
-
-  /** Release every note (soft) — used on blur, mode change, etc. */
-  allNotesOff() {
-    this.monoStack = [];
-    this.sustained.clear();
-    if (!this.ctx) return;
-    const t = this.ctx.currentTime;
-    for (const v of this.voices) v.release(t);
-  }
-
-  /** Hard stop: kill everything immediately. */
-  panic() {
-    this.monoStack = [];
-    this.sustained.clear();
-    this.sustain = false;
-    if (!this.ctx) return;
-    const t = this.ctx.currentTime;
-    for (const v of [...this.voices]) v.kill(t);
-    this.setPitchBend(0);
   }
 }
 
@@ -588,6 +347,16 @@ export const PRESETS = [
     },
   },
   {
+    name: 'Paradise Lead',
+    patch: {
+      osc1Wave: 'square', osc2Wave: 'triangle', osc2Oct: 1, osc2Fine: 4, osc1Level: 0.6, osc2Level: 0.45,
+      cutoff: 1600, resonance: 0.15, envAmount: 0.2, keyTrack: 0.6,
+      aAttack: 0.02, aDecay: 0.6, aSustain: 0.7, aRelease: 0.45,
+      lfoWave: 'sine', lfoRate: 5.2, lfoPitch: 0.1,
+      voiceMode: 'mono', glide: 0.06, delayMix: 0.28, delayTime: 0.42, delayFeedback: 0.35, reverbMix: 0.35, reverbSize: 3.5,
+    },
+  },
+  {
     name: 'Wobble',
     patch: {
       osc1Wave: 'sawtooth', osc1Oct: -1, osc2Wave: 'square', osc2Oct: -1, osc2Fine: -8,
@@ -614,3 +383,14 @@ export const PRESETS = [
     },
   },
 ];
+
+export default {
+  id: 'sl1',
+  model: 'SL-1',
+  name: 'Subtractive',
+  subtitle: 'Subtractive Synthesizer',
+  PARAMS,
+  LAYOUT,
+  PRESETS,
+  create: () => new SubtractiveSynth(),
+};

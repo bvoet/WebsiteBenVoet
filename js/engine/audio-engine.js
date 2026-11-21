@@ -1,15 +1,16 @@
-// Shared audio engine: one AudioContext, an FX rack and the master bus.
-// Instruments connect to `engine.input`.
+// Shared audio engine: one AudioContext and the master bus.
+// Every instrument gets its own FxRack (drive → delay / reverb → volume),
+// so several instruments can play at once, each with its own effects.
 //
-//   input → drive → ┬─ dry ───────────────┬→ limiter → master → destination
-//                   ├─ delay (fb loop) ───┤                    └→ analyser
-//                   └─ reverb (convolver) ┘
+//   instrument → rack.input → drive ┬─ dry ─────────────┬→ rack.out ─┐
+//                                   ├─ delay (fb loop) ─┤            │
+//                                   └─ reverb ──────────┘            │
+//   (all racks) ─────────────────────────────────────────────────────┴→ bus → limiter → destination
+//                                                                                   └→ analyser
 
 export class AudioEngine {
   constructor() {
     this.ctx = null;
-    this.fx = { drive: 0, delayTime: 0.35, delayFeedback: 0.35, delayMix: 0, reverbSize: 2.5, reverbMix: 0, volume: 0.7 };
-    this._reverbTimer = 0;
   }
 
   get running() {
@@ -34,20 +35,53 @@ export class AudioEngine {
     const Ctx = window.AudioContext || window.webkitAudioContext;
     const ctx = (this.ctx = new Ctx({ latencyHint: 'interactive' }));
 
+    this.bus = ctx.createGain();
+
+    // Limiter keeps resonant peaks and stacked voices/instruments in check.
+    this.limiter = ctx.createDynamicsCompressor();
+    this.limiter.threshold.value = -8;
+    this.limiter.knee.value = 6;
+    this.limiter.ratio.value = 12;
+    this.limiter.attack.value = 0.002;
+    this.limiter.release.value = 0.15;
+
+    this.analyser = ctx.createAnalyser();
+    this.analyser.fftSize = 2048;
+    this.analyser.smoothingTimeConstant = 0.75;
+
+    this.bus.connect(this.limiter).connect(ctx.destination);
+    this.limiter.connect(this.analyser);
+
+    // One shared white-noise buffer for every instrument.
+    const len = ctx.sampleRate * 2;
+    this.noiseBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = this.noiseBuffer.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  }
+
+  createRack() {
+    return new FxRack(this);
+  }
+}
+
+export class FxRack {
+  constructor(engine) {
+    const ctx = (this.ctx = engine.ctx);
+    this.fx = { drive: 0, delayTime: 0.35, delayFeedback: 0.35, delayMix: 0, reverbSize: 2.5, reverbMix: 0, volume: 0.7 };
+    this._reverbTimer = 0;
+    this._builtSize = 0;
+
     this.input = ctx.createGain();
 
-    // Drive (soft clip). Pre-gain pushes into the curve, post-gain compensates.
-    this.drivePre = ctx.createGain();
+    // Drive (soft clip). The curve's small-signal gain is ~k; post-gain compensates.
     this.shaper = ctx.createWaveShaper();
     this.shaper.oversample = '4x';
     this.drivePost = ctx.createGain();
-    this.input.connect(this.drivePre).connect(this.shaper).connect(this.drivePost);
-
+    this.input.connect(this.shaper).connect(this.drivePost);
     const bus = this.drivePost;
 
-    // Sum of dry + wet signals
-    this.sum = ctx.createGain();
-    bus.connect(this.sum);
+    this.out = ctx.createGain();
+    bus.connect(this.out);
 
     // Tape-ish delay: lowpass inside the feedback loop darkens each repeat.
     this.delay = ctx.createDelay(2.0);
@@ -58,54 +92,33 @@ export class AudioEngine {
     this.delayWet = ctx.createGain();
     bus.connect(this.delay);
     this.delay.connect(this.delayTone).connect(this.delayFb).connect(this.delay);
-    this.delay.connect(this.delayWet).connect(this.sum);
+    this.delay.connect(this.delayWet).connect(this.out);
 
-    // Reverb
-    this.reverb = ctx.createConvolver();
+    // Reverb (convolver is created lazily: it costs CPU even when silent).
+    this.reverb = null;
     this.reverbWet = ctx.createGain();
-    bus.connect(this.reverb).connect(this.reverbWet).connect(this.sum);
+    this.reverbWet.connect(this.out);
+    this._bus = bus;
 
-    // Limiter keeps resonant peaks and stacked voices in check.
-    this.limiter = ctx.createDynamicsCompressor();
-    this.limiter.threshold.value = -8;
-    this.limiter.knee.value = 6;
-    this.limiter.ratio.value = 12;
-    this.limiter.attack.value = 0.002;
-    this.limiter.release.value = 0.15;
-
-    this.master = ctx.createGain();
-    this.analyser = ctx.createAnalyser();
-    this.analyser.fftSize = 2048;
-    this.analyser.smoothingTimeConstant = 0.75;
-
-    this.sum.connect(this.limiter).connect(this.master).connect(ctx.destination);
-    this.master.connect(this.analyser);
-
+    this.out.connect(engine.bus);
     for (const [k, v] of Object.entries(this.fx)) this.setFx(k, v, true);
-    this._buildImpulse();
   }
 
   setFx(name, value, immediate = false) {
     this.fx[name] = value;
-    if (!this.ctx) return;
     const t = this.ctx.currentTime;
     const ramp = (param, v) => (immediate ? param.setValueAtTime(v, t) : param.setTargetAtTime(v, t, 0.02));
 
     switch (name) {
-      case 'drive': {
+      case 'drive':
         if (value <= 0.001) {
           this.shaper.curve = null;
-          ramp(this.drivePre.gain, 1);
           ramp(this.drivePost.gain, 1);
         } else {
-          // Curve gain at small signals is ~k, so the post-gain roughly
-          // compensates and leaves a modest loudness bump, like a real drive.
           this.shaper.curve = makeDriveCurve(value);
-          ramp(this.drivePre.gain, 1);
           ramp(this.drivePost.gain, 1 / (1 + value * 3));
         }
         break;
-      }
       case 'delayTime':
         this.delay.delayTime.setTargetAtTime(value, t, immediate ? 0.001 : 0.08);
         break;
@@ -117,21 +130,33 @@ export class AudioEngine {
         break;
       case 'reverbMix':
         ramp(this.reverbWet.gain, value * 1.2);
+        this._ensureReverb();
         break;
       case 'reverbSize':
         // Regenerating an impulse is relatively expensive: debounce knob drags.
         clearTimeout(this._reverbTimer);
-        this._reverbTimer = setTimeout(() => this._buildImpulse(), immediate ? 0 : 150);
+        this._reverbTimer = setTimeout(() => this._ensureReverb(true), immediate ? 0 : 150);
         break;
       case 'volume':
-        ramp(this.master.gain, value * value);
+        ramp(this.out.gain, value * value);
         break;
     }
+  }
+
+  _ensureReverb(rebuild = false) {
+    if (this.fx.reverbMix <= 0.001 && !this.reverb) return;
+    if (!this.reverb) {
+      this.reverb = this.ctx.createConvolver();
+      this._bus.connect(this.reverb).connect(this.reverbWet);
+      rebuild = true;
+    }
+    if (rebuild && this._builtSize !== this.fx.reverbSize) this._buildImpulse();
   }
 
   _buildImpulse() {
     const ctx = this.ctx;
     const seconds = this.fx.reverbSize;
+    this._builtSize = seconds;
     const len = Math.max(1, Math.floor(ctx.sampleRate * seconds));
     const buf = ctx.createBuffer(2, len, ctx.sampleRate);
     const fadeIn = Math.floor(ctx.sampleRate * 0.004);

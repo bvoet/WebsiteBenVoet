@@ -122,6 +122,20 @@ export class PianoKeyboard {
     for (const k of this.keys.values()) k.classList.remove('is-down');
   }
 
+  /** Per-key labels (e.g. drum names). Pass null to remove. */
+  setLabels(fn) {
+    for (const [n, k] of this.keys) {
+      k.querySelector('.key__sound')?.remove();
+      const text = fn?.(n);
+      if (!text) continue;
+      const s = document.createElement('span');
+      s.className = 'key__sound';
+      s.textContent = text;
+      k.append(s);
+    }
+    this.el.classList.toggle('piano--labelled', !!fn);
+  }
+
   /** Mark the keys reachable from the computer keyboard. */
   markRange(lo, hi) {
     for (const [n, k] of this.keys) k.classList.toggle('in-range', n >= lo && n <= hi);

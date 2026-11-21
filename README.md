@@ -8,24 +8,31 @@ Synth Lab is the centerpiece of my personal site. It's a rack of instruments sty
 
 ## Instruments
 
-| Model | Type | Status |
-|-------|------|--------|
-| **SL-1** | Subtractive (2 osc + noise → filter → amp) | ✅ Playable |
-| FM-2 | FM synthesis | Planned |
-| AD-3 | Additive | Planned |
-| WT-4 | Wavetable / draw-your-own waveform | Planned |
-| DR-5 | Drum synth | Planned |
+| Model | Type | Highlights |
+|-------|------|------------|
+| **SL-1** | Subtractive | 2 oscillators + noise, 12/24 dB multimode filter, filter & amp ADSR, LFO → pitch/filter/amp |
+| **FM-2** | FM | 3 operators, stack or parallel algorithm, ratio + fine per modulator, mod envelope, velocity → index |
+| **AD-3** | Additive / drawbar organ | 16 harmonic faders (Hammond footages at Octave −1), chorus, percussion, rotary speaker |
+| **WT-4** | Wavetable | Draw two waveforms with the mouse, morph between them by knob, envelope or LFO |
+| **DR-5** | Drum synth | 12 synthesized sounds: kick, snare, clap, rim, shaker, 3 toms, closed/open hat (with choke), cowbell, cymbal |
 
-### SL-1 features
+**Every instrument has:**
+- **Voicing:** 10-voice poly, or mono with legato and glide (melodic instruments).
+- **Its own FX rack:** drive, a tape-style delay, reverb and volume.
+- **Presets:** factory presets, your own presets saved in the browser, and **share links** that carry the sound and its sequencer pattern.
 
-- **Oscillators:** two oscillators (saw / square / triangle / sine) with octave, semitone and fine tune, plus white noise.
-- **Filter:** low-pass, high-pass or band-pass, 12 or 24 dB/oct, with resonance, envelope amount (bipolar) and key tracking.
-- **Envelopes:** ADSR faders for the filter and the amp.
-- **LFO:** one LFO that can modulate pitch, filter and amp at the same time.
-- **Voicing:** 10-voice poly, or mono with last-note priority, legato and glide. Velocity sensitivity.
-- **FX:** drive, a tape-style delay and reverb.
-- **Presets:** 9 factory presets. Save your own in the browser, or share a patch as a link.
-- **Display:** a green-phosphor screen showing a scope or spectrum, the active parameter and the last note played.
+### Sequencer and arpeggiator
+
+- **Per-instrument tracks that play together:** build a DR-5 beat, switch to SL-1 and jam on top.
+- **Melodic steps:** 16 steps, each with note, accent and slide/tie (slides glide in mono mode).
+- **Drum grid:** click a cell to cycle off → on → accent.
+- **Pattern settings:** length per track (polymeters welcome), swing and gate.
+- **Rec:** with the transport stopped, the notes you play fill the steps one by one (step input). While it's playing, they land on the nearest step (live recording).
+- **Arpeggiator:** up, down, up/down, random or played order; 1–3 octaves; 1/4 to 1/32 including triplets; latch. It locks to the sequencer tempo.
+
+### Display
+
+A green-phosphor screen shows a scope or spectrum, the active parameter, the last note played and the transport state.
 
 ## Playing
 
@@ -38,6 +45,8 @@ Synth Lab is the centerpiece of my personal site. It's a rack of instruments sty
 | `C` / `V` | Velocity down / up |
 | `Space` (hold) | Sustain pedal |
 | **MIDI** button | Connect a hardware keyboard: notes, velocity, pitch bend, mod wheel, sustain pedal |
+
+On **DR-5**, every octave plays the same kit (C kick, D snare, D# clap, F# closed hat, A# open hat, and so on). The keys are labelled.
 
 **Knobs:** drag up/down, hold `Shift` for fine control, or use the scroll wheel or arrow keys. Double-click a knob to reset it.
 
@@ -82,7 +91,6 @@ Audio starts on your first click or key press, as browsers require.
 
 ## Roadmap
 
-- More instruments: FM, additive, wavetable, drums
-- Step sequencer / arpeggiator
 - Modular "patch cable" editor
+- Song mode: chain patterns into a song
 - Personal pages (about, projects, contact)
