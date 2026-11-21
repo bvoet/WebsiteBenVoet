@@ -3,132 +3,79 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Synth Lab — Ben Voet</title>
-  <meta name="description" content="Synth Lab: subtractive, FM, additive, wavetable and drum synthesizers with a step sequencer, right in your browser. Built by Ben Voet." />
+  <title>Ben Voet</title>
+  <meta name="description" content="Ben Voet: music, sound and things I build. Home of Synth Lab, a rack of synthesizers that runs in your browser." />
   <meta name="theme-color" content="#15120e" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <script>
+    // Share links used to live on the root (#fm2=...). Forward them to the lab.
+    if (/^#[a-z]{2}\d=/.test(location.hash)) location.replace('lab/' + location.hash);
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/synthlab.css" />
+  <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
   <div class="room">
-    <header class="site-head">
-      <a class="site-mark" href="./">Ben Voet <span>/ Synth Lab</span></a>
-      <nav class="rack-tabs" id="rack-tabs" aria-label="Instruments"></nav>
+    <header class="top">
+      <span class="top__mark">benvoet.be</span>
     </header>
 
-    <main>
-      <section class="synth" aria-label="Synthesizer">
+    <main class="hero">
+      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h1 class="hero__name">Ben Voet</h1>
+      <p class="hero__lead">Music, sound and things I build.</p>
+
+      <section class="unit" aria-labelledby="unit-title">
         <div class="cheek cheek--l" aria-hidden="true"></div>
+        <div class="unit__body">
+          <div class="unit__head">
+            <h2 class="unit__title" id="unit-title">Synth Lab</h2>
+            <p class="unit__sub">A rack of synthesizers in your browser</p>
+          </div>
 
-        <div class="chassis">
-          <div class="topbar">
-            <div class="brand">
-              <div class="brand__stripes" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div>
-                <div class="brand__model" id="brand-model">SL-1</div>
-                <div class="brand__sub" id="brand-sub">Subtractive Synthesizer</div>
-              </div>
-            </div>
-
-            <div class="lcd" role="group" aria-label="Display">
-              <canvas id="scope" class="lcd__scope" aria-label="Oscilloscope"></canvas>
-              <div class="lcd__text" aria-live="polite">
-                <div class="lcd__row lcd__row--big" id="lcd-preset">Init</div>
-                <div class="lcd__row lcd__param" id="lcd-param"></div>
-                <div class="lcd__row lcd__row--dim" id="lcd-status"></div>
-              </div>
-              <button type="button" class="lcd__mode" id="scope-mode" aria-label="Display mode: scope">Scope</button>
-            </div>
-
-            <div class="controls-right">
-              <div class="presetbar">
-                <span class="tiny-label">Program</span>
-                <div class="presetbar__row">
-                  <button type="button" class="hw-btn hw-btn--sq" id="preset-prev" aria-label="Previous preset">◀</button>
-                  <select id="preset" class="hw-select" aria-label="Preset"></select>
-                  <button type="button" class="hw-btn hw-btn--sq" id="preset-next" aria-label="Next preset">▶</button>
-                </div>
-                <div class="presetbar__row">
-                  <button type="button" class="hw-btn" id="preset-save">Save</button>
-                  <button type="button" class="hw-btn" id="preset-del" hidden>Del</button>
-                  <button type="button" class="hw-btn" id="share" title="Copy a link to this patch">Share</button>
-                </div>
-                <form id="save-form" class="save-form" hidden>
-                  <input id="save-name" type="text" maxlength="32" aria-label="Preset name" autocomplete="off" />
-                  <button type="submit" class="hw-btn">OK</button>
-                  <button type="button" class="hw-btn" id="save-cancel" aria-label="Cancel">✕</button>
-                </form>
-              </div>
-
-              <div class="utils">
-                <button type="button" class="hw-btn hw-btn--led" id="midi" title="Connect a MIDI keyboard"><span class="led" aria-hidden="true"></span>MIDI</button>
-                <button type="button" class="hw-btn hw-btn--warn" id="panic" title="Stop all sound">Panic</button>
-                <button type="button" class="power" id="power" aria-pressed="false" title="Power">
-                  <span class="power__led" aria-hidden="true"></span>
-                  <span class="power__label">Power</span>
-                </button>
-              </div>
+          <div class="lcd" aria-hidden="true">
+            <canvas class="lcd__wave" id="wave"></canvas>
+            <div class="lcd__text">
+              <span class="lcd__big" id="lcd-model">SL-1</span>
+              <span id="lcd-type">SUBTRACTIVE</span>
             </div>
           </div>
 
-          <div class="panel" id="panel"></div>
+          <ul class="models">
+            <li><b>SL-1</b> Subtractive</li>
+            <li><b>FM-2</b> FM</li>
+            <li><b>AD-3</b> Additive</li>
+            <li><b>WT-4</b> Wavetable</li>
+            <li><b>DR-5</b> Drums</li>
+          </ul>
 
-          <div class="kbd-area">
-            <div class="perf">
-              <div class="perf__oct">
-                <span class="tiny-label">Octave</span>
-                <div class="presetbar__row">
-                  <button type="button" class="hw-btn hw-btn--sq" id="oct-down" aria-label="Octave down">−</button>
-                  <button type="button" class="hw-btn hw-btn--sq" id="oct-up" aria-label="Octave up">+</button>
-                </div>
-              </div>
-              <div class="wheels" id="wheels"></div>
-            </div>
-            <div class="kbd-scroll">
-              <div id="piano" aria-label="Keyboard"></div>
-            </div>
-          </div>
+          <p class="unit__desc">
+            Five instruments, each a different kind of synthesis. Tweak the knobs, play with your
+            keyboard or a MIDI controller, build a beat in the step sequencer and share your patch as a link.
+          </p>
 
-          <section id="seq" aria-label="Sequencer and arpeggiator"></section>
+          <a class="power-btn" href="lab/">
+            <span class="power-btn__led" aria-hidden="true"></span>
+            Open Synth Lab
+          </a>
         </div>
-
         <div class="cheek cheek--r" aria-hidden="true"></div>
       </section>
 
-      <section class="cheatsheet" aria-label="How to play">
-        <div class="card">
-          <h3>Play</h3>
-          <p><kbd>A</kbd>–<kbd>'</kbd> white keys, <kbd>W</kbd> <kbd>E</kbd> <kbd>T</kbd> <kbd>Y</kbd> <kbd>U</kbd> <kbd>O</kbd> <kbd>P</kbd> black keys. Lit keys show the range.</p>
+      <section class="side" aria-labelledby="lol-title">
+        <div>
+          <h2 class="side__title" id="lol-title">Top Lane Matchups</h2>
+          <p class="side__sub">Olaf or Illaoi? Pick, summoners, build and tips per champion.</p>
         </div>
-        <div class="card">
-          <h3>Perform</h3>
-          <p><kbd>Z</kbd> / <kbd>X</kbd> octave, <kbd>C</kbd> / <kbd>V</kbd> velocity, hold <kbd>Space</kbd> for sustain. Click lower on a key to hit it harder.</p>
-        </div>
-        <div class="card">
-          <h3>Tweak</h3>
-          <p>Drag knobs up/down, <kbd>Shift</kbd> for fine control, scroll wheel works too. Double-click resets a control.</p>
-        </div>
-        <div class="card">
-          <h3>Sequence</h3>
-          <p>Every instrument has its own pattern and they all play together: build a DR-5 beat, switch to SL-1 and jam on top. <b>Rec</b> writes the notes you play into the steps.</p>
-        </div>
-        <div class="card">
-          <h3>Plug in</h3>
-          <p>Hit <b>MIDI</b> to use a hardware keyboard: velocity, pitch bend, mod wheel and sustain pedal all work.</p>
-        </div>
+        <a class="side-btn" href="lol/">Open matchups →</a>
       </section>
-    </main>
 
-    <footer class="site-foot">
-      <span>© Ben Voet</span>
-      <span>Web Audio, no plugins, no samples: every sound is synthesized live.</span>
-    </footer>
+      <p class="soon">About &amp; projects: coming soon.</p>
+    </main>
   </div>
 
-  <noscript><p class="noscript">Synth Lab needs JavaScript to make sound.</p></noscript>
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/home.js"></script>
 </body>
 </html>

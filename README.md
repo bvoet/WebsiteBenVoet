@@ -2,7 +2,7 @@
 
 Design and play synthesizers in your browser. No plugins, no installs: just the Web Audio API.
 
-**▶ Play it at [benvoet.be](https://benvoet.be)**
+**▶ Play it at [benvoet.be/lab](https://benvoet.be/lab/)**
 
 Synth Lab is the centerpiece of my personal site. It's a rack of instruments styled after vintage hardware, each one a different kind of synthesis you can tweak, play and share.
 
@@ -60,7 +60,7 @@ python -m http.server 8000
 npx serve .
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:8000> for the landing page, or <http://localhost:8000/lab/> for Synth Lab.
 
 There is no build step and no dependencies. Edit a file and refresh the page.
 
@@ -83,6 +83,10 @@ All asset paths are relative, so the site also works under the `github.io` sub-p
 | Safari (macOS / iOS) | ✅ | ❌ (no Web MIDI) |
 
 Audio starts on your first click or key press, as browsers require.
+
+## Also on the site
+
+- **[Top lane matchups](https://benvoet.be/lol/)**: an Olaf / Illaoi pick helper with summoner spells, builds and lane tips per enemy champion.
 
 ## Project docs
 

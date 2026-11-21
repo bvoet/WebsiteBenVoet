@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Top Lane Matchups — Ben Voet</title>
+  <meta name="description" content="Olaf or Illaoi? Top lane matchup cheat sheet: who to pick, summoner spells, build and lane tips per champion." />
+  <meta name="theme-color" content="#15120e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/lol.css" />
+</head>
+<body>
+  <div class="room">
+    <header class="top">
+      <a class="top__back" href="../">← benvoet.be</a>
+    </header>
+
+    <section class="intro">
+      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h1 class="intro__title">Top Lane Matchups</h1>
+      <p class="intro__lead">Olaf or Illaoi? Type the enemy champion.</p>
+    </section>
+
+    <div class="controls">
+      <label class="search">
+        <span class="sr-only">Enemy champion</span>
+        <input id="search" type="search" placeholder="Enemy champion…" autocomplete="off" spellcheck="false" />
+      </label>
+      <div class="filters" role="group" aria-label="Filter by pick">
+        <button type="button" class="chip is-on" data-filter="all">All</button>
+        <button type="button" class="chip" data-filter="olaf">Pick Olaf</button>
+        <button type="button" class="chip" data-filter="illaoi">Pick Illaoi</button>
+      </div>
+    </div>
+
+    <section id="detail" class="detail" hidden aria-live="polite"></section>
+
+    <ul id="grid" class="grid" aria-label="Enemy champions"></ul>
+    <p id="empty" class="empty" hidden>No matchup found.</p>
+
+    <footer class="foot">
+      <p>
+        <strong>How the pick works:</strong> Olaf tiers are mapped to the Illaoi 1–10 scale
+        (Easier 3, Skilled 5, Hard/Proxy 7). The lower score wins; within one point it's your call.
+      </p>
+      <p>
+        Summarised from <em>TheeeKiiing's Olaf guide</em> and <em>DirtyMobs' Ultimate Illaoi Match Up Guide</em>.
+        The Illaoi notes date from an older patch, so some items may have changed.
+      </p>
+      <p class="foot__legal">
+        Not endorsed by Riot Games. League of Legends and all related images are trademarks or registered
+        trademarks of Riot Games, Inc. Images via Riot's Data Dragon.
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="../js/lol.js"></script>
+</body>
+</html>

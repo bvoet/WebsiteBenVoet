@@ -1,11 +1,17 @@
 # Architecture
 
-Synth Lab is a static site written in plain HTML, CSS and ES-module JavaScript. Sound comes from the Web Audio API. There is no framework, no bundler and no npm dependencies. The browser loads `index.html`, which loads `js/main.js` as a module, and everything else is imported from there.
+Synth Lab is a static site written in plain HTML, CSS and ES-module JavaScript. Sound comes from the Web Audio API. There is no framework, no bundler and no npm dependencies. The landing page (`index.html`) links to the lab at `lab/`. The lab page (`lab/index.html`) loads `js/main.js` as a module, and everything else is imported from there.
 
 ```
-index.html                  page skeleton: header, top bar, empty panel, keyboard, sequencer slot
-css/synthlab.css            all styling; design tokens live on :root
+index.html                  landing page; forwards old root share links (#fm2=...) to lab/
+lab/index.html              Synth Lab page skeleton: header, top bar, empty panel, keyboard, sequencer slot
+css/home.css                landing page styling (same palette as the lab)
+lol/index.html              top lane matchup cheat sheet (Olaf / Illaoi), not part of Synth Lab
+css/lol.css                 matchup page styling
+css/synthlab.css            all lab styling; design tokens live on :root
 js/
+  home.js                   landing page LCD animation (visual only, no audio)
+  lol.js, lol-data.js       matchup page: search/grid/detail UI and the matchup data
   main.js                   page controller: instrument switching, panel, presets, LCD, input routing
   engine/
     audio-engine.js         AudioContext, master bus + limiter + analyser, FxRack (one per instrument)

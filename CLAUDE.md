@@ -15,16 +15,18 @@ Ben is an experienced musician (12+ years guitar) and knows synth terminology. U
 - **Never delete or edit the `CNAME` file.** It binds the custom domain `benvoet.be`.
 - **Pushing to `main` deploys to the live site.**
 - **Filename case must match imports exactly.** Windows forgives mismatches; GitHub Pages doesn't.
-- External resources: Google Fonts only. Don't add CDN scripts without asking.
+- External resources: Google Fonts only. Don't add CDN scripts without asking. Exception: the LoL page (`lol/`) loads champion/item/spell images from Riot's Data Dragon (`ddragon.leagueoflegends.com`, pinned version in `js/lol-data.js`).
 - **Don't commit or push unless asked.** Deploys come from `main` / root via GitHub Pages.
 
 ## Running
 
 ```sh
-python -m http.server 8000   # then open http://localhost:8000
+python -m http.server 8000   # then open http://localhost:8000 (landing) or /lab/ (Synth Lab)
 ```
 
 ES modules don't load over `file://`.
+
+The landing page is `index.html` + `css/home.css` + `js/home.js`. The LoL matchup page is `lol/index.html` + `css/lol.css` + `js/lol.js` + `js/lol-data.js` (tips are paraphrased summaries of two community guides; keep them in our own words and keep the credit and Riot notice in the footer). Synth Lab lives at `lab/index.html` and loads `../css/synthlab.css` and `../js/main.js`. Share links point at `lab/#<id>=...`; the landing page forwards old root share links there, so keep that redirect.
 
 ## Code conventions
 
@@ -51,7 +53,7 @@ ES modules don't load over `file://`.
 
 There's no test suite. Audio can't be verified by ear here, so check it programmatically:
 
-1. Serve locally and load the page. Check the console for errors.
+1. Serve locally and load `/lab/` (and `/` for the landing page). Check the console for errors.
 2. In the console (or via DevTools Protocol), use `window.synthLab`:
    - `switchTo(id)` for each instrument (`sl1 fm2 ad3 wt4 dr5`).
    - `synth.noteOn(60)`, then read the analyser RMS (`engine.analyser.getFloatTimeDomainData`). It should be non-zero.
