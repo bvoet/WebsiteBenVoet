@@ -87,6 +87,7 @@ Audio starts on your first click or key press, as browsers require.
 ## Also on the site
 
 - **[SongX, the Neil Young songbook](https://benvoet.be/songx/)**: chords, tabs and lyrics for 625+ songs. Browse by album cover in tracklist order, filter by tuning, transpose, and hover (or tap) a chord to see how to play it.
+- **[Phosphor](https://benvoet.be/viz/)**: a retro CRT audio visualizer. Oscilloscope, spectrum, waterfall and phase scope for your microphone, a built-in demo synth or an audio file, with a live note readout.
 - **[Top lane matchups](https://benvoet.be/lol/)**: an Olaf / Illaoi pick helper with summoner spells, builds and lane tips per enemy champion.
 
 ## Project docs
