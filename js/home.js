@@ -7,6 +7,13 @@ const typeEl = document.getElementById('lcd-type');
 
 const TAU = Math.PI * 2;
 
+// LCD stroke colour comes from the theme (--lcd-fg).
+let lcdColor = '#a4ff7c';
+function readLcdColor() {
+  lcdColor = getComputedStyle(document.documentElement).getPropertyValue('--lcd-fg').trim() || '#a4ff7c';
+}
+readLcdColor();
+
 // One shape per instrument; each takes phase 0..1 and returns -1..1.
 const SHAPES = [
   { model: 'SL-1', type: 'SUBTRACTIVE', fn: (p) => 1 - 2 * p },
@@ -77,9 +84,9 @@ function draw(time) {
     if (px === 0) ctx.moveTo(px, mid - y * amp);
     else ctx.lineTo(px, mid - y * amp);
   }
-  ctx.strokeStyle = '#a4ff7c';
+  ctx.strokeStyle = lcdColor;
   ctx.lineWidth = 2;
-  ctx.shadowColor = 'rgba(164, 255, 124, 0.7)';
+  ctx.shadowColor = lcdColor;
   ctx.shadowBlur = 6;
   ctx.stroke();
 
@@ -138,5 +145,39 @@ if (copyBtn && codeEl) {
       copyBtn.textContent = 'Copy HTML';
       copyBtn.classList.remove('is-done');
     }, 2000);
+  });
+}
+
+// ─── Theme switcher ───────────────────────────────────────────────────────
+
+const THEMES = [
+  { id: 'studio', name: 'Studio' },
+  { id: 'win95', name: 'Win 95' },
+  { id: 'terminal', name: 'Terminal' },
+  { id: 'vapor', name: 'Vapor' },
+];
+const themeBtn = document.getElementById('theme-btn');
+const themeName = document.getElementById('theme-name');
+
+function currentTheme() {
+  return document.documentElement.dataset.theme || 'studio';
+}
+
+function applyTheme(id) {
+  if (id === 'studio') delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = id;
+  const t = THEMES.find((x) => x.id === id) || THEMES[0];
+  if (themeName) themeName.textContent = t.name;
+  if (themeBtn) themeBtn.title = `Theme: ${t.name} (click for next)`;
+  try { localStorage.setItem('benvoet.theme', id); } catch { /* storage blocked */ }
+  readLcdColor();
+  if (reduceMotion) draw(0);
+}
+
+if (themeBtn) {
+  applyTheme(currentTheme());
+  themeBtn.addEventListener('click', () => {
+    const i = THEMES.findIndex((t) => t.id === currentTheme());
+    applyTheme(THEMES[(i + 1) % THEMES.length].id);
   });
 }

@@ -6,6 +6,7 @@ Synth Lab is a static site written in plain HTML, CSS and ES-module JavaScript. 
 index.html                  landing page; forwards old root share links (#fm2=...) to lab/
 lab/index.html              Synth Lab page skeleton: header, top bar, empty panel, keyboard, sequencer slot
 css/home.css                landing page styling (same palette as the lab)
+css/themes.css              landing page themes: Win 95, Terminal, Vapor (default = studio look in home.css)
 lol/index.html              top lane matchup cheat sheet (Olaf / Illaoi), not part of Synth Lab
 css/lol.css                 matchup page styling
 css/synthlab.css            all lab styling; design tokens live on :root

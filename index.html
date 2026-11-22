@@ -14,7 +14,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&display=swap" rel="stylesheet" />
+  <script>
+    // Apply the saved theme before first paint (no flash).
+    try {
+      var savedTheme = localStorage.getItem('benvoet.theme');
+      if (/^(win95|terminal|vapor)$/.test(savedTheme)) document.documentElement.dataset.theme = savedTheme;
+    } catch (e) { /* storage blocked */ }
+  </script>
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/themes.css" />
 </head>
 <body>
   <!-- ── Top bar ───────────────────────────────────────────────────── -->
@@ -29,6 +37,10 @@
         <a href="#gear">Gear</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Change theme">
+        <span class="theme-btn__dot" aria-hidden="true"></span>
+        <span id="theme-name">Studio</span>
+      </button>
     </div>
   </header>
 
