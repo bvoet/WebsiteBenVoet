@@ -1,7 +1,10 @@
-// KN-46 kana trainer: chart, adaptive drill and scored quiz for hiragana and
-// katakana. No audio; everything runs from the tables in kana-data.js.
+// KN-46 kana trainer: chart, adaptive drill, scored quiz and a words drill
+// for hiragana and katakana. Pronunciation uses the browser's own Japanese
+// speech voice (speechSynthesis) when there is one.
 
-import { GROUPS, KANA, ROWS, lookalikes, toKatakana } from './kana-data.js';
+// Bump the ?v= here and in kana/index.html when these files change (Pages caches for 10 min).
+import { GROUPS, KANA, ROWS, lookalikes, matchTokens, tokenize, toKatakana } from './kana-data.js?v=20261122b';
+import { WORDS } from './kana-words.js?v=20261122b';
 
 const STORE_KEY = 'benvoet.kana';
 const MAX_BOX = 4;
@@ -9,6 +12,30 @@ const BOX_WEIGHT = [6, 4, 2.5, 1.5, 1]; // drill pick weight per Leitner box
 const FONTS = ['textbook', 'gothic', 'pixel'];
 const ROW_IDS = ROWS.map((r) => r.id);
 const HIRA_SET = new Set(KANA.map((k) => k.hira));
+
+// ─── Words ────────────────────────────────────────────────────────────────
+
+const WORD_ITEMS = [];
+for (const [kana, meaning] of WORDS) {
+  const t = tokenize(kana);
+  if (!t) {
+    console.error('[kana] word uses unsupported kana:', kana);
+    continue;
+  }
+  WORD_ITEMS.push({
+    id: `w:${kana}`,
+    word: true,
+    script: /[ァ-ー]/.test(kana) ? 'k' : 'h',
+    char: kana,
+    romaji: t.romaji,
+    tokens: t.tokens,
+    rows: t.rows,
+    meaning,
+  });
+}
+const WORD_SET = new Set(WORD_ITEMS.map((w) => w.char));
+
+// ─── Settings and storage ─────────────────────────────────────────────────
 
 const DEFAULTS = {
   mode: 'drill',
@@ -19,18 +46,18 @@ const DEFAULTS = {
   length: 20,
   font: 'textbook',
   romaji: true,
+  voice: true,
 };
 
 const CHOICES = {
-  mode: ['chart', 'drill', 'quiz'],
+  mode: ['chart', 'drill', 'quiz', 'words'],
   script: ['h', 'k', 'hk'],
   dir: ['k2r', 'r2k', 'mix'],
   answer: ['type', 'choice'],
   length: [10, 20, 0],
   font: [...FONTS, 'mix'],
 };
-
-// ─── Storage ──────────────────────────────────────────────────────────────
+const BOOLEANS = ['romaji', 'voice'];
 
 function sanitizeSettings(raw) {
   const s = { ...DEFAULTS };
@@ -39,7 +66,7 @@ function sanitizeSettings(raw) {
     if (allowed.includes(raw[key])) s[key] = raw[key];
   }
   if (Array.isArray(raw.rows)) s.rows = ROW_IDS.filter((id) => raw.rows.includes(id));
-  if (typeof raw.romaji === 'boolean') s.romaji = raw.romaji;
+  for (const key of BOOLEANS) if (typeof raw[key] === 'boolean') s[key] = raw[key];
   return s;
 }
 
@@ -47,8 +74,9 @@ function sanitizeStats(raw) {
   const out = {};
   if (!raw || typeof raw !== 'object') return out;
   for (const [key, val] of Object.entries(raw)) {
-    const m = /^([hk]):(.+)$/.exec(key);
-    if (!m || !HIRA_SET.has(m[2]) || !Array.isArray(val) || val.length !== 3) continue;
+    const m = /^([hkw]):(.+)$/.exec(key);
+    if (!m || !Array.isArray(val) || val.length !== 3) continue;
+    if (!(m[1] === 'w' ? WORD_SET : HIRA_SET).has(m[2])) continue;
     const [box, right, wrong] = val.map((n) => (Number.isFinite(n) && n >= 0 ? Math.floor(n) : 0));
     out[key] = [Math.min(box, MAX_BOX), right, wrong];
   }
@@ -75,6 +103,42 @@ let stats = stored.stats;
 // Phones: the on-screen keyboard covers the card, so start with buttons.
 if (stored.fresh && matchMedia('(max-width: 600px)').matches) settings.answer = 'choice';
 
+// ─── Speech ───────────────────────────────────────────────────────────────
+
+const speech = { voice: null };
+
+function pickVoice() {
+  if (!('speechSynthesis' in window)) return;
+  const ja = speechSynthesis.getVoices().filter((v) => /^ja\b/i.test(v.lang.replace('_', '-')));
+  // Natural / online / Google voices sound far better than the old desktop ones.
+  ja.sort((a, b) => /natural|online|google/i.test(b.name) - /natural|online|google/i.test(a.name));
+  speech.voice = ja[0] || null;
+  syncVoice();
+}
+
+function say(text) {
+  if (!speech.voice || !text) return;
+  try {
+    // Chrome can drop an utterance queued right after a needless cancel().
+    if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.voice = speech.voice;
+    u.lang = speech.voice.lang;
+    u.rate = 0.85;
+    speechSynthesis.speak(u);
+  } catch { /* speech unavailable */ }
+}
+
+/**
+ * Speak an item. A lone hiragana can get its particle reading (は → "wa",
+ * へ → "e"), so single kana are spoken in katakana, which engines read as
+ * written.
+ */
+function sayItem(item) {
+  if (!item) return;
+  say(item.word ? item.char : toKatakana(item.hira));
+}
+
 // ─── Pool ─────────────────────────────────────────────────────────────────
 
 function scripts() {
@@ -96,10 +160,15 @@ function makeItem(cell, script) {
 let pool = [];
 function buildPool() {
   const rows = new Set(settings.rows);
+  const want = new Set(scripts());
+  if (settings.mode === 'words') {
+    pool = WORD_ITEMS.filter((w) => want.has(w.script) && w.rows.every((r) => rows.has(r)));
+    return;
+  }
   pool = [];
   for (const k of KANA) {
     if (!rows.has(k.row)) continue;
-    for (const s of scripts()) pool.push(makeItem(k, s));
+    for (const s of want) pool.push(makeItem(k, s));
   }
 }
 
@@ -128,7 +197,18 @@ function shuffle(arr) {
 
 const overlaps = (a, b) => a.accept.some((r) => b.accept.includes(r));
 const baseOf = (ch) => ch.normalize('NFD')[0];
-const normalize = (s) => s.toLowerCase().replace(/[^a-z]/g, '');
+/** Lowercase, keep letters plus ' and - (n' and ー), and macron vowels. */
+const normalize = (s) => s.toLowerCase().replace(/[^a-zāīūēō'-]/g, '');
+const stripMacrons = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+/** Long vowels folded the Hepburn way, for answers typed with macrons (tōkyō). */
+const foldLong = (s) => s.replace(/-/g, '').replace(/ou/g, 'o').replace(/([aiueo])\1/g, '$1');
+
+function isCorrect(item, typed) {
+  if (!item.word) return item.accept.includes(typed);
+  if (matchTokens(item.tokens, typed)) return true;
+  if (/[āīūēō]/.test(typed)) return foldLong(stripMacrons(typed)) === foldLong(item.romaji);
+  return false;
+}
 
 function fontClass(font) {
   return `jp jp--${font === 'mix' ? pick(FONTS) : font}`;
@@ -159,6 +239,7 @@ function distractors(item) {
 }
 
 function makeQuestion(item) {
+  if (item.word) return { item, dir: 'k2r', answer: 'type', options: null, font: fontClass(settings.font) };
   let dir = settings.dir === 'mix' ? pick(['k2r', 'r2k']) : settings.dir;
   let answer = dir === 'r2k' ? 'choice' : settings.answer;
   let options = null;
@@ -177,10 +258,10 @@ function makeQuestion(item) {
 // ─── Trainer state ────────────────────────────────────────────────────────
 
 const state = {
-  phase: 'idle', // idle | ask | ok | reveal | done
+  phase: 'idle', // idle | ask | reveal | done
   q: null,
+  last: null, // the item just answered correctly, echoed under the next card
   recent: [],
-  timer: 0,
   drill: { right: 0, total: 0, streak: 0, best: 0 },
   quiz: null,
 };
@@ -217,9 +298,9 @@ function startQuiz(items) {
 }
 
 function restart() {
-  clearTimeout(state.timer);
   buildPool();
   state.recent = [];
+  state.last = null;
   state.drill = { right: 0, total: 0, streak: 0, best: 0 };
   state.quiz = null;
   if (settings.mode === 'quiz' && pool.length) startQuiz(quizItems(pool, settings.length));
@@ -227,13 +308,7 @@ function restart() {
 }
 
 function next() {
-  clearTimeout(state.timer);
-  if (settings.mode === 'chart') {
-    state.phase = 'idle';
-    renderStage();
-    return;
-  }
-  if (!pool.length) {
+  if (settings.mode === 'chart' || !pool.length) {
     state.phase = 'idle';
     state.q = null;
     renderStage();
@@ -274,16 +349,25 @@ function answer(ok, given) {
       d.best = Math.max(d.best, d.streak);
     } else d.streak = 0;
   }
+  if (settings.voice) sayItem(item);
+  if (ok) {
+    // Straight on to the next card; the line under it echoes this one.
+    state.last = item;
+    next();
+    flashHit();
+    return;
+  }
+  state.last = null;
   state.given = given;
-  state.phase = ok ? 'ok' : 'reveal';
+  state.phase = 'reveal';
   renderStage();
-  if (ok) state.timer = setTimeout(next, 380);
 }
 
 // ─── DOM ──────────────────────────────────────────────────────────────────
 
 const els = {
   stage: $('stage'),
+  screen: $('screen'),
   chart: $('chart'),
   barL: $('bar-left'),
   barR: $('bar-right'),
@@ -299,12 +383,28 @@ const els = {
   rows: $('rows'),
   poolCount: $('pool-count'),
   reset: $('reset'),
+  sayBtn: $('say'),
+  voiceNote: $('voice-note'),
 };
+
+function flashHit() {
+  els.screen.classList.remove('is-hit');
+  void els.screen.offsetWidth; // restart the animation
+  els.screen.classList.add('is-hit');
+}
 
 function setPressed(group, value) {
   for (const b of document.querySelectorAll(`[data-set="${group}"]`)) {
     b.setAttribute('aria-pressed', String(b.dataset.value === String(value)));
   }
+}
+
+function syncVoice() {
+  const ok = Boolean(speech.voice);
+  for (const b of document.querySelectorAll('[data-set="voice"]')) b.disabled = !ok;
+  setPressed('voice', ok && settings.voice);
+  els.sayBtn.hidden = !ok;
+  els.voiceNote.hidden = ok;
 }
 
 function syncControls() {
@@ -316,6 +416,7 @@ function syncControls() {
     b.disabled = settings.dir === 'r2k';
   }
   if (settings.dir === 'r2k') setPressed('answer', 'choice');
+  syncVoice();
 }
 
 function scriptChar(hira) {
@@ -355,7 +456,11 @@ function renderRows() {
     els.rows.append(wrap);
   }
   const n = pool.length;
-  els.poolCount.textContent = n ? `${n} kana in the pool` : 'Pick at least one row';
+  if (settings.mode === 'words') {
+    els.poolCount.textContent = n ? `${n} words use only these rows` : 'No words fit these rows yet';
+  } else {
+    els.poolCount.textContent = n ? `${n} kana in the pool` : 'Pick at least one row';
+  }
 }
 
 function renderChart() {
@@ -396,6 +501,7 @@ function renderChart() {
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'kcell';
+        b.dataset.hira = cell.hira;
         if (!sel.has(r.id)) b.classList.add('is-off');
         const ids = scripts().map((s) => `${s}:${cell.hira}`);
         const box = Math.min(...ids.map((id) => statOf(id)[0]));
@@ -422,6 +528,8 @@ function fmtTime(ms) {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }
 
+const gloss = (item) => (item.word ? ` · ${item.meaning}` : '');
+
 function renderStage() {
   const { phase, q } = state;
   els.stage.hidden = settings.mode === 'chart';
@@ -438,7 +546,7 @@ function renderStage() {
     els.barR.textContent = `✓ ${qz.right}  ✗ ${qz.missed.length}`;
   } else {
     const d = state.drill;
-    els.barL.textContent = `DRILL · ${pool.length} KANA`;
+    els.barL.textContent = settings.mode === 'words' ? `WORDS · ${pool.length}` : `DRILL · ${pool.length} KANA`;
     els.barR.textContent = d.total ? `STREAK ${d.streak}  ${d.right}/${d.total}` : 'STREAK 0';
   }
 
@@ -446,7 +554,8 @@ function renderStage() {
     els.prompt.textContent = '- -';
     els.prompt.className = 'card__prompt';
     els.prompt.removeAttribute('lang');
-    els.msg.textContent = pool.length ? '' : 'PICK SOME ROWS BELOW';
+    els.prompt.style.removeProperty('--len');
+    els.msg.textContent = pool.length ? '' : settings.mode === 'words' ? 'ADD MORE ROWS BELOW' : 'PICK SOME ROWS BELOW';
     els.answerBox.hidden = true;
     return;
   }
@@ -462,26 +571,32 @@ function renderStage() {
   els.answerBox.hidden = false;
   if (q.dir === 'k2r') {
     els.prompt.textContent = item.char;
-    els.prompt.className = `card__prompt ${q.font}`;
+    els.prompt.className = `card__prompt ${q.font}${item.word ? ' card__prompt--word' : ''}`;
+    els.prompt.style.setProperty('--len', [...item.char].length);
     els.prompt.lang = 'ja';
   } else {
     els.prompt.textContent = item.romaji;
     els.prompt.className = 'card__prompt card__prompt--romaji';
+    els.prompt.style.removeProperty('--len');
     els.prompt.removeAttribute('lang');
   }
 
   // Message line.
   if (phase === 'ask') {
-    els.msg.textContent = q.dir === 'k2r' ? (q.answer === 'type' ? 'TYPE THE ROMAJI' : 'PICK THE READING') : `PICK THE ${item.script === 'h' ? 'HIRAGANA' : 'KATAKANA'}`;
-  } else if (phase === 'ok') {
-    els.msg.textContent = `✓ ${item.char} = ${item.romaji}`;
+    if (state.last) {
+      els.msg.textContent = `✓ ${state.last.char} = ${state.last.romaji}${gloss(state.last)}`;
+    } else {
+      els.msg.textContent = q.dir === 'k2r' ? (q.answer === 'type' ? 'TYPE THE ROMAJI' : 'PICK THE READING') : `PICK THE ${item.script === 'h' ? 'HIRAGANA' : 'KATAKANA'}`;
+    }
+    els.msg.classList.toggle('is-ok', Boolean(state.last));
   } else if (phase === 'reveal') {
     let extra = '';
     if (q.answer === 'type' && state.given) {
-      const other = pool.find((it) => it.script === item.script && it.accept.includes(state.given));
+      const other = item.word ? null : pool.find((it) => it.script === item.script && it.accept.includes(state.given));
       extra = other ? `  (${state.given} is ${other.char})` : `  (not ${state.given})`;
     }
-    els.msg.textContent = `✗ ${item.char} = ${item.romaji}${extra}`;
+    els.msg.textContent = `✗ ${item.char} = ${item.romaji}${gloss(item)}${extra}`;
+    els.msg.classList.remove('is-ok');
   }
 
   // Answer area.
@@ -489,6 +604,7 @@ function renderStage() {
   els.typeForm.hidden = !typing;
   els.choices.hidden = typing;
   els.nextBtn.hidden = phase !== 'reveal';
+  els.typeIn.maxLength = item.word ? 24 : 8;
 
   if (typing) {
     els.typeIn.readOnly = phase !== 'ask';
@@ -558,13 +674,13 @@ document.addEventListener('click', (e) => {
     const key = set.dataset.set;
     let val = set.dataset.value;
     if (key === 'length') val = Number(val);
-    if (key === 'romaji') val = val === 'true';
+    if (BOOLEANS.includes(key)) val = val === 'true';
     if (settings[key] === val) return;
     settings[key] = val;
     save();
     syncControls();
     if (key === 'romaji') renderChart();
-    else {
+    else if (key !== 'voice') {
       restart();
       renderRows();
       renderChart();
@@ -605,12 +721,14 @@ document.addEventListener('click', (e) => {
   const cell = e.target.closest('.kcell');
   if (cell) {
     cell.classList.toggle('is-shown');
+    // Spoken in katakana so は / へ / を aren't read as particles.
+    say(toKatakana(cell.dataset.hira));
     return;
   }
 
   const act = e.target.closest('[data-act]');
   if (act && state.quiz) {
-    clearTimeout(state.timer);
+    state.last = null;
     if (act.dataset.act === 'retry') startQuiz(quizItems(state.quiz.missed, state.quiz.missed.length));
     else startQuiz(quizItems(pool, settings.length));
     next();
@@ -627,6 +745,12 @@ $('font').addEventListener('change', (e) => {
   }
 });
 
+// Speaker button: hear the card that's on screen.
+els.sayBtn.addEventListener('click', () => {
+  if (state.q) sayItem(state.q.item);
+  if (state.q?.answer === 'type' && state.phase === 'ask') els.typeIn.focus({ preventScroll: true });
+});
+
 els.nextBtn.addEventListener('click', () => {
   if (state.phase === 'reveal') next();
 });
@@ -640,14 +764,14 @@ els.typeForm.addEventListener('submit', (e) => {
   if (state.phase !== 'ask') return;
   const val = normalize(els.typeIn.value);
   if (!val) return;
-  answer(state.q.item.accept.includes(val), val);
+  answer(isCorrect(state.q.item, val), val);
 });
 
 // Correct answers go through as soon as they're typed; wrong ones need Enter.
 els.typeIn.addEventListener('input', () => {
   if (state.phase !== 'ask' || state.q.answer !== 'type') return;
   const val = normalize(els.typeIn.value);
-  if (state.q.item.accept.includes(val)) answer(true, val);
+  if (val && isCorrect(state.q.item, val)) answer(true, val);
 });
 
 // "Show": give up on this one (counts as a miss) and see the answer.
@@ -701,9 +825,17 @@ els.reset.addEventListener('click', () => {
   renderChart();
 });
 
-buildPool();
+if ('speechSynthesis' in window) {
+  speechSynthesis.addEventListener?.('voiceschanged', pickVoice);
+}
+pickVoice();
+
 restart();
 renderAll();
 
 // Console hook for checking things by hand.
-window.kanaLab = { settings, get stats() { return stats; }, get pool() { return pool; }, state, next, KANA, ROWS };
+window.kanaLab = {
+  settings, state, next, speech, isCorrect, KANA, ROWS, WORD_ITEMS,
+  get stats() { return stats; },
+  get pool() { return pool; },
+};

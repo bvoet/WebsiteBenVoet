@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&family=Klee+One:wght@600&family=Noto+Sans+JP:wght@500&family=DotGothic16&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/tools.css" />
-  <link rel="stylesheet" href="../css/kana.css" />
+  <link rel="stylesheet" href="../css/kana.css?v=20261122b" />
 </head>
 <body data-mode="drill">
   <div class="room">
@@ -23,7 +23,7 @@
     <section class="intro">
       <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
       <h1 class="intro__title">Kana</h1>
-      <p class="intro__lead">Hiragana and katakana. Study the chart, drill what you miss, then quiz yourself.</p>
+      <p class="intro__lead">Hiragana and katakana. Study the chart, drill what you miss, quiz yourself, then read whole words.</p>
     </section>
 
     <div class="device">
@@ -42,6 +42,7 @@
               <button type="button" class="chip" data-set="mode" data-value="chart" aria-pressed="false">Chart</button>
               <button type="button" class="chip" data-set="mode" data-value="drill" aria-pressed="true">Drill</button>
               <button type="button" class="chip" data-set="mode" data-value="quiz" aria-pressed="false">Quiz</button>
+              <button type="button" class="chip" data-set="mode" data-value="words" aria-pressed="false">Words</button>
             </div>
           </div>
           <div class="field">
@@ -61,7 +62,18 @@
               <option value="mix">Mix</option>
             </select>
           </label>
+          <div class="field">
+            <span class="field__label" id="lbl-voice">Voice</span>
+            <div class="seg" role="group" aria-labelledby="lbl-voice">
+              <button type="button" class="chip" data-set="voice" data-value="true" aria-pressed="false">On</button>
+              <button type="button" class="chip" data-set="voice" data-value="false" aria-pressed="false">Off</button>
+            </div>
+          </div>
         </div>
+        <p class="voice-note" id="voice-note" hidden>
+          No Japanese voice found in this browser, so there's no pronunciation. On Windows, add Japanese under
+          Settings → Time &amp; language → Speech; Edge and Chrome also bring their own.
+        </p>
 
         <div class="controls controls--sub">
           <div class="field only-train">
@@ -98,11 +110,14 @@
 
         <!-- Drill / quiz -->
         <div class="stage" id="stage">
-          <div class="screen">
+          <div class="screen" id="screen">
             <div class="screen__bar">
               <span id="bar-left">DRILL</span>
               <span id="bar-right"></span>
             </div>
+            <button type="button" class="say" id="say" aria-label="Say it" title="Say it" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" /><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" class="say__waves" /></svg>
+            </button>
             <div class="card" id="card">
               <span class="card__prompt" id="prompt">- -</span>
             </div>
@@ -150,6 +165,15 @@
         <strong>Quiz</strong> asks a fixed number of questions, scores you and lets you retry the misses.
       </p>
       <p>
+        <strong>Words</strong> gives you whole words to read, using only the rows you've picked, so it grows
+        with you. Long vowels can be typed as written (<em>toukyou</em>, <em>koohii</em>) or with macrons
+        (<em>tōkyō</em>); っ doubles the next consonant (<em>gakkou</em>).
+      </p>
+      <p>
+        <strong>Voice</strong> says each kana or word after you answer, using your browser's Japanese voice.
+        The speaker button on the screen plays the current card; tap a cell in the chart to hear it.
+      </p>
+      <p>
         <strong>Keys:</strong> type the romaji (Hepburn, or the common IME spellings like <em>si</em>, <em>tu</em>, <em>sya</em>); a correct answer goes
         through on its own. Enter submits or moves on, 1–4 picks a choice.
         Switch the font to learn the shapes as they appear in print and on screens.
@@ -161,6 +185,6 @@
     </footer>
   </div>
 
-  <script type="module" src="../js/kana.js"></script>
+  <script type="module" src="../js/kana.js?v=20261122b"></script>
 </body>
 </html>

@@ -99,6 +99,65 @@ export function lookalikes(ch) {
   return LOOK.get(first) || [];
 }
 
+// ─── Words: kana string → romaji tokens ──────────────────────────────────
+
+const READING = new Map(); // hiragana and katakana → { accept, row }
+for (const k of KANA) {
+  const accept = k.accept.includes('nn') ? [...k.accept, "n'"] : k.accept;
+  READING.set(k.hira, { accept, row: k.row });
+  READING.set(toKatakana(k.hira), { accept, row: k.row });
+}
+
+/**
+ * Split a word into reading tokens. Each token is a list of accepted romaji
+ * spellings (canonical first). っ/ッ doubles the next consonant, ー repeats the
+ * previous vowel. Returns null if the word uses a kana we don't teach.
+ */
+export function tokenize(word) {
+  const chars = [...word];
+  const tokens = [];
+  const rows = new Set();
+  let double = false;
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+    if (ch === 'っ' || ch === 'ッ') {
+      double = true;
+      continue;
+    }
+    if (ch === 'ー') {
+      const prev = tokens.length ? tokens[tokens.length - 1][0] : '';
+      const v = prev.slice(-1);
+      tokens.push('aiueo'.includes(v) && v ? [v, '-'] : ['-']);
+      continue;
+    }
+    const pair = READING.get(ch + (chars[i + 1] || ''));
+    const hit = pair || READING.get(ch);
+    if (!hit) return null;
+    if (pair) i++;
+    rows.add(hit.row);
+    let alts = hit.accept;
+    if (double) {
+      alts = alts.flatMap((a) => (a.startsWith('ch') ? [`t${a}`, `c${a}`] : [a[0] + a]));
+      double = false;
+    }
+    tokens.push(alts);
+  }
+  if (double) return null;
+  return { tokens, rows: [...rows], romaji: tokens.map((t) => (t[0] === '-' ? '-' : t[0])).join('') };
+}
+
+/** Does the typed romaji spell these tokens? Every token may use any of its spellings. */
+export function matchTokens(tokens, typed) {
+  let at = new Set([0]);
+  for (const alts of tokens) {
+    const nextAt = new Set();
+    for (const p of at) for (const a of alts) if (typed.startsWith(a, p)) nextAt.add(p + a.length);
+    if (!nextAt.size) return false;
+    at = nextAt;
+  }
+  return at.has(typed.length);
+}
+
 // Self-check, cheap enough to run on every load.
 (() => {
   const count = (g) => KANA.filter((k) => ROWS.find((r) => r.id === k.row).group === g).length;
