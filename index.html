@@ -21,8 +21,8 @@
       if (/^(win95|terminal|vapor)$/.test(savedTheme)) document.documentElement.dataset.theme = savedTheme;
     } catch (e) { /* storage blocked */ }
   </script>
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/home.css?v=20261122b" />
+  <link rel="stylesheet" href="css/themes.css?v=20261122b" />
 </head>
 <body>
   <!-- ── Top bar ───────────────────────────────────────────────────── -->
@@ -65,7 +65,7 @@
           <span class="radio__label">RX-1 · Now playing</span>
           <a class="lcd lcd--np" id="np" href="https://www.last.fm/user/manassas777" target="_blank" rel="noopener noreferrer">
             <span class="np__cover">
-              <img id="np-img" alt="" width="76" height="76" referrerpolicy="no-referrer" hidden />
+              <img id="np-img" alt="" width="96" height="96" referrerpolicy="no-referrer" hidden />
             </span>
             <span class="np__info">
               <span class="np__top">
@@ -526,7 +526,7 @@
     </div>
   </footer>
 
-  <script type="module" src="js/home.js"></script>
-  <script type="module" src="js/now-playing.js"></script>
+  <script type="module" src="js/home.js?v=20261122b"></script>
+  <script type="module" src="js/now-playing.js?v=20261122b"></script>
 </body>
 </html>

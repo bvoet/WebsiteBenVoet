@@ -827,13 +827,13 @@ a {
 
 /* Now playing: a small radio display in the hero (js/now-playing.js). */
 .radio {
-  max-width: 520px;
-  margin-top: 36px;
+  max-width: 540px;
+  margin-top: 48px;
 }
 
 .radio__label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--ink-faint);
   font-size: 13px;
   font-weight: 700;
@@ -844,9 +844,9 @@ a {
 .lcd.lcd--np {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 20px;
   height: auto;
-  padding: 12px 14px;
+  padding: 18px 20px;
   color: var(--lcd-dim);
   font-family: var(--font-lcd);
   text-decoration: none;
@@ -860,8 +860,8 @@ a {
 /* Empty sleeve: a record. */
 .np__cover {
   position: relative;
-  flex: 0 0 76px;
-  height: 76px;
+  flex: 0 0 96px;
+  height: 96px;
   border-radius: 3px;
   overflow: hidden;
   background:
@@ -886,14 +886,15 @@ a {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .np__top {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 17px;
+  gap: 12px;
+  margin-bottom: 4px;
+  font-size: 18px;
   line-height: 1;
   letter-spacing: 0.08em;
 }
@@ -940,9 +941,8 @@ a {
 }
 
 .np__track {
-  margin-top: 3px;
   color: var(--lcd-fg);
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1.1;
   text-shadow: 0 0 6px rgba(164, 255, 124, 0.5);
 }
@@ -983,7 +983,7 @@ a {
 .np__prog {
   display: none;
   height: 3px;
-  margin-top: 6px;
+  margin-top: 10px;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -1762,17 +1762,17 @@ a.b88:active {
   }
 
   .radio {
-    margin-top: 28px;
+    margin-top: 36px;
   }
 
   .lcd.lcd--np {
-    gap: 12px;
-    padding: 10px 12px;
+    gap: 14px;
+    padding: 14px;
   }
 
   .np__cover {
-    flex-basis: 64px;
-    height: 64px;
+    flex-basis: 72px;
+    height: 72px;
   }
 
   .np__track {
