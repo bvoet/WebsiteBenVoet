@@ -537,6 +537,7 @@
 /* Images and drawings turn monochrome green. */
 [data-theme='terminal'] .covers img,
 [data-theme='terminal'] .champ img,
+[data-theme='terminal'] .np__cover img,
 [data-theme='terminal'] .gear__icon,
 [data-theme='terminal'] .b88,
 [data-theme='terminal'] .linkme__img {
@@ -579,6 +580,7 @@
   --mustard: #4ff0ff;
   --red: #ffb84f;
   --lcd-fg: #4ff0ff;
+  --lcd-dim: #c79bff;
   --lcd-bg: #12002a;
 }
 

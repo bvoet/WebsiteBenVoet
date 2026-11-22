@@ -15,7 +15,7 @@ Ben is an experienced musician (12+ years guitar) and knows synth terminology. U
 - **Never delete or edit the `CNAME` file.** It binds the custom domain `benvoet.be`.
 - **Pushing to `main` deploys to the live site.**
 - **Filename case must match imports exactly.** Windows forgives mismatches; GitHub Pages doesn't.
-- External resources: Google Fonts only. Don't add CDN scripts without asking. Exceptions: the LoL page (`lol/`) and the matchups unit on the landing page load champion/item/spell images from Riot's Data Dragon (`ddragon.leagueoflegends.com`, pinned version in `js/lol-data.js`), and SongX (`songx/`) uses the Cover Art Archive (`coverartarchive.org`) for the large album cover; grid thumbnails are self-hosted in `songx/images/covers/<mbid>.jpg` (downloaded by `tools/songx_albums.py`) because the archive is slow.
+- External resources: Google Fonts only. Don't add CDN scripts without asking. Exceptions: the LoL page (`lol/`) and the matchups unit on the landing page load champion/item/spell images from Riot's Data Dragon (`ddragon.leagueoflegends.com`, pinned version in `js/lol-data.js`), and SongX (`songx/`) uses the Cover Art Archive (`coverartarchive.org`) for the large album cover; grid thumbnails are self-hosted in `songx/images/covers/<mbid>.jpg` (downloaded by `tools/songx_albums.py`) because the archive is slow. The landing page's "On Air" unit (`js/now-playing.js`) polls the Last.fm API (`ws.audioscrobbler.com`, user `manassas777`, Spotify scrobbles) every 30 s while the tab is visible and shows Last.fm's cover images. Its API key is public and read-only; never commit the Last.fm shared secret.
 - **Don't commit or push unless asked.** Deploys come from `main` / root via GitHub Pages.
 
 ## Running
