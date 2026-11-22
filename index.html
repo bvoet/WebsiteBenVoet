@@ -27,7 +27,6 @@
       <nav aria-label="Sections">
         <a href="#rack">Rack</a>
         <a href="#gear">Gear</a>
-        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -293,42 +292,11 @@
       </div>
     </section>
 
-    <!-- ── About ───────────────────────────────────────────────────── -->
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="wrap about">
-        <header class="section__head">
-          <span class="section__num">03</span>
-          <h2 class="section__title" id="about-title">About</h2>
-        </header>
-
-        <div class="about__grid">
-          <div class="card">
-            <p class="card__big">
-              I've been playing guitar for more than twelve years. This site is my workshop:
-              synths, songbooks and whatever else I feel like building.
-            </p>
-            <p class="card__small">
-              Everything here is plain HTML, CSS and JavaScript, with the Web Audio API making the sounds.
-              No plugins, no installs.
-            </p>
-          </div>
-
-          <div class="card card--tape">
-            <span class="card__label">Heavy rotation</span>
-            <ul class="tape">
-              <li><span class="tape__side">A</span> Neil Young</li>
-              <li><span class="tape__side">B</span> Haruomi Hosono</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ── Contact ─────────────────────────────────────────────────── -->
     <section class="section section--last" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <header class="section__head">
-          <span class="section__num">04</span>
+          <span class="section__num">03</span>
           <h2 class="section__title" id="contact-title">Patch in</h2>
           <p class="section__sub">Code for everything on this site is on GitHub.</p>
         </header>
@@ -344,6 +312,78 @@
       </div>
     </section>
   </main>
+
+  <!-- ── 88×31 buttons, webring, link to me ─────────────────────────── -->
+  <section class="web1" aria-labelledby="web1-title">
+    <div class="wrap">
+      <h2 class="web1__title" id="web1-title">* Best viewed at any resolution *</h2>
+
+      <div class="b88s">
+        <a class="b88 b88--me" href="./" title="benvoet.be">
+          <span class="b88__stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="b88__big">BENVOET</span><span class="b88__tld">.BE</span>
+        </a>
+        <a class="b88 b88--lab" href="lab/" title="Synth Lab">
+          <span class="b88__led" aria-hidden="true"></span>
+          <span class="b88__stack"><b>SYNTH LAB</b><small>NOW ONLINE</small></span>
+        </a>
+        <a class="b88 b88--songx" href="songx/" title="SongX">
+          <span class="b88__stack"><b>SONGX</b><small>NEIL YOUNG</small></span>
+        </a>
+        <a class="b88 b88--lol" href="lol/" title="Top lane matchups">
+          <span class="b88__marquee" aria-hidden="true"><span>OLAF OR ILLAOI? &nbsp;OLAF OR ILLAOI? &nbsp;</span></span>
+          <span class="sr-only">Olaf or Illaoi?</span>
+        </a>
+        <span class="b88 b88--wa">
+          <span class="b88__stack"><small>POWERED BY</small><b>WEB AUDIO</b></span>
+        </span>
+        <span class="b88 b88--html">
+          <span class="b88__tag">&lt;/&gt;</span>
+          <span class="b88__stack"><b>PLAIN HTML</b><small>NO FRAMEWORK</small></span>
+        </span>
+        <span class="b88 b88--cookie">
+          <span class="b88__stack"><b>NO COOKIES</b><small>100% CRUMB FREE</small></span>
+        </span>
+        <span class="b88 b88--any">
+          <span class="b88__stack"><small>BEST VIEWED WITH</small><b>ANY BROWSER</b></span>
+        </span>
+        <span class="b88 b88--gear">
+          <span class="b88__stack"><b>TELE + LP</b><small>THROUGH A VOX</small></span>
+        </span>
+        <span class="b88 b88--rust">
+          <span class="b88__stack"><small>LONG MAY</small><b>YOU RUN</b></span>
+        </span>
+        <span class="b88 b88--hosono">
+          <span class="b88__stack"><b>EXOTICA</b><small>HOSONO FAN</small></span>
+        </span>
+        <span class="b88 b88--construct">
+          <span class="b88__tape" aria-hidden="true"></span>
+          <span class="b88__stack"><b>UNDER</b><small>CONSTRUCTION</small></span>
+        </span>
+      </div>
+
+      <div class="web1__row">
+        <nav class="ring" aria-label="The Rack Ring webring">
+          <a class="ring__btn" id="ring-prev" href="lol/">← Prev</a>
+          <div class="ring__mid">
+            <span class="ring__name">The Rack Ring</span>
+            <span class="ring__sub">a webring of one</span>
+            <a class="ring__rand" id="ring-rand" href="lab/">Random</a>
+          </div>
+          <a class="ring__btn" id="ring-next" href="lab/">Next →</a>
+        </nav>
+
+        <div class="linkme">
+          <span class="linkme__label">Link to me</span>
+          <div class="linkme__row">
+            <img src="images/buttons/benvoet.png" width="88" height="31" alt="benvoet.be 88×31 button" class="linkme__img" />
+            <button type="button" class="linkme__copy" id="linkme-copy">Copy HTML</button>
+          </div>
+          <code class="linkme__code" id="linkme-code">&lt;a href="https://benvoet.be"&gt;&lt;img src="https://benvoet.be/images/buttons/benvoet.png" width="88" height="31" alt="benvoet.be"&gt;&lt;/a&gt;</code>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="foot">
     <div class="wrap foot__inner">

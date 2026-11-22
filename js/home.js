@@ -97,3 +97,46 @@ else requestAnimationFrame(draw);
 // Footer year.
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+// ─── The Rack Ring: a webring of one ──────────────────────────────────────
+
+const RING = ['./', 'lab/', 'songx/', 'lol/'];
+const here = 0; // the landing page
+const prevEl = document.getElementById('ring-prev');
+const nextEl = document.getElementById('ring-next');
+const randEl = document.getElementById('ring-rand');
+if (prevEl) prevEl.href = RING[(here - 1 + RING.length) % RING.length];
+if (nextEl) nextEl.href = RING[(here + 1) % RING.length];
+if (randEl) {
+  randEl.addEventListener('click', (e) => {
+    e.preventDefault();
+    const others = RING.filter((_, i) => i !== here);
+    location.href = others[Math.floor(Math.random() * others.length)];
+  });
+}
+
+// ─── Link to me: copy the button HTML ─────────────────────────────────────
+
+const copyBtn = document.getElementById('linkme-copy');
+const codeEl = document.getElementById('linkme-code');
+if (copyBtn && codeEl) {
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(codeEl.textContent);
+      copyBtn.textContent = 'Copied!';
+    } catch {
+      // Clipboard blocked: select the code so it can be copied by hand.
+      const range = document.createRange();
+      range.selectNodeContents(codeEl);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      copyBtn.textContent = 'Press Ctrl+C';
+    }
+    copyBtn.classList.add('is-done');
+    setTimeout(() => {
+      copyBtn.textContent = 'Copy HTML';
+      copyBtn.classList.remove('is-done');
+    }, 2000);
+  });
+}
