@@ -93,3 +93,7 @@ window.addEventListener('resize', () => {
 });
 if (reduceMotion) draw(0);
 else requestAnimationFrame(draw);
+
+// Footer year.
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = String(new Date().getFullYear());

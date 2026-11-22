@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ben Voet</title>
-  <meta name="description" content="Ben Voet: music, sound and things I build. Home of Synth Lab, a rack of synthesizers that runs in your browser." />
+  <meta name="description" content="Ben Voet: guitarist and builder of browser instruments. Home of Synth Lab, the SongX Neil Young songbook and more." />
   <meta name="theme-color" content="#15120e" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <script>
@@ -17,72 +17,340 @@
   <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
-  <div class="room">
-    <header class="top">
-      <span class="top__mark">benvoet.be</span>
-    </header>
+  <!-- ── Top bar ───────────────────────────────────────────────────── -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__mark" href="#top">
+        <span class="nav__led" aria-hidden="true"></span>
+        benvoet.be
+      </a>
+      <nav aria-label="Sections">
+        <a href="#rack">Rack</a>
+        <a href="#gear">Gear</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <main class="hero">
-      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
-      <h1 class="hero__name">Ben Voet</h1>
-      <p class="hero__lead">Music, sound and things I build.</p>
-
-      <section class="unit" aria-labelledby="unit-title">
-        <div class="cheek cheek--l" aria-hidden="true"></div>
-        <div class="unit__body">
-          <div class="unit__head">
-            <h2 class="unit__title" id="unit-title">Synth Lab</h2>
-            <p class="unit__sub">A rack of synthesizers in your browser</p>
-          </div>
-
-          <div class="lcd" aria-hidden="true">
-            <canvas class="lcd__wave" id="wave"></canvas>
-            <div class="lcd__text">
-              <span class="lcd__big" id="lcd-model">SL-1</span>
-              <span id="lcd-type">SUBTRACTIVE</span>
-            </div>
-          </div>
-
-          <ul class="models">
-            <li><b>SL-1</b> Subtractive</li>
-            <li><b>FM-2</b> FM</li>
-            <li><b>AD-3</b> Additive</li>
-            <li><b>WT-4</b> Wavetable</li>
-            <li><b>DR-5</b> Drums</li>
-          </ul>
-
-          <p class="unit__desc">
-            Five instruments, each a different kind of synthesis. Tweak the knobs, play with your
-            keyboard or a MIDI controller, build a beat in the step sequencer and share your patch as a link.
-          </p>
-
+  <main id="top">
+    <!-- ── Hero ────────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__text">
+        <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+        <h1 class="hero__name">Ben<br />Voet</h1>
+        <p class="hero__lead">Guitarist. Synth tinkerer. I build instruments and music tools that run in your browser.</p>
+        <div class="hero__actions">
           <a class="power-btn" href="lab/">
             <span class="power-btn__led" aria-hidden="true"></span>
             Open Synth Lab
           </a>
+          <a class="ghost-btn" href="#rack">See the rack ↓</a>
         </div>
-        <div class="cheek cheek--r" aria-hidden="true"></div>
-      </section>
-
-      <section class="side" aria-labelledby="songx-title">
-        <div>
-          <h2 class="side__title" id="songx-title">SongX &bull; Neil Young Songbook</h2>
-          <p class="side__sub">Chords, tabs &amp; lyrics for 625+ songs. Browse by album, live search &amp; transpose.</p>
         </div>
-        <a class="side-btn" href="songx/">Open songbook →</a>
-      </section>
 
-      <section class="side" aria-labelledby="lol-title">
-        <div>
-          <h2 class="side__title" id="lol-title">Top Lane Matchups</h2>
-          <p class="side__sub">Olaf or Illaoi? Pick, summoners, build and tips per champion.</p>
+        <!-- Quick-launch patch panel -->
+        <nav class="patch" aria-label="Quick launch">
+          <div class="patch__head">
+            <span>Master</span>
+            <span class="patch__screws" aria-hidden="true"><i></i><i></i></span>
+          </div>
+          <div class="vu" aria-hidden="true">
+            <div class="vu__ch"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="vu__ch"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <a class="patch__ch" href="lab/"><span class="patch__no">1</span><span class="patch__led"></span>Synth Lab</a>
+          <a class="patch__ch" href="songx/"><span class="patch__no">2</span><span class="patch__led"></span>SongX</a>
+          <a class="patch__ch" href="lol/"><span class="patch__no">3</span><span class="patch__led"></span>Matchups</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ── The rack ────────────────────────────────────────────────── -->
+    <section class="section" id="rack" aria-labelledby="rack-title">
+      <div class="wrap">
+        <header class="section__head">
+          <span class="section__num">01</span>
+          <h2 class="section__title" id="rack-title">The rack</h2>
+          <p class="section__sub">Everything I've built so far. Power one up.</p>
+        </header>
+
+        <div class="cabinet">
+          <div class="cabinet__cheek cabinet__cheek--l" aria-hidden="true"></div>
+          <div class="cabinet__frame">
+
+            <!-- Unit 01: Synth Lab -->
+            <article class="unit unit--tall" aria-labelledby="u1-title">
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+              <div class="unit__face">
+                <div class="unit__label">
+                  <span class="unit__no">U1</span>
+                  <span class="unit__led unit__led--on" aria-hidden="true"></span>
+                  <span>Synth Lab · 5 instruments</span>
+                </div>
+                <div class="unit__grid">
+                  <div class="unit__text">
+                    <h3 class="unit__title" id="u1-title">Synth Lab</h3>
+                    <p class="unit__desc">
+                      A rack of browser synthesizers, each a different kind of synthesis. Tweak the knobs,
+                      play with your keyboard or a MIDI controller, build a beat in the step sequencer and
+                      share your patch as a link.
+                    </p>
+                    <ul class="chips" aria-label="Instruments">
+                      <li><b>SL-1</b> Subtractive</li>
+                      <li><b>FM-2</b> FM</li>
+                      <li><b>AD-3</b> Additive</li>
+                      <li><b>WT-4</b> Wavetable</li>
+                      <li><b>DR-5</b> Drums</li>
+                    </ul>
+                    <a class="power-btn" href="lab/">
+                      <span class="power-btn__led" aria-hidden="true"></span>
+                      Power on
+                    </a>
+                  </div>
+                  <div class="lcd" aria-hidden="true">
+                    <canvas class="lcd__wave" id="wave"></canvas>
+                    <div class="lcd__text">
+                      <span class="lcd__big" id="lcd-model">SL-1</span>
+                      <span id="lcd-type">SUBTRACTIVE</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+            </article>
+
+            <!-- Unit 02: SongX -->
+            <article class="unit" aria-labelledby="u2-title">
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+              <div class="unit__face">
+                <div class="unit__label">
+                  <span class="unit__no">U2</span>
+                  <span class="unit__led unit__led--on" aria-hidden="true"></span>
+                  <span>SongX · 625+ songs</span>
+                </div>
+                <div class="unit__grid unit__grid--wide">
+                  <div class="unit__text">
+                    <h3 class="unit__title" id="u2-title">SongX</h3>
+                    <p class="unit__desc">
+                      The Neil Young songbook: chords and tabs for 625+ songs. Browse by album in tracklist
+                      order, filter by tuning, transpose, and hover a chord to see how to play it.
+                    </p>
+                    <a class="power-btn" href="songx/">
+                      <span class="power-btn__led" aria-hidden="true"></span>
+                      Open songbook
+                    </a>
+                  </div>
+                  <a class="covers" href="songx/" aria-label="Open SongX">
+                    <img src="songx/images/covers/b25419cf-71bf-3a54-8cd4-2161c61056a0.jpg" alt="" width="120" height="120" loading="lazy" />
+                    <img src="songx/images/covers/b6a3952b-9977-351c-a80a-73e023143858.jpg" alt="" width="120" height="120" loading="lazy" />
+                    <img src="songx/images/covers/a710c7c7-46e6-36ca-9c3c-87c8e79f8daf.jpg" alt="" width="120" height="120" loading="lazy" />
+                    <img src="songx/images/covers/13b7462a-0764-3ece-946e-314aa01079cf.jpg" alt="" width="120" height="120" loading="lazy" />
+                    <img src="songx/images/covers/f4174531-b783-3786-b75f-4fe61a8f6333.jpg" alt="" width="120" height="120" loading="lazy" />
+                    <img src="songx/images/covers/f61603ab-ef6b-386b-a5e0-aaefc00543f1.jpg" alt="" width="120" height="120" loading="lazy" />
+                  </a>
+                </div>
+              </div>
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+            </article>
+
+            <!-- Unit 03: Top lane matchups -->
+            <article class="unit" aria-labelledby="u3-title">
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+              <div class="unit__face">
+                <div class="unit__label">
+                  <span class="unit__no">U3</span>
+                  <span class="unit__led unit__led--on" aria-hidden="true"></span>
+                  <span>Top lane · 76 matchups</span>
+                </div>
+                <div class="unit__grid unit__grid--wide">
+                  <div class="unit__text">
+                    <h3 class="unit__title" id="u3-title">Top Lane Matchups</h3>
+                    <p class="unit__desc">
+                      Olaf or Illaoi? Type the enemy champion and get the pick, summoner spells, build and
+                      lane tips. Made for champ select.
+                    </p>
+                    <a class="power-btn" href="lol/">
+                      <span class="power-btn__led" aria-hidden="true"></span>
+                      Open matchups
+                    </a>
+                  </div>
+                  <a class="champs" href="lol/" aria-label="Open the matchups">
+                    <span class="champ">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Olaf.png" alt="" width="96" height="96" loading="lazy" />
+                      <span>Olaf</span>
+                    </span>
+                    <span class="champs__vs" aria-hidden="true">or</span>
+                    <span class="champ">
+                      <img src="https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Illaoi.png" alt="" width="96" height="96" loading="lazy" />
+                      <span>Illaoi</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+            </article>
+
+            <!-- Blank panel: room to grow -->
+            <div class="unit unit--blank" aria-hidden="true">
+              <div class="ear"><i></i><i></i></div>
+              <div class="unit__face"><span class="blank__label">Next unit · in the works</span></div>
+              <div class="ear"><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="cabinet__cheek cabinet__cheek--r" aria-hidden="true"></div>
         </div>
-        <a class="side-btn" href="lol/">Open matchups →</a>
-      </section>
+      </div>
+    </section>
 
-      <p class="soon">About &amp; projects: coming soon.</p>
-    </main>
-  </div>
+    <!-- ── Gear: signal chain ──────────────────────────────────────── -->
+    <section class="section" id="gear" aria-labelledby="gear-title">
+      <div class="wrap">
+        <header class="section__head">
+          <span class="section__num">02</span>
+          <h2 class="section__title" id="gear-title">Signal chain</h2>
+          <p class="section__sub">What I actually play through.</p>
+        </header>
+
+        <ol class="chain">
+          <li class="chain__step chain__step--guitars">
+            <span class="chain__tag">Guitars</span>
+            <div class="gear">
+              <svg class="gear__icon" viewBox="0 0 64 120" aria-hidden="true">
+                <rect x="28" y="2" width="8" height="12" rx="2" class="g-head" />
+                <rect x="29.5" y="14" width="5" height="46" class="g-neck" />
+                <path d="M32 58c-9 0-13 6-13 12 0 4 3 6 3 9 0 3-6 6-6 15 0 12 9 22 16 22s16-10 16-22c0-9-6-12-6-15 0-3 3-5 3-9 0-6-4-12-13-12z" class="g-body" />
+                <rect x="24" y="76" width="16" height="5" rx="1" class="g-hw" />
+                <rect x="24" y="88" width="16" height="5" rx="1" class="g-hw" />
+                <path d="M22 103h20v6H22z" class="g-hw" />
+              </svg>
+              <div>
+                <h3 class="gear__name">Epiphone Les Paul Standard</h3>
+                <p class="gear__spec">With a Bigsby B7 vibrato</p>
+              </div>
+            </div>
+            <div class="gear">
+              <svg class="gear__icon" viewBox="0 0 64 120" aria-hidden="true">
+                <path d="M28 2h10l-1 12h-9z" class="g-head" />
+                <rect x="29.5" y="14" width="5" height="46" class="g-neck" />
+                <path d="M32 58c-8 0-14 3-14 10 0 5 4 6 4 10 0 5-7 7-7 17 0 13 9 21 17 21s17-8 17-21c0-10-7-12-7-17 0-4 4-5 4-10 0-7-6-10-14-10z" class="g-body" />
+                <path d="M42 74c3 2 3 8 0 10" class="g-f" />
+                <rect x="24" y="86" width="16" height="6" rx="1" class="g-hw" />
+                <rect x="24" y="96" width="16" height="6" rx="1" class="g-hw" />
+              </svg>
+              <div>
+                <h3 class="gear__name">Fender American Vintage II Telecaster Thinline</h3>
+                <p class="gear__spec">Semi-hollow, f-hole</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="chain__cable" aria-hidden="true"><span></span></li>
+
+          <li class="chain__step">
+            <span class="chain__tag">Effects</span>
+            <div class="gear gear--box">
+              <svg class="gear__icon gear__icon--wide" viewBox="0 0 120 70" aria-hidden="true">
+                <rect x="2" y="2" width="116" height="66" rx="6" class="p-case" />
+                <rect x="38" y="10" width="44" height="18" rx="2" class="p-screen" />
+                <circle cx="16" cy="19" r="5" class="p-knob" />
+                <circle cx="104" cy="19" r="5" class="p-knob" />
+                <circle cx="22" cy="50" r="6" class="p-switch" />
+                <circle cx="47" cy="50" r="6" class="p-switch" />
+                <circle cx="73" cy="50" r="6" class="p-switch" />
+                <circle cx="98" cy="50" r="6" class="p-switch" />
+              </svg>
+              <div>
+                <h3 class="gear__name">Valeton GP-200</h3>
+                <p class="gear__spec">Multi-effects and amp modeler</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="chain__cable" aria-hidden="true"><span></span></li>
+
+          <li class="chain__step">
+            <span class="chain__tag">Amp</span>
+            <div class="gear gear--box">
+              <svg class="gear__icon gear__icon--wide" viewBox="0 0 120 96" aria-hidden="true">
+                <rect x="2" y="2" width="116" height="92" rx="6" class="a-case" />
+                <rect x="10" y="10" width="100" height="14" rx="2" class="a-panel" />
+                <circle cx="24" cy="17" r="3.5" class="a-knob" />
+                <circle cx="40" cy="17" r="3.5" class="a-knob" />
+                <circle cx="56" cy="17" r="3.5" class="a-knob" />
+                <circle cx="72" cy="17" r="3.5" class="a-knob" />
+                <rect x="10" y="30" width="100" height="56" rx="3" class="a-grille" />
+                <circle cx="60" cy="58" r="22" class="a-cone" />
+              </svg>
+              <div>
+                <h3 class="gear__name">Vox Pathfinder 15</h3>
+                <p class="gear__spec">V9168, 15-watt combo</p>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── About ───────────────────────────────────────────────────── -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap about">
+        <header class="section__head">
+          <span class="section__num">03</span>
+          <h2 class="section__title" id="about-title">About</h2>
+        </header>
+
+        <div class="about__grid">
+          <div class="card">
+            <p class="card__big">
+              I've been playing guitar for more than twelve years. This site is my workshop:
+              synths, songbooks and whatever else I feel like building.
+            </p>
+            <p class="card__small">
+              Everything here is plain HTML, CSS and JavaScript, with the Web Audio API making the sounds.
+              No plugins, no installs.
+            </p>
+          </div>
+
+          <div class="card card--tape">
+            <span class="card__label">Heavy rotation</span>
+            <ul class="tape">
+              <li><span class="tape__side">A</span> Neil Young</li>
+              <li><span class="tape__side">B</span> Haruomi Hosono</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ─────────────────────────────────────────────────── -->
+    <section class="section section--last" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <header class="section__head">
+          <span class="section__num">04</span>
+          <h2 class="section__title" id="contact-title">Patch in</h2>
+          <p class="section__sub">Code for everything on this site is on GitHub.</p>
+        </header>
+
+        <a class="jack" href="https://github.com/bvoet" target="_blank" rel="noopener noreferrer">
+          <span class="jack__socket" aria-hidden="true"><span></span></span>
+          <span class="jack__text">
+            <span class="jack__label">GitHub</span>
+            <span class="jack__handle">github.com/bvoet</span>
+          </span>
+          <span class="jack__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <span>© <span id="year">2026</span> Ben Voet</span>
+      <span>Built with plain HTML, CSS &amp; the Web Audio API</span>
+    </div>
+  </footer>
 
   <script type="module" src="js/home.js"></script>
 </body>
