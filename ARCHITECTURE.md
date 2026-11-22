@@ -7,7 +7,6 @@ index.html                  landing page; forwards old root share links (#fm2=..
 lab/index.html              Synth Lab page skeleton: header, top bar, empty panel, keyboard, sequencer slot
 css/home.css                landing page styling (same palette as the lab)
 lol/index.html              top lane matchup cheat sheet (Olaf / Illaoi), not part of Synth Lab
-viz/index.html              Phosphor, the CRT audio visualizer (css/viz.css, js/viz.js); standalone, own AudioContext
 css/lol.css                 matchup page styling
 css/synthlab.css            all lab styling; design tokens live on :root
 js/
