@@ -21,8 +21,9 @@
       if (/^(win95|terminal|vapor)$/.test(savedTheme)) document.documentElement.dataset.theme = savedTheme;
     } catch (e) { /* storage blocked */ }
   </script>
-  <link rel="stylesheet" href="css/home.css?v=20261122c" />
-  <link rel="stylesheet" href="css/themes.css?v=20261122c" />
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E3%81%82%E3%82%AB%E3%81%95%E3%83%8A&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/home.css?v=20261122d" />
+  <link rel="stylesheet" href="css/themes.css?v=20261122d" />
 </head>
 <body>
   <!-- ── Top bar ───────────────────────────────────────────────────── -->
@@ -96,6 +97,7 @@
           <a class="patch__ch" href="lol/"><span class="patch__no">3</span><span class="patch__led"></span>Matchups</a>
           <a class="patch__ch" href="tuner/"><span class="patch__no">4</span><span class="patch__led"></span>Tuner</a>
           <a class="patch__ch" href="fretboard/"><span class="patch__no">5</span><span class="patch__led"></span>Fretboard</a>
+          <a class="patch__ch" href="kana/"><span class="patch__no">6</span><span class="patch__led"></span>Kana</a>
         </nav>
       </div>
     </section>
@@ -325,6 +327,41 @@
               <div class="ear" aria-hidden="true"><i></i><i></i></div>
             </article>
 
+            <!-- Unit 06: Kana trainer -->
+            <article class="unit" aria-labelledby="u6-title">
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+              <div class="unit__face">
+                <div class="unit__label">
+                  <span class="unit__no">U6</span>
+                  <span class="unit__led unit__led--on" aria-hidden="true"></span>
+                  <span>KN-46 · Hiragana &amp; katakana</span>
+                </div>
+                <div class="unit__grid unit__grid--wide">
+                  <div class="unit__text">
+                    <h3 class="unit__title" id="u6-title">Kana</h3>
+                    <p class="unit__desc">
+                      Learn hiragana and katakana. A chart to study from, a drill that keeps serving the
+                      ones you miss, and a scored quiz. Type the romaji or pick from look-alikes.
+                    </p>
+                    <a class="power-btn" href="kana/">
+                      <span class="power-btn__led" aria-hidden="true"></span>
+                      Open kana trainer
+                    </a>
+                  </div>
+                  <a class="lcd lcd--kana" href="kana/" aria-label="Open the kana trainer">
+                    <span class="kanamini" aria-hidden="true">
+                      <span lang="ja">あ</span><span lang="ja">カ</span><span lang="ja">さ</span><span lang="ja">ナ</span>
+                    </span>
+                    <span class="lcd__text" aria-hidden="true">
+                      <span class="lcd__big kanamini__r"><span>A</span><span>KA</span><span>SA</span><span>NA</span></span>
+                      <span>TYPE THE ROMAJI</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div class="ear" aria-hidden="true"><i></i><i></i></div>
+            </article>
+
             <!-- Blank panel: room to grow -->
             <div class="unit unit--blank" aria-hidden="true">
               <div class="ear"><i></i><i></i></div>
@@ -526,7 +563,7 @@
     </div>
   </footer>
 
-  <script type="module" src="js/home.js?v=20261122c"></script>
-  <script type="module" src="js/now-playing.js?v=20261122c"></script>
+  <script type="module" src="js/home.js?v=20261122d"></script>
+  <script type="module" src="js/now-playing.js?v=20261122d"></script>
 </body>
 </html>

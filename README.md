@@ -89,6 +89,7 @@ Audio starts on your first click or key press, as browsers require.
 - **[SongX, the Neil Young songbook](https://benvoet.be/songx/)**: chords, tabs and lyrics for 625+ songs. Browse by album cover in tracklist order, filter by tuning, transpose, and hover (or tap) a chord to see how to play it.
 - **[Tuner](https://benvoet.be/tuner/)**: a needle tuner for guitar through your mic, with reference tones, A4 calibration and drop/open tunings (including the ones from SongX, which links to it from each song).
 - **[Fretboard](https://benvoet.be/fretboard/)**: any scale or chord on the neck in any tuning, with note or interval labels, the chords in each key, common shapes, and every note playable through Synth Lab.
+- **[Kana](https://benvoet.be/kana/)**: learn hiragana and katakana with a chart, an adaptive drill that brings back the ones you miss, and a scored quiz. Type the romaji or pick from look-alike choices, in a textbook, gothic or pixel font.
 - **[Top lane matchups](https://benvoet.be/lol/)**: an Olaf / Illaoi pick helper with summoner spells, builds and lane tips per enemy champion.
 
 ## Project docs

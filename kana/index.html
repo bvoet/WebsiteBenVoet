@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kana — Ben Voet</title>
+  <meta name="description" content="Learn hiragana and katakana: a kana chart, an adaptive drill that brings back the ones you miss, and a scored quiz." />
+  <meta name="theme-color" content="#15120e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&family=Klee+One:wght@600&family=Noto+Sans+JP:wght@500&family=DotGothic16&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tools.css" />
+  <link rel="stylesheet" href="../css/kana.css" />
+</head>
+<body data-mode="drill">
+  <div class="room">
+    <header class="top">
+      <a href="../">← benvoet.be</a>
+      <a href="../fretboard/">Fretboard →</a>
+    </header>
+
+    <section class="intro">
+      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h1 class="intro__title">Kana</h1>
+      <p class="intro__lead">Hiragana and katakana. Study the chart, drill what you miss, then quiz yourself.</p>
+    </section>
+
+    <div class="device">
+      <div class="ear" aria-hidden="true"><i></i><i></i></div>
+      <div class="device__face">
+        <div class="device__label">
+          <span class="device__model">KN-46</span>
+          <span class="led is-on" aria-hidden="true"></span>
+          <span>Kana trainer</span>
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <span class="field__label" id="lbl-mode">Mode</span>
+            <div class="seg" role="group" aria-labelledby="lbl-mode">
+              <button type="button" class="chip" data-set="mode" data-value="chart" aria-pressed="false">Chart</button>
+              <button type="button" class="chip" data-set="mode" data-value="drill" aria-pressed="true">Drill</button>
+              <button type="button" class="chip" data-set="mode" data-value="quiz" aria-pressed="false">Quiz</button>
+            </div>
+          </div>
+          <div class="field">
+            <span class="field__label" id="lbl-script">Script</span>
+            <div class="seg" role="group" aria-labelledby="lbl-script">
+              <button type="button" class="chip chip--jp" data-set="script" data-value="h" aria-pressed="true"><span lang="ja">ひらがな</span></button>
+              <button type="button" class="chip chip--jp" data-set="script" data-value="k" aria-pressed="false"><span lang="ja">カタカナ</span></button>
+              <button type="button" class="chip" data-set="script" data-value="hk" aria-pressed="false">Both</button>
+            </div>
+          </div>
+          <label class="field">
+            <span class="field__label">Font</span>
+            <select class="select" id="font">
+              <option value="textbook">Textbook</option>
+              <option value="gothic">Gothic</option>
+              <option value="pixel">Pixel</option>
+              <option value="mix">Mix</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="controls controls--sub">
+          <div class="field only-train">
+            <span class="field__label" id="lbl-dir">Direction</span>
+            <div class="seg" role="group" aria-labelledby="lbl-dir">
+              <button type="button" class="chip chip--jp" data-set="dir" data-value="k2r" aria-pressed="true"><span lang="ja">かな</span>→abc</button>
+              <button type="button" class="chip chip--jp" data-set="dir" data-value="r2k" aria-pressed="false">abc→<span lang="ja">かな</span></button>
+              <button type="button" class="chip" data-set="dir" data-value="mix" aria-pressed="false">Mix</button>
+            </div>
+          </div>
+          <div class="field only-train">
+            <span class="field__label" id="lbl-answer">Answer</span>
+            <div class="seg" role="group" aria-labelledby="lbl-answer">
+              <button type="button" class="chip" data-set="answer" data-value="type" aria-pressed="true">Type</button>
+              <button type="button" class="chip" data-set="answer" data-value="choice" aria-pressed="false">Choice</button>
+            </div>
+          </div>
+          <div class="field only-quiz">
+            <span class="field__label" id="lbl-length">Questions</span>
+            <div class="seg" role="group" aria-labelledby="lbl-length">
+              <button type="button" class="chip" data-set="length" data-value="10" aria-pressed="false">10</button>
+              <button type="button" class="chip" data-set="length" data-value="20" aria-pressed="true">20</button>
+              <button type="button" class="chip" data-set="length" data-value="0" aria-pressed="false">All</button>
+            </div>
+          </div>
+          <div class="field only-chart">
+            <span class="field__label" id="lbl-romaji">Romaji</span>
+            <div class="seg" role="group" aria-labelledby="lbl-romaji">
+              <button type="button" class="chip" data-set="romaji" data-value="true" aria-pressed="true">Show</button>
+              <button type="button" class="chip" data-set="romaji" data-value="false" aria-pressed="false">Hide</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drill / quiz -->
+        <div class="stage" id="stage">
+          <div class="screen">
+            <div class="screen__bar">
+              <span id="bar-left">DRILL</span>
+              <span id="bar-right"></span>
+            </div>
+            <div class="card" id="card">
+              <span class="card__prompt" id="prompt">- -</span>
+            </div>
+            <p class="screen__msg" id="msg" role="status" aria-live="polite"></p>
+            <div class="results" id="results" hidden></div>
+          </div>
+
+          <div class="answer" id="answer" hidden>
+            <form class="typebox" id="type-form" autocomplete="off">
+              <label class="sr-only" for="type-in">Romaji</label>
+              <input class="typebox__in" id="type-in" type="text" enterkeyhint="go"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="8" placeholder="romaji" />
+              <button type="submit" class="chip">Enter</button>
+              <button type="button" class="chip" id="skip">Show</button>
+            </form>
+            <div class="choices" id="choices" role="group" aria-label="Answers"></div>
+            <button type="button" class="power-btn power-btn--small" id="next" hidden>
+              <span class="power-btn__led" aria-hidden="true"></span>
+              Next
+            </button>
+          </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="chart" id="chart" hidden></div>
+
+        <!-- Pool -->
+        <div class="pool">
+          <div class="pool__head">
+            <span class="field__label">Rows in the pool</span>
+            <span class="pool__count" id="pool-count"></span>
+          </div>
+          <div class="rows" id="rows"></div>
+        </div>
+      </div>
+      <div class="ear" aria-hidden="true"><i></i><i></i></div>
+    </div>
+
+    <footer class="foot">
+      <p>
+        <strong>Drill</strong> never ends and serves the kana you miss more often. Each one moves up a box when
+        you get it right and drops back to zero when you don't; the pips on the chart show where it stands.
+      </p>
+      <p>
+        <strong>Quiz</strong> asks a fixed number of questions, scores you and lets you retry the misses.
+      </p>
+      <p>
+        <strong>Keys:</strong> type the romaji (Hepburn, or the common IME spellings like <em>si</em>, <em>tu</em>, <em>sya</em>); a correct answer goes
+        through on its own. Enter submits or moves on, 1–4 picks a choice.
+        Switch the font to learn the shapes as they appear in print and on screens.
+      </p>
+      <p>
+        Progress stays in this browser.
+        <button type="button" class="chip chip--small" id="reset">Reset progress</button>
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="../js/kana.js"></script>
+</body>
+</html>
