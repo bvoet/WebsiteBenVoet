@@ -252,6 +252,10 @@
   background: #000;
 }
 
+[data-theme='win95'] .radio__label {
+  color: #fff;
+}
+
 [data-theme='win95'] .unit--blank .unit__face {
   background: #c0c0c0;
 }
