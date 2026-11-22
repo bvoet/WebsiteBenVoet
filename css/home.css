@@ -703,6 +703,128 @@ a {
   font-size: 26px;
 }
 
+/* Tuner: a small needle meter on the LCD. */
+.lcd--meter {
+  display: block;
+  width: 280px;
+  max-width: 100%;
+  height: 176px;
+  text-decoration: none;
+}
+
+.minimeter {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 230px;
+  transform: translateX(-50%);
+}
+
+.mm-arc {
+  fill: none;
+  stroke: var(--lcd-dim);
+  stroke-width: 1.5;
+}
+
+.mm-ticks line {
+  stroke: var(--lcd-dim);
+  stroke-width: 1.5;
+}
+
+.mm-ticks line.is-major {
+  stroke: var(--lcd-fg);
+  stroke-width: 2.5;
+}
+
+.mm-zone {
+  fill: none;
+  stroke: var(--lcd-fg);
+  stroke-width: 5;
+  opacity: 0.45;
+}
+
+.mm-needle {
+  stroke: var(--orange);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 100px 104px;
+  animation: sway 4s ease-in-out infinite;
+}
+
+.mm-hub {
+  fill: var(--lcd-bg);
+  stroke: var(--lcd-dim);
+  stroke-width: 2;
+}
+
+.lcd__big sub {
+  font-size: 0.6em;
+  vertical-align: baseline;
+}
+
+/* The needle settles on the note, then a new string is plucked. */
+@keyframes sway {
+  0% { transform: rotate(-34deg); }
+  25% { transform: rotate(10deg); }
+  38% { transform: rotate(-5deg); }
+  50%, 92% { transform: rotate(0deg); }
+  100% { transform: rotate(-34deg); }
+}
+
+/* Fretboard: a minor pentatonic box on a strip of neck. */
+.neckmini {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.5));
+}
+
+.neckmini svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nm-wood {
+  fill: #4b2d1b;
+  stroke: #2d1a10;
+  stroke-width: 2;
+}
+
+.nm-fret {
+  stroke: #b9b2a3;
+  stroke-width: 2.5;
+}
+
+.nm-inlay {
+  fill: #e8dcc0;
+  opacity: 0.7;
+}
+
+.nm-string {
+  stroke: #d9d2c3;
+}
+
+.nm-dot {
+  fill: #efe6d0;
+  stroke: #0b0a08;
+  stroke-width: 1.5;
+  transition: fill 0.2s ease;
+}
+
+.nm-dot--root {
+  fill: var(--orange);
+}
+
+.neckmini:hover .nm-dot {
+  fill: #fff6dd;
+}
+
+.neckmini:hover .nm-dot--root {
+  fill: #ffa566;
+}
+
 /* Blank filler panel. */
 .unit--blank {
   min-height: 64px;
@@ -1306,6 +1428,15 @@ a.b88:active {
     height: 170px;
   }
 
+  .lcd--meter,
+  .neckmini {
+    width: 100%;
+  }
+
+  .neckmini {
+    max-width: 340px;
+  }
+
   .chain {
     grid-template-columns: 1fr;
     gap: 0;
@@ -1436,7 +1567,8 @@ a.b88:active {
     display: none;
   }
 
-  .vu__ch i {
+  .vu__ch i,
+  .mm-needle {
     animation: none;
   }
 

@@ -9,10 +9,18 @@ css/home.css                landing page styling (same palette as the lab)
 css/themes.css              landing page themes: Win 95, Terminal, Vapor (default = studio look in home.css)
 lol/index.html              top lane matchup cheat sheet (Olaf / Illaoi), not part of Synth Lab
 css/lol.css                 matchup page styling
+tuner/index.html            TU-6 guitar tuner (mic → autocorrelation pitch detection)
+fretboard/index.html        FB-8 fretboard explorer (scales/chords on the neck, plays through Synth Lab synths)
+css/tools.css               shared base for tuner/ and fretboard/ (rack-unit look, controls)
+css/tuner.css, fretboard.css  page-specific styling
 css/synthlab.css            all lab styling; design tokens live on :root
 js/
   home.js                   landing page LCD animation (visual only, no audio)
   lol.js, lol-data.js       matchup page: search/grid/detail UI and the matchup data
+  music.js                  note names, guitar tunings (with octaves), interval-based spelling
+  tuner.js                  tuner: mic input, pitch detection, needle meter, reference tones
+  fretboard.js              fretboard: neck UI, diatonic chords, shapes via songx/js/chords.js;
+                            sound via AudioEngine + SL-1/FM-2 (same API the lab uses)
   main.js                   page controller: instrument switching, panel, presets, LCD, input routing
   engine/
     audio-engine.js         AudioContext, master bus + limiter + analyser, FxRack (one per instrument)

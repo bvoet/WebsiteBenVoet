@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fretboard — Ben Voet</title>
+  <meta name="description" content="Scales and chords on a guitar neck, in any tuning. Click a note to hear it, play the scale or strum the chord." />
+  <meta name="theme-color" content="#15120e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tools.css" />
+  <link rel="stylesheet" href="../css/fretboard.css" />
+</head>
+<body>
+  <div class="room">
+    <header class="top">
+      <a href="../">← benvoet.be</a>
+      <a href="../tuner/">Tuner →</a>
+    </header>
+
+    <section class="intro">
+      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+      <h1 class="intro__title">Fretboard</h1>
+      <p class="intro__lead">Scales and chords on the neck, in any tuning. Click a note to hear it.</p>
+    </section>
+
+    <div class="device">
+      <div class="ear" aria-hidden="true"><i></i><i></i></div>
+      <div class="device__face">
+        <div class="device__label">
+          <span class="device__model">FB-8</span>
+          <span class="led is-on" aria-hidden="true"></span>
+          <span>Fretboard explorer</span>
+        </div>
+
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Show">
+            <button type="button" class="chip" data-mode="scale" aria-pressed="true">Scale</button>
+            <button type="button" class="chip" data-mode="chord" aria-pressed="false">Chord</button>
+          </div>
+          <label class="field">
+            <span class="field__label">Root</span>
+            <select class="select" id="root"></select>
+          </label>
+          <label class="field field--grow">
+            <span class="field__label" id="type-label">Scale</span>
+            <select class="select" id="type"></select>
+          </label>
+          <label class="field field--grow">
+            <span class="field__label">Tuning</span>
+            <select class="select" id="tuning"></select>
+          </label>
+        </div>
+
+        <div class="readout">
+          <div class="readout__main">
+            <h2 class="readout__name" id="name">A minor pentatonic</h2>
+            <table class="readout__notes" aria-label="Notes and intervals">
+              <tbody>
+                <tr id="row-notes"></tr>
+                <tr id="row-ivs"></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="readout__side">
+            <div class="seg" role="group" aria-label="Labels on the neck">
+              <button type="button" class="chip" data-labels="notes" aria-pressed="true">Notes</button>
+              <button type="button" class="chip" data-labels="intervals" aria-pressed="false">Intervals</button>
+            </div>
+            <div class="play">
+              <select class="select select--small" id="sound" aria-label="Sound"></select>
+              <button type="button" class="power-btn power-btn--small" id="play">
+                <span class="power-btn__led" aria-hidden="true"></span>
+                <span id="play-text">Play</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="neck-scroll" id="neck-scroll">
+          <div class="neck" id="neck" role="group" aria-label="Guitar neck"></div>
+        </div>
+        <p class="neck-hint" aria-hidden="true">← Swipe the neck →</p>
+
+        <div class="extras">
+          <section class="diatonic" id="diatonic" aria-labelledby="diatonic-title">
+            <h3 class="extras__title" id="diatonic-title">Chords in this key</h3>
+            <div class="diatonic__chips" id="diatonic-chips"></div>
+          </section>
+          <section class="shape" id="shape" aria-labelledby="shape-title" hidden>
+            <h3 class="extras__title" id="shape-title">Common shape</h3>
+            <div class="shape__body">
+              <div id="shape-svg"></div>
+              <p class="shape__note" id="shape-note"></p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="ear" aria-hidden="true"><i></i><i></i></div>
+    </div>
+
+    <footer class="foot">
+      <p>
+        <strong>How to use it:</strong> pick a root and a scale or chord. The root is orange.
+        In chord view the outlined dots show a common shape (standard tuning).
+        Click any spot on the neck to hear that note.
+      </p>
+      <p>
+        Sounds come from <a href="../lab/">Synth Lab</a>. Pairs well with the <a href="../tuner/">tuner</a>
+        and the open tunings in <a href="../songx/">SongX</a>.
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="../js/fretboard.js"></script>
+</body>
+</html>

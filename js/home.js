@@ -107,7 +107,7 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 // ─── The Rack Ring: a webring of one ──────────────────────────────────────
 
-const RING = ['./', 'lab/', 'songx/', 'lol/'];
+const RING = ['./', 'lab/', 'songx/', 'tuner/', 'fretboard/', 'lol/'];
 const here = 0; // the landing page
 const prevEl = document.getElementById('ring-prev');
 const nextEl = document.getElementById('ring-next');

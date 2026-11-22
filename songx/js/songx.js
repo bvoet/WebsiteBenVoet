@@ -627,6 +627,14 @@ function openSong(song, pushState = true) {
   songMetaGridEl.innerHTML = '';
   if (song.tuning) {
     addMetaItem('Tuning', song.tuning, true);
+    // Open the tuner set to this tuning (six-note tunings only).
+    if (/^(?:[A-G][#b]?){6}$/.test(song.tuning)) {
+      const tune = document.createElement('a');
+      tune.className = 'meta-tune';
+      tune.href = `../tuner/?tuning=${encodeURIComponent(song.tuning)}`;
+      tune.textContent = 'Tune up →';
+      songMetaGridEl.lastElementChild.appendChild(tune);
+    }
   }
   if (song.capo) {
     addMetaItem('Capo', song.capo, false);

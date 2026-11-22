@@ -643,6 +643,22 @@ body {
   color: var(--accent);
 }
 
+.meta-tune {
+  margin-left: 0.35rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.meta-tune:hover,
+.meta-tune:focus-visible {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
 .notes-box {
   background: var(--bg-page);
   border-left: 3px solid var(--accent);
