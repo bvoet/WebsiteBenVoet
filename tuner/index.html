@@ -5,25 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tuner — Ben Voet</title>
   <meta name="description" content="A guitar tuner in your browser: needle meter, reference tones, drop and open tunings including the ones from the SongX Neil Young songbook." />
-  <meta name="theme-color" content="#15120e" />
+  <meta name="theme-color" content="#111214" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/tools.css" />
-  <link rel="stylesheet" href="../css/tuner.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/site.css?v=20261128a" />
+  <link rel="stylesheet" href="../css/tools.css?v=20261128a" />
+  <link rel="stylesheet" href="../css/tuner.css?v=20261128a" />
 </head>
-<body>
+<body class="t-tuner">
   <div class="room">
-    <header class="top">
-      <a href="../">← benvoet.be</a>
-      <a href="../fretboard/">Fretboard →</a>
+    <header class="site-bar">
+      <a class="site-bar__home" href="../">Ben Voet</a>
+      <nav class="site-bar__tools" aria-label="Tools">
+        <a class="t-lab" href="../lab/">Synth Lab</a>
+        <a class="t-songx" href="../songx/">SongX</a>
+        <a class="t-tuner" href="../tuner/" aria-current="page">Tuner</a>
+        <a class="t-fret" href="../fretboard/">Fretboard</a>
+        <a class="t-kana" href="../kana/">Kana</a>
+        <a class="t-lol" href="../lol/">Matchups</a>
+      </nav>
     </header>
 
-    <section class="intro">
-      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
-      <h1 class="intro__title">Tuner</h1>
-      <p class="intro__lead">Power on, play a string, follow the needle.</p>
+    <section class="band">
+      <h1 class="band__title">Tuner</h1>
+      <span class="band__no" aria-hidden="true">BV 03</span>
+      <p class="band__lead">Power on, play a string, follow the needle.</p>
     </section>
 
     <div class="device">

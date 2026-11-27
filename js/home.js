@@ -1,4 +1,4 @@
-// Landing page LCD: morphs through one waveform per Synth Lab instrument.
+// Synth Lab plate: morphs through one waveform per Synth Lab instrument.
 // Purely visual; no audio is created here.
 
 const canvas = document.getElementById('wave');
@@ -7,7 +7,7 @@ const typeEl = document.getElementById('lcd-type');
 
 const TAU = Math.PI * 2;
 
-// LCD stroke colour comes from the theme (--lcd-fg).
+// Scope stroke colour comes from the CSS (--lcd-fg).
 let lcdColor = '#a4ff7c';
 function readLcdColor() {
   lcdColor = getComputedStyle(document.documentElement).getPropertyValue('--lcd-fg').trim() || '#a4ff7c';
@@ -85,9 +85,8 @@ function draw(time) {
     else ctx.lineTo(px, mid - y * amp);
   }
   ctx.strokeStyle = lcdColor;
-  ctx.lineWidth = 2;
-  ctx.shadowColor = lcdColor;
-  ctx.shadowBlur = 6;
+  ctx.lineWidth = Math.max(3, w / 80); // a printed mark, not a hairline
+  ctx.lineJoin = 'round';
   ctx.stroke();
 
   if (!reduceMotion) requestAnimationFrame(draw);
@@ -105,79 +104,22 @@ else requestAnimationFrame(draw);
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-// ─── The Rack Ring: a webring of one ──────────────────────────────────────
+// ─── Catalogue: hovering or focusing an entry shows its plate ────────────
 
-const RING = ['./', 'lab/', 'songx/', 'tuner/', 'fretboard/', 'kana/', 'lol/'];
-const here = 0; // the landing page
-const prevEl = document.getElementById('ring-prev');
-const nextEl = document.getElementById('ring-next');
-const randEl = document.getElementById('ring-rand');
-if (prevEl) prevEl.href = RING[(here - 1 + RING.length) % RING.length];
-if (nextEl) nextEl.href = RING[(here + 1) % RING.length];
-if (randEl) {
-  randEl.addEventListener('click', (e) => {
-    e.preventDefault();
-    const others = RING.filter((_, i) => i !== here);
-    location.href = others[Math.floor(Math.random() * others.length)];
+const entries = [...document.querySelectorAll('.entry')];
+function activate(entry) {
+  for (const e of entries) e.classList.toggle('is-active', e === entry);
+}
+// Hover intent: a pointer cutting across the list towards the plate
+// shouldn't swap plates on the way.
+let hoverTimer = 0;
+for (const entry of entries) {
+  const link = entry.querySelector('.entry__link');
+  link.addEventListener('pointerenter', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => activate(entry), 110);
   });
-}
-
-// ─── Link to me: copy the button HTML ─────────────────────────────────────
-
-const copyBtn = document.getElementById('linkme-copy');
-const codeEl = document.getElementById('linkme-code');
-if (copyBtn && codeEl) {
-  copyBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(codeEl.textContent);
-      copyBtn.textContent = 'Copied!';
-    } catch {
-      // Clipboard blocked: select the code so it can be copied by hand.
-      const range = document.createRange();
-      range.selectNodeContents(codeEl);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      copyBtn.textContent = 'Press Ctrl+C';
-    }
-    copyBtn.classList.add('is-done');
-    setTimeout(() => {
-      copyBtn.textContent = 'Copy HTML';
-      copyBtn.classList.remove('is-done');
-    }, 2000);
-  });
-}
-
-// ─── Theme switcher ───────────────────────────────────────────────────────
-
-const THEMES = [
-  { id: 'studio', name: 'Studio' },
-  { id: 'win95', name: 'Win 95' },
-  { id: 'terminal', name: 'Terminal' },
-  { id: 'vapor', name: 'Vapor' },
-];
-const themeBtn = document.getElementById('theme-btn');
-const themeName = document.getElementById('theme-name');
-
-function currentTheme() {
-  return document.documentElement.dataset.theme || 'studio';
-}
-
-function applyTheme(id) {
-  if (id === 'studio') delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = id;
-  const t = THEMES.find((x) => x.id === id) || THEMES[0];
-  if (themeName) themeName.textContent = t.name;
-  if (themeBtn) themeBtn.title = `Theme: ${t.name} (click for next)`;
-  try { localStorage.setItem('benvoet.theme', id); } catch { /* storage blocked */ }
-  readLcdColor();
-  if (reduceMotion) draw(0);
-}
-
-if (themeBtn) {
-  applyTheme(currentTheme());
-  themeBtn.addEventListener('click', () => {
-    const i = THEMES.findIndex((t) => t.id === currentTheme());
-    applyTheme(THEMES[(i + 1) % THEMES.length].id);
-  });
+  link.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
+  entry.addEventListener('focusin', () => activate(entry));
 }

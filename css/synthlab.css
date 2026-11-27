@@ -2,32 +2,28 @@
    Synth Lab — retro hardware styling
    ─────────────────────────────────────────────────────────────────────── */
 
-:root {
-  --room: #15120e;
-  --room-2: #1d1914;
-  --panel: #262420;
-  --panel-2: #2e2b26;
-  --panel-edge: #3b372f;
-  --ink: #efe6d0;
-  --ink-dim: #a69d88;
-  --ink-faint: #6e675a;
-  --orange: #ff7a2f;
-  --mustard: #f1b93c;
-  --red: #d8432b;
-  --wood-1: #3c2214;
-  --wood-2: #6b3d22;
-  --wood-3: #8d5633;
-  --lcd-bg: #0c1609;
-  --lcd-fg: #a4ff7c;
-  --lcd-dim: #5f9a49;
-  --lcd-grid: rgba(140, 255, 110, 0.1);
-  --key-white: #f4efe2;
-  --key-white-2: #ddd5c2;
-  --key-black: #1a1815;
+/* On body, not :root, so var(--c) picks up the page colour (css/site.css). */
+body {
+  --room: var(--ground);
+  --room-2: var(--surface);
+  --panel: var(--surface);
+  --panel-2: var(--surface-2);
+  --panel-edge: #3a3b40;
+  --ink-dim: var(--muted);
+  --ink-faint: var(--faint);
+  --orange: var(--c);
+  --mustard: var(--c);
+  --red: var(--bad);
+  --lcd-bg: #0b0b0c;
+  --lcd-fg: var(--c);
+  --lcd-dim: color-mix(in srgb, var(--c) 50%, #0b0b0c);
+  --lcd-grid: color-mix(in srgb, var(--c) 12%, transparent);
+  --key-white: #f1efe9;
+  --key-white-2: #d9d7d1;
+  --key-black: #16171a;
   --black-w: 1.9%;
-  --font-panel: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
-  --font-lcd: 'VT323', ui-monospace, 'Consolas', monospace;
-  color-scheme: dark;
+  --font-panel: var(--font);
+  --font-lcd: var(--display);
 }
 
 *,
@@ -43,9 +39,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(1200px 600px at 50% -10%, #2a231b 0%, transparent 70%),
-    var(--room);
+  background: var(--room);
   color: var(--ink);
   font-family: var(--font-panel);
   font-size: 16px;
@@ -76,33 +70,13 @@ input {
 .room {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 20px 16px 32px;
+  padding: 0 20px 32px;
 }
 
 /* ── Site header & instrument tabs ─────────────────────────────────── */
 
-.site-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px 24px;
-  margin-bottom: 14px;
-}
 
-.site-mark {
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
 
-.site-mark span {
-  color: var(--orange);
-  font-weight: 600;
-}
 
 .rack-tabs {
   display: flex;
@@ -147,27 +121,18 @@ input {
 
 .synth {
   display: flex;
-  border-radius: 10px;
+  border-radius: 0;
   box-shadow:
     0 30px 60px -20px rgba(0, 0, 0, 0.8),
     0 2px 0 rgba(255, 255, 255, 0.04) inset;
 }
 
 .cheek {
-  flex: 0 0 26px;
-  background:
-    repeating-linear-gradient(
-      94deg,
-      rgba(0, 0, 0, 0.18) 0 2px,
-      transparent 2px 7px,
-      rgba(255, 255, 255, 0.04) 7px 8px,
-      transparent 8px 13px
-    ),
-    linear-gradient(90deg, var(--wood-1), var(--wood-3) 45%, var(--wood-2));
+  display: none;
 }
 
 .cheek--l {
-  border-radius: 10px 0 0 10px;
+  border-radius: 0;
   box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.45);
 }
 
@@ -180,10 +145,9 @@ input {
   flex: 1;
   min-width: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 40%),
     var(--panel);
-  border-top: 1px solid #4a453b;
-  border-bottom: 1px solid #0b0a08;
+  border-top: 1px solid #3a3b40;
+  border-bottom: 1px solid #0b0b0c;
 }
 
 /* ── Top bar: brand / LCD / program ────────────────────────────────── */
@@ -194,8 +158,8 @@ input {
   align-items: center;
   gap: 18px 24px;
   padding: 16px 20px;
-  border-bottom: 2px solid #11100d;
-  background: linear-gradient(180deg, #1f1d1a, #181613);
+  border-bottom: 2px solid #0f1012;
+  background: linear-gradient(180deg, #1c1d20, #181613);
 }
 
 .brand {
@@ -204,35 +168,16 @@ input {
   gap: 12px;
 }
 
-.brand__stripes {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
 
-.brand__stripes i {
-  display: block;
-  width: 34px;
-  height: 5px;
-  border-radius: 1px;
-  transform: skewX(-20deg);
-}
 
-.brand__stripes i:nth-child(1) {
-  background: var(--mustard);
-}
-.brand__stripes i:nth-child(2) {
-  background: var(--orange);
-}
-.brand__stripes i:nth-child(3) {
-  background: var(--red);
-}
 
 .brand__model {
-  font-size: 40px;
+  color: var(--c);
+  font-family: var(--display);
+  font-size: 44px;
   line-height: 0.9;
   font-weight: 800;
-  font-style: italic;
+  font-stretch: 75%;
   letter-spacing: 0.02em;
 }
 
@@ -254,11 +199,11 @@ input {
   gap: 12px;
   height: 96px;
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: 0;
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(164, 255, 124, 0.07), transparent 60%),
+    radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--c) 7%, transparent), transparent 60%),
     var(--lcd-bg);
-  border: 3px solid #0a0907;
+  border: 3px solid #0b0b0c;
   box-shadow:
     inset 0 0 18px rgba(0, 0, 0, 0.9),
     0 1px 0 rgba(255, 255, 255, 0.06);
@@ -282,9 +227,7 @@ input {
   min-width: 0;
   min-height: 0;
   display: block;
-  border-right: 1px dashed rgba(164, 255, 124, 0.15);
-  --lcd-fg: #a4ff7c;
-  --lcd-grid: rgba(140, 255, 110, 0.1);
+  border-right: 1px dashed color-mix(in srgb, var(--c) 15%, transparent);
 }
 
 .lcd__text {
@@ -292,7 +235,6 @@ input {
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  text-shadow: 0 0 6px rgba(164, 255, 124, 0.55);
 }
 
 .lcd__row {
@@ -316,7 +258,7 @@ input {
 }
 
 .lcd__val {
-  color: #e2ffd5;
+  color: #ffffff;
 }
 
 .lcd__row--dim {
@@ -330,8 +272,8 @@ input {
   left: 10px;
   bottom: 6px;
   z-index: 1;
-  border: 1px solid rgba(164, 255, 124, 0.35);
-  background: rgba(12, 22, 9, 0.85);
+  border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+  background: rgba(11, 11, 12, 0.85);
   color: var(--lcd-fg);
   font-family: var(--font-lcd);
   font-size: 14px;
@@ -377,12 +319,12 @@ input {
   gap: 6px;
   min-height: 30px;
   padding: 3px 11px;
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #45413a, #2f2c27);
+  border: 1px solid #3a3b40;
+  border-radius: 0;
+  background: var(--surface-2);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.12) inset,
-    0 2px 0 #0b0a08;
+    0 2px 0 #0b0b0c;
   color: var(--ink);
   font-size: 13px;
   font-weight: 600;
@@ -402,7 +344,7 @@ input {
 
 .hw-btn:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 0 0 #0b0a08;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 0 0 #0b0b0c;
 }
 
 .hw-btn:disabled {
@@ -432,8 +374,8 @@ input {
   width: 168px;
   min-height: 30px;
   padding: 2px 8px;
-  border: 2px solid #0a0907;
-  border-radius: 3px;
+  border: 2px solid #0b0b0c;
+  border-radius: 0;
   background: var(--lcd-bg);
   color: var(--lcd-fg);
   font-family: var(--font-lcd);
@@ -457,9 +399,9 @@ input {
   display: flex;
   gap: 5px;
   padding: 4px;
-  background: #1a1815;
+  background: #18191c;
   border: 1px solid var(--panel-edge);
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .save-form[hidden] {
@@ -470,8 +412,8 @@ input {
   flex: 1;
   min-width: 0;
   padding: 2px 8px;
-  border: 2px solid #0a0907;
-  border-radius: 3px;
+  border: 2px solid #0b0b0c;
+  border-radius: 0;
   background: var(--lcd-bg);
   color: var(--lcd-fg);
   font-family: var(--font-lcd);
@@ -508,8 +450,8 @@ input {
   align-items: center;
   gap: 8px;
   padding: 6px 10px;
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
   background: linear-gradient(180deg, #1b1a17, #11100e);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset;
   cursor: pointer;
@@ -557,7 +499,7 @@ input {
   padding: 10px 12px 12px;
   margin: 4px;
   border: 1px solid rgba(239, 230, 208, 0.08);
-  border-radius: 6px;
+  border-radius: 0;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(0, 0, 0, 0.06));
 }
 
@@ -677,7 +619,7 @@ input {
   border-radius: 50%;
   /* knurled skirt */
   background:
-    repeating-conic-gradient(from 0deg, #0d0c0b 0deg 6deg, #2a2723 6deg 12deg);
+    repeating-conic-gradient(from 0deg, #0d0c0b 0deg 6deg, #232428 6deg 12deg);
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.6),
     0 1px 0 rgba(255, 255, 255, 0.08) inset;
@@ -712,7 +654,7 @@ input {
 }
 
 .ctl--lg .knob__cap::after {
-  background: #1a1410;
+  background: #151619;
 }
 
 .knob:focus-visible {
@@ -742,8 +684,8 @@ input {
   bottom: 6px;
   width: 6px;
   margin-left: -3px;
-  border-radius: 3px;
-  background: #0a0908;
+  border-radius: 0;
+  background: #0b0b0c;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -765,8 +707,8 @@ input {
   right: 1px;
   height: var(--thumb-h);
   bottom: calc(var(--pos) * (100% - var(--thumb-h)));
-  border-radius: 3px;
-  background: linear-gradient(180deg, #5a554d 0%, #2b2824 48%, #1c1a17 52%, #3e3a34 100%);
+  border-radius: 0;
+  background: linear-gradient(180deg, #5a554d 0%, #2b2824 48%, #1a1b1e 52%, #3e3a34 100%);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
@@ -790,7 +732,7 @@ input {
 .ctl--wheel .fader {
   width: 34px;
   height: 118px;
-  border-radius: 5px;
+  border-radius: 0;
   background: #0b0a09;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9);
   overflow: hidden;
@@ -810,7 +752,7 @@ input {
   right: 3px;
   background:
     repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0 2px, rgba(0, 0, 0, 0.35) 2px 4px),
-    linear-gradient(90deg, #1f1d1a, #4a463f 50%, #1f1d1a);
+    linear-gradient(90deg, #1c1d20, #4a463f 50%, #1c1d20);
 }
 
 .ctl--wheel .fader__thumb::after {
@@ -835,10 +777,10 @@ input {
   gap: 3px;
   min-width: 34px;
   padding: 4px 5px 5px;
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #3d3a34, #2a2723);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 2px 0 #0b0a08;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
+  background: linear-gradient(180deg, #3d3a34, #232428);
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -882,8 +824,8 @@ input {
   display: flex;
   gap: 14px;
   padding: 14px 16px 18px;
-  border-top: 2px solid #11100d;
-  background: linear-gradient(180deg, #1c1a17, #141210);
+  border-top: 2px solid #0f1012;
+  background: linear-gradient(180deg, #1a1b1e, #141210);
 }
 
 .perf {
@@ -912,16 +854,16 @@ input {
   overflow-x: auto;
   overscroll-behavior-x: contain;
   padding-bottom: 4px;
-  scrollbar-color: #4a453b transparent;
+  scrollbar-color: #3a3b40 transparent;
 }
 
 .piano {
   position: relative;
   min-width: 760px;
   height: 172px;
-  border-top: 6px solid #0a0908;
+  border-top: 6px solid #0b0b0c;
   border-radius: 2px;
-  background: #0a0908;
+  background: #0b0b0c;
   /* taps play notes; horizontal swipes scroll the keyboard on phones */
   touch-action: pan-x;
   user-select: none;
@@ -936,11 +878,11 @@ input {
 
 .key--white {
   height: 100%;
-  border: 1px solid #0a0908;
+  border: 1px solid #0b0b0c;
   border-top: 0;
   border-radius: 0 0 4px 4px;
-  background: linear-gradient(180deg, #cbc2ad 0%, var(--key-white) 8%, var(--key-white) 88%, var(--key-white-2) 100%);
-  box-shadow: inset 0 -6px 0 #cdc4b0;
+  background: linear-gradient(180deg, #c9c7c1 0%, var(--key-white) 8%, var(--key-white) 88%, var(--key-white-2) 100%);
+  box-shadow: inset 0 -6px 0 #c9c7c1;
   z-index: 1;
 }
 
@@ -950,7 +892,7 @@ input {
   border-radius: 0 0 3px 3px;
   background: linear-gradient(180deg, #000 0%, var(--key-black) 10%, #2d2a26 85%, #3a3631 100%);
   box-shadow:
-    inset 0 -5px 0 #0c0b0a,
+    inset 0 -5px 0 #0b0b0c,
     inset 1px 0 0 rgba(255, 255, 255, 0.08),
     0 3px 4px rgba(0, 0, 0, 0.6);
   z-index: 2;
@@ -985,8 +927,8 @@ input {
 }
 
 .key--white.is-down {
-  background: linear-gradient(180deg, #b6ad99 0%, #e6dfcf 10%, #e6dfcf 100%);
-  box-shadow: inset 0 -2px 0 #cdc4b0, inset 0 3px 6px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(180deg, #b6ad99 0%, #e6e4de 10%, #e6e4de 100%);
+  box-shadow: inset 0 -2px 0 #c9c7c1, inset 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .key--white.is-down::before,
@@ -1004,7 +946,7 @@ input {
 
 .key--black.is-down {
   background: linear-gradient(180deg, #000, #22201c 90%);
-  box-shadow: inset 0 -2px 0 #0c0b0a, 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 -2px 0 #0b0b0c, 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .key--black.is-down::before {
@@ -1022,8 +964,8 @@ input {
 
 .card {
   padding: 12px 14px;
-  border: 1px solid #2c2822;
-  border-radius: 6px;
+  border: 1px solid #26272b;
+  border-radius: 0;
   background: var(--room-2);
 }
 
@@ -1045,9 +987,9 @@ kbd {
   display: inline-block;
   min-width: 1.5em;
   padding: 0 4px;
-  border: 1px solid #4a453b;
+  border: 1px solid #3a3b40;
   border-bottom-width: 2px;
-  border-radius: 3px;
+  border-radius: 0;
   background: #26231e;
   color: var(--ink);
   font-family: var(--font-panel);
@@ -1064,7 +1006,7 @@ kbd {
   gap: 8px;
   margin-top: 28px;
   padding-top: 14px;
-  border-top: 1px solid #2c2822;
+  border-top: 1px solid #26272b;
   color: var(--ink-faint);
   font-size: 14px;
   letter-spacing: 0.06em;
@@ -1161,7 +1103,7 @@ kbd {
   padding: 1px 6px;
   font-size: 11px;
   letter-spacing: 0.06em;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 0 #0b0a08;
+  box-shadow: none;
 }
 
 /* Wave editor (WT-4) */
@@ -1174,10 +1116,10 @@ kbd {
   display: block;
   width: 232px;
   height: 104px;
-  border: 3px solid #0a0907;
-  border-radius: 5px;
+  border: 3px solid #0b0b0c;
+  border-radius: 0;
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(164, 255, 124, 0.07), transparent 60%),
+    radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--c) 7%, transparent), transparent 60%),
     var(--lcd-bg);
   box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.9);
   cursor: crosshair;
@@ -1224,7 +1166,7 @@ kbd {
   flex-direction: column;
   gap: 10px;
   padding: 12px 16px 16px;
-  border-top: 2px solid #11100d;
+  border-top: 2px solid #0f1012;
   background: linear-gradient(180deg, #23211d, #1b1916);
 }
 
@@ -1312,7 +1254,7 @@ kbd {
   overflow-x: auto;
   overscroll-behavior-x: contain;
   padding-bottom: 4px;
-  scrollbar-color: #4a453b transparent;
+  scrollbar-color: #3a3b40 transparent;
 }
 
 .seq__grid {
@@ -1334,8 +1276,8 @@ kbd {
   gap: 3px;
   padding: 4px 3px 5px;
   border: 1px solid rgba(239, 230, 208, 0.08);
-  border-radius: 4px;
-  background: #1a1815;
+  border-radius: 0;
+  background: #18191c;
   transition: background 0.06s;
 }
 
@@ -1368,10 +1310,10 @@ kbd {
   justify-content: center;
   align-items: center;
   height: 26px;
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #45413a, #2f2c27);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 2px 0 #0b0a08;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
+  background: var(--surface-2);
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -1386,8 +1328,8 @@ kbd {
 
 .mstep__note {
   padding: 3px 0 1px;
-  border: 2px solid #0a0907;
-  border-radius: 3px;
+  border: 2px solid #0b0b0c;
+  border-radius: 0;
   background: var(--lcd-bg);
   color: var(--lcd-fg);
   font-family: var(--font-lcd);
@@ -1401,9 +1343,9 @@ kbd {
 
 .mstep__flag {
   padding: 1px 0;
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
-  background: #2a2723;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
+  background: #232428;
   color: var(--ink-faint);
   font-size: 10px;
   font-weight: 700;
@@ -1414,7 +1356,7 @@ kbd {
 
 .mstep__flag.is-on {
   background: var(--mustard);
-  color: #1a1410;
+  color: #151619;
 }
 
 /* Drum grid */
@@ -1432,9 +1374,9 @@ kbd {
 }
 
 .drow__label {
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
-  background: #2a2723;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
+  background: #232428;
   color: var(--ink);
   font-size: 11px;
   font-weight: 700;
@@ -1444,13 +1386,13 @@ kbd {
 
 .drow__label:active {
   background: var(--orange);
-  color: #1a1410;
+  color: #151619;
 }
 
 .dcell {
   height: 22px;
-  border: 1px solid #0b0a08;
-  border-radius: 3px;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
   background: #2d2a25;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   cursor: pointer;

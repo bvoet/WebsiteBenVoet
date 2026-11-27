@@ -1,0 +1,155 @@
+/* ───────────────────────────────────────────────────────────────────────
+   Shared by every tool page: tokens, the site bar with the tool switcher,
+   and the colour band that opens each page. Each page sets its catalogue
+   colour with a t-<tool> class on <body>. The landing page has its own
+   stylesheet (css/home.css) with the same tokens.
+   ─────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --ground: #111214;
+  --surface: #1a1b1e;
+  --surface-2: #232428;
+  --ink: #f1efe9;
+  --muted: #a3a29c;
+  --faint: #8a8984;
+  --rule: #2c2d30;
+  --black: #111214;
+  --good: #35d07f;
+  --bad: #ff4b3e;
+
+  --display: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif;
+  --font: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --c: #ff5a1f;
+  color-scheme: dark;
+  scrollbar-color: #3a3b3f var(--ground);
+}
+
+/* Catalogue colours, one per tool (same as the landing page). */
+.t-lab { --c: #ff5a1f; }
+.t-songx { --c: #f2c230; }
+.t-tuner { --c: #35d07f; }
+.t-fret { --c: #9b6bff; }
+.t-kana { --c: #ff4f9a; }
+.t-lol { --c: #22c3d6; }
+
+::selection {
+  background: var(--c);
+  color: var(--black);
+}
+
+/* ── Site bar: home + tool switcher ──────────────────────────────────── */
+
+.site-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 18px 0;
+  font-family: var(--font);
+}
+
+.site-bar__home {
+  flex: none;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.site-bar__tools {
+  display: flex;
+  gap: 4px 18px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-bar__tools a {
+  flex: none;
+  padding: 4px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+
+.site-bar__tools a:hover,
+.site-bar__tools a:focus-visible {
+  color: var(--c);
+}
+
+.site-bar__tools a[aria-current='page'] {
+  color: var(--ink);
+  border-bottom-color: var(--c);
+}
+
+.site-bar a:focus-visible {
+  outline: 2px solid var(--c);
+  outline-offset: 3px;
+}
+
+/* ── Colour band: the page title, flooded in the tool's colour ───────── */
+
+.band {
+  position: relative;
+  margin: 4px 0 28px;
+  padding: clamp(22px, 4vw, 40px) 0 clamp(20px, 3vw, 30px);
+  background: var(--c);
+  color: var(--black);
+  /* Full-bleed colour without causing horizontal scroll. */
+  box-shadow: 0 0 0 100vmax var(--c);
+  clip-path: inset(0 -100vmax);
+}
+
+.band__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(56px, 11vw, 132px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.band__no {
+  position: absolute;
+  top: clamp(22px, 4vw, 40px);
+  right: 0;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.band__lead {
+  max-width: 60ch;
+  margin: 12px 0 0;
+  font-family: var(--font);
+  font-size: clamp(16px, 1.6vw, 19px);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .site-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .site-bar__tools {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+}

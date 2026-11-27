@@ -1,0 +1,8 @@
+# Local tooling and scratch output
+.claude/skills/
+.claude/settings.local.json
+.playwright-cli/
+.impeccable/review/
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/config.local.json

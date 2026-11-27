@@ -10,11 +10,11 @@
 .screen {
   position: relative;
   padding: 10px 14px 12px;
-  border: 3px solid #0b0a08;
+  border: 1px solid #2c2d30;
   border-radius: 6px;
   background:
-    linear-gradient(rgba(140, 255, 110, 0.06) 1px, transparent 1px) 0 0 / 100% 16px,
-    linear-gradient(90deg, rgba(140, 255, 110, 0.06) 1px, transparent 1px) 0 0 / 16px 100%,
+    linear-gradient(color-mix(in srgb, var(--c) 6%, transparent) 1px, transparent 1px) 0 0 / 100% 16px,
+    linear-gradient(90deg, color-mix(in srgb, var(--c) 6%, transparent) 1px, transparent 1px) 0 0 / 16px 100%,
     var(--lcd-bg);
   box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.08);
   color: var(--lcd-fg);
@@ -56,7 +56,7 @@
   stroke: var(--orange);
   stroke-width: 3;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 3px rgba(255, 122, 47, 0.7));
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--c) 70%, transparent));
 }
 
 .screen:not(.is-live) .meter__needle {
@@ -78,7 +78,6 @@
   color: var(--lcd-fg);
   font-size: clamp(64px, 12vw, 96px);
   line-height: 0.9;
-  text-shadow: 0 0 10px rgba(164, 255, 124, 0.45);
 }
 
 .readout__note sub {
@@ -125,10 +124,10 @@
   place-items: center;
   width: 46px;
   height: 46px;
-  border: 2px solid #0b0a08;
+  border: 1px solid #2c2d30;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #4a1c14, #2a0f0a 70%);
-  color: #6e3a2c;
+  background: var(--surface-2);
+  color: var(--faint);
   font-size: 24px;
   font-weight: 700;
 }
@@ -136,19 +135,17 @@
 .flag--ok {
   width: 56px;
   height: 56px;
-  background: radial-gradient(circle at 40% 35%, #23401a, #12200d 70%);
+  background: var(--surface-2);
 }
 
 .flag--flat.is-on,
 .flag--sharp.is-on {
-  background: radial-gradient(circle at 40% 35%, #ff7a5a, #d8432b 70%);
-  box-shadow: 0 0 14px 3px rgba(255, 74, 42, 0.55);
-  color: #2a0a04;
+  background: var(--bad);
+  color: var(--black);
 }
 
 .flag--ok.is-on {
-  background: radial-gradient(circle at 40% 35%, #c9ff9e, var(--green) 70%);
-  box-shadow: 0 0 18px 5px rgba(109, 255, 74, 0.55);
+  background: var(--good);
 }
 
 /* ── Strings ───────────────────────────────────────────────────────── */
@@ -172,17 +169,17 @@
   gap: 2px;
   min-height: 66px;
   padding: 6px 4px 8px;
-  border: 1px solid #0b0a08;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #45413a, #2f2c27);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 3px 0 #0b0a08;
+  border: 1px solid #3a3b40;
+  border-radius: 0;
+  background: var(--surface-2);
+  box-shadow: none;
   color: var(--ink);
   cursor: pointer;
 }
 
 .string:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 1px 0 #0b0a08;
+  box-shadow: none;
 }
 
 .string__no {
@@ -211,27 +208,26 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #1a1815;
+  background: #3a3b40;
 }
 
 .string.is-tuned .string__check {
   background: var(--green);
-  box-shadow: 0 0 5px 1px rgba(109, 255, 74, 0.6);
 }
 
 .string.is-target {
   border-color: var(--orange);
-  box-shadow: 0 0 0 1px var(--orange), 0 0 14px rgba(255, 122, 47, 0.35), 0 3px 0 #0b0a08;
+  box-shadow: inset 0 0 0 1px var(--c);
 }
 
 .string.is-locked {
-  color: #1a0d04;
-  background: linear-gradient(180deg, #ffa566, var(--orange));
+  color: var(--black);
+  background: var(--c);
 }
 
 .string.is-locked .string__no,
 .string.is-locked .string__note sub {
-  color: #5a2a0c;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 /* ── Controls ──────────────────────────────────────────────────────── */

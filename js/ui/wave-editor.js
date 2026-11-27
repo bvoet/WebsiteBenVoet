@@ -161,9 +161,9 @@ export class WaveEditor {
     g.closePath();
     g.fill();
 
-    g.strokeStyle = '#a4ff7c';
+    g.strokeStyle = '#ff5a1f';
     g.lineWidth = 1.8 * dpr;
-    g.shadowColor = '#a4ff7c';
+    g.shadowColor = 'transparent';
     g.shadowBlur = 5 * dpr;
     g.beginPath();
     pts.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y)));

@@ -5,19 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Synth Lab — Ben Voet</title>
   <meta name="description" content="Synth Lab: subtractive, FM, additive, wavetable and drum synthesizers with a step sequencer, right in your browser. Built by Ben Voet." />
-  <meta name="theme-color" content="#15120e" />
+  <meta name="theme-color" content="#111214" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315120e'/%3E%3Cpath d='M4 22 L11 8 L11 22 L18 8 L18 22 L25 8' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=VT323&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/synthlab.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/site.css?v=20261128a" />
+  <link rel="stylesheet" href="../css/synthlab.css?v=20261128a" />
 </head>
-<body>
+<body class="t-lab">
   <div class="room">
-    <header class="site-head">
-      <a class="site-mark" href="../">Ben Voet <span>/ Synth Lab</span></a>
-      <nav class="rack-tabs" id="rack-tabs" aria-label="Instruments"></nav>
+    <header class="site-bar">
+      <a class="site-bar__home" href="../">Ben Voet</a>
+      <nav class="site-bar__tools" aria-label="Tools">
+        <a class="t-lab" href="../lab/" aria-current="page">Synth Lab</a>
+        <a class="t-songx" href="../songx/">SongX</a>
+        <a class="t-tuner" href="../tuner/">Tuner</a>
+        <a class="t-fret" href="../fretboard/">Fretboard</a>
+        <a class="t-kana" href="../kana/">Kana</a>
+        <a class="t-lol" href="../lol/">Matchups</a>
+      </nav>
     </header>
+    <nav class="rack-tabs" id="rack-tabs" aria-label="Instruments"></nav>
 
     <main>
       <section class="synth" aria-label="Synthesizer">
@@ -26,7 +35,6 @@
         <div class="chassis">
           <div class="topbar">
             <div class="brand">
-              <div class="brand__stripes" aria-hidden="true"><i></i><i></i><i></i></div>
               <div>
                 <div class="brand__model" id="brand-model">SL-1</div>
                 <div class="brand__sub" id="brand-sub">Subtractive Synthesizer</div>

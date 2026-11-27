@@ -13,27 +13,38 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=Karma:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Hanken+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/songx.css" />
+  <link rel="stylesheet" href="../css/site.css?v=20261128a" />
+  <link rel="stylesheet" href="css/songx.css?v=20261128a" />
 </head>
-<body>
+<body class="t-songx">
 
   <div class="container">
-    <!-- Top Nav -->
-    <header class="site-nav">
-      <a href="../" class="back-home">
-        <span>←</span> benvoet.be
-      </a>
-      <span class="site-tag">SongX &bull; Neil Young Songbook</span>
+    <header class="site-bar">
+      <a class="site-bar__home" href="../">Ben Voet</a>
+      <nav class="site-bar__tools" aria-label="Tools">
+        <a class="t-lab" href="../lab/">Synth Lab</a>
+        <a class="t-songx" href="../songx/" aria-current="page">SongX</a>
+        <a class="t-tuner" href="../tuner/">Tuner</a>
+        <a class="t-fret" href="../fretboard/">Fretboard</a>
+        <a class="t-kana" href="../kana/">Kana</a>
+        <a class="t-lol" href="../lol/">Matchups</a>
+      </nav>
     </header>
+
+    <section class="band">
+      <h1 class="band__title">SongX</h1>
+      <span class="band__no" aria-hidden="true">BV 02</span>
+      <p class="band__lead">The Neil Young songbook: chords and tabs for 625+ songs.</p>
+    </section>
 
     <!-- Main Browse Area (Albums, Search, A-Z) -->
     <main id="main-browse-area">
       <!-- Toolbar -->
       <div class="toolbar">
         <div class="search-box">
-          <span class="search-icon" aria-hidden="true">🔍</span>
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="M15.5 15.5 21 21" /></svg>
           <input
             type="search"
             id="search-input"
@@ -48,8 +59,8 @@
 
         <div class="filter-row">
           <div class="tab-group" role="tablist" aria-label="Browse Modes">
-            <button class="tab-btn active" data-tab="album" type="button" role="tab">📁 By Album</button>
-            <button class="tab-btn" data-tab="az" type="button" role="tab">🔤 A–Z Index</button>
+            <button class="tab-btn active" data-tab="album" type="button" role="tab">By Album</button>
+            <button class="tab-btn" data-tab="az" type="button" role="tab">A–Z Index</button>
           </div>
 
           <div class="tab-group" role="group" aria-label="Filter Categories">
@@ -124,12 +135,12 @@
 
             <!-- Copy Chords -->
             <button id="btn-copy" class="ctrl-btn" type="button" title="Copy chords to clipboard">
-              📋 Copy
+              Copy
             </button>
 
             <!-- Print -->
             <button id="btn-print" class="ctrl-btn" type="button" title="Print friendly sheet">
-              🖨 Print
+              Print
             </button>
           </div>
         </div>
