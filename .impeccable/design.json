@@ -1,0 +1,482 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-27T22:00:34+00:00",
+  "title": "Design System: Ben Voet",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Stage Black",
+        "canonical": "#111214",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#414244",
+          "#606163",
+          "#818284",
+          "#a4a5a7",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel Charcoal",
+        "canonical": "#1a1b1e",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242528",
+          "#414245",
+          "#606164",
+          "#818285",
+          "#a4a5a7",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "canonical": "#232428",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242529",
+          "#414246",
+          "#606165",
+          "#818286",
+          "#a4a5a8",
+          "#c8c9cc",
+          "#eeeeef"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f1efe9",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262522",
+          "#43423f",
+          "#62615d",
+          "#84827e",
+          "#a6a5a0",
+          "#cbc9c4",
+          "#efeeec"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Dust Grey",
+        "canonical": "#a3a29c",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262522",
+          "#43423e",
+          "#62615d",
+          "#83827d",
+          "#a6a59f",
+          "#cac9c4",
+          "#efeeed"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Ash Grey",
+        "canonical": "#8a8984",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262522",
+          "#43423f",
+          "#62615d",
+          "#83827e",
+          "#a6a5a0",
+          "#cac9c5",
+          "#efeeed"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#2c2d30",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242528",
+          "#414245",
+          "#606164",
+          "#818285",
+          "#a4a5a7",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "edge": {
+        "role": "neutral",
+        "displayName": "Edge Grey",
+        "canonical": "#3a3b40",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242529",
+          "#414247",
+          "#606166",
+          "#818286",
+          "#a4a5a9",
+          "#c8c9cc",
+          "#eeeeef"
+        ]
+      },
+      "lcd-well": {
+        "role": "neutral",
+        "displayName": "LCD Well",
+        "canonical": "#0b0b0c",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeeef"
+        ]
+      },
+      "good": {
+        "role": "semantic",
+        "displayName": "Good",
+        "canonical": "#35d07f",
+        "tonalRamp": [
+          "#020f06",
+          "#00320a",
+          "#005323",
+          "#00763d",
+          "#009c58",
+          "#2ac375",
+          "#62e89a",
+          "#d5f9e0"
+        ]
+      },
+      "bad": {
+        "role": "semantic",
+        "displayName": "Bad",
+        "canonical": "#ff4b3e",
+        "tonalRamp": [
+          "#190403",
+          "#560000",
+          "#830000",
+          "#b21d18",
+          "#e33b31",
+          "#ff6454",
+          "#ff9481",
+          "#ffe1d9"
+        ]
+      },
+      "tool-lab": {
+        "role": "primary",
+        "displayName": "Signal Orange",
+        "canonical": "#ff5a1f",
+        "tonalRamp": [
+          "#180502",
+          "#540000",
+          "#800900",
+          "#ae2a00",
+          "#de4708",
+          "#ff6b37",
+          "#ff996d",
+          "#ffe2d4"
+        ]
+      },
+      "tool-songx": {
+        "role": "primary",
+        "displayName": "Songbook Mustard",
+        "canonical": "#f2c230",
+        "tonalRamp": [
+          "#100a01",
+          "#372000",
+          "#593d00",
+          "#7c5c00",
+          "#a27d00",
+          "#ca9f0b",
+          "#f3c331",
+          "#fceec8"
+        ]
+      },
+      "tool-tuner": {
+        "role": "primary",
+        "displayName": "Needle Green",
+        "canonical": "#35d07f",
+        "tonalRamp": [
+          "#020f06",
+          "#00320a",
+          "#005323",
+          "#00763d",
+          "#009c58",
+          "#2ac375",
+          "#62e89a",
+          "#d5f9e0"
+        ]
+      },
+      "tool-fret": {
+        "role": "primary",
+        "displayName": "Fret Violet",
+        "canonical": "#9b6bff",
+        "tonalRamp": [
+          "#0d071a",
+          "#2d065e",
+          "#4b258b",
+          "#6c42ba",
+          "#8e60ec",
+          "#b086ff",
+          "#d2b0ff",
+          "#f0e8ff"
+        ]
+      },
+      "tool-kana": {
+        "role": "primary",
+        "displayName": "Kana Pink",
+        "canonical": "#ff4f9a",
+        "tonalRamp": [
+          "#18040b",
+          "#520024",
+          "#7d0041",
+          "#aa1d60",
+          "#da3a81",
+          "#ff5da3",
+          "#ff8dc7",
+          "#ffdfee"
+        ]
+      },
+      "tool-lol": {
+        "role": "primary",
+        "displayName": "Rift Cyan",
+        "canonical": "#22c3d6",
+        "tonalRamp": [
+          "#010e10",
+          "#002e38",
+          "#004e5a",
+          "#00707e",
+          "#0094a4",
+          "#18bacc",
+          "#5ddef0",
+          "#d4f6fb"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Tool page titles in the colour band."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Release names in the landing index."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section titles (credits); brand mark at 20-22px."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Solid colour buttons; 85% width on the landing, 75% on tool power buttons."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and descriptions (58-60ch)."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "One-line intro under the name, muted, 34ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav links, catalogue numbers, field labels, captions; uppercase."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 8px 24px rgba(0, 0, 0, 0.45)",
+        "purpose": "Floating layers only (SongX popovers and hover panels)."
+      },
+      {
+        "name": "lcd-inset",
+        "value": "inset 0 0 22px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.08)",
+        "purpose": "Recessed instrument readout screens."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every state transition."
+      },
+      {
+        "name": "state",
+        "value": "160ms",
+        "purpose": "Colour and border changes on links and chips."
+      },
+      {
+        "name": "plate-fade",
+        "value": "260ms",
+        "purpose": "Plate opacity crossfade."
+      },
+      {
+        "name": "plate-wipe",
+        "value": "600ms",
+        "purpose": "Clip-path sweep of the active plate from the left."
+      },
+      {
+        "name": "press",
+        "value": "translateY(2px)",
+        "purpose": "Active state of solid buttons."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none; transition: none",
+        "purpose": "Everything stops under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "600px",
+        "purpose": "Tool pages: site bar stacks, panel padding tightens."
+      },
+      {
+        "name": "narrow",
+        "value": "860px",
+        "purpose": "Landing: index becomes colour sleeves, credits single column."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid catalogue-colour block with black condensed caps; Open buttons and the tool power button.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Open Synth Lab <svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 11px 18px 11px 20px; background: #ff5a1f; color: #111214; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-size: 17px; font-weight: 800; font-stretch: 75%; letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary svg { transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover svg { transform: translateX(4px); } .ds-btn-primary:active { transform: translateY(2px); } .ds-btn-primary:focus-visible { outline: 2px solid #ff5a1f; outline-offset: 4px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Square toggle; flat charcoal at rest, solid catalogue colour when on.",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-chip\">Hiragana</button><button class=\"ds-chip\" aria-pressed=\"true\">Katakana</button></div>",
+      "css": ".ds-chip { min-height: 36px; padding: 4px 12px; border: 1px solid #3a3b40; border-radius: 0; background: #232428; color: #a3a29c; font: 700 13px 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: color 120ms, border-color 120ms; } .ds-chip:hover { color: #f1efe9; border-color: #a3a29c; } .ds-chip:active { transform: translateY(1px); } .ds-chip[aria-pressed='true'] { background: #ff4f9a; border-color: #ff4f9a; color: #111214; } .ds-chip:focus-visible { outline: 2px solid #ff4f9a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Select",
+      "kind": "input",
+      "refersTo": "select",
+      "description": "Square select on the LCD well with condensed display text and a chevron in the catalogue colour.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__label\">Tuning</span><select class=\"ds-select\"><option>Standard E</option><option>Open G</option></select></label>",
+      "css": ".ds-field { display: inline-flex; flex-direction: column; gap: 4px; } .ds-field__label { color: #a3a29c; font: 700 12px 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; } .ds-select { min-height: 40px; padding: 4px 30px 4px 10px; border: 1px solid #3a3b40; border-radius: 0; appearance: none; background: linear-gradient(45deg, transparent 50%, #35d07f 50%) calc(100% - 15px) 50% / 6px 6px no-repeat, linear-gradient(-45deg, transparent 50%, #35d07f 50%) calc(100% - 9px) 50% / 6px 6px no-repeat, #0b0b0c; color: #f1efe9; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-size: 19px; font-weight: 700; font-stretch: 75%; cursor: pointer; } .ds-select:hover { border-color: #a3a29c; } .ds-select:focus-visible { outline: 2px solid #35d07f; outline-offset: 2px; }"
+    },
+    {
+      "name": "Site Bar",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Brand left, tool switcher right; each link previews its own tool colour, current page underlined in it.",
+      "html": "<nav class=\"ds-bar\"><a class=\"ds-bar__home\" href=\"#\">Ben Voet</a><div class=\"ds-bar__tools\"><a href=\"#\" style=\"--c:#ff5a1f\">Synth Lab</a><a href=\"#\" style=\"--c:#f2c230\">SongX</a><a href=\"#\" style=\"--c:#35d07f\" aria-current=\"page\">Tuner</a><a href=\"#\" style=\"--c:#9b6bff\">Fretboard</a></div></nav>",
+      "css": ".ds-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 18px 16px; background: #111214; font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; } .ds-bar__home { color: #f1efe9; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-size: 20px; font-weight: 800; font-stretch: 75%; letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; } .ds-bar__tools { display: flex; gap: 4px 18px; flex-wrap: wrap; } .ds-bar__tools a { padding: 4px 0; color: #a3a29c; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid transparent; transition: color 160ms cubic-bezier(0.16, 1, 0.3, 1), border-color 160ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-bar__tools a:hover, .ds-bar__tools a:focus-visible { color: var(--c); } .ds-bar__tools a[aria-current='page'] { color: #f1efe9; border-bottom-color: var(--c); } .ds-bar a:focus-visible { outline: 2px solid var(--c, #ff5a1f); outline-offset: 3px; }"
+    },
+    {
+      "name": "Colour Band",
+      "kind": "custom",
+      "refersTo": "band",
+      "description": "Tool page title: a full-bleed catalogue-colour flood with the condensed display title printed in black.",
+      "html": "<header class=\"ds-band\"><span class=\"ds-band__no\">BV 04</span><h1 class=\"ds-band__title\">Fretboard</h1><p class=\"ds-band__lead\">Scales, chords and intervals on any tuning.</p></header>",
+      "css": ".ds-band { position: relative; padding: 32px 20px 24px; background: #9b6bff; color: #111214; } .ds-band__title { margin: 0; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-size: clamp(56px, 11vw, 132px); font-weight: 800; font-stretch: 75%; line-height: 0.86; letter-spacing: -0.02em; text-transform: uppercase; } .ds-band__no { position: absolute; top: 32px; right: 20px; font: 700 13px 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.08em; } .ds-band__lead { max-width: 60ch; margin: 12px 0 0; font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: 500; line-height: 1.4; }"
+    },
+    {
+      "name": "Tool Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Flat charcoal device face with a 3px catalogue-colour top edge and an LED label row.",
+      "html": "<section class=\"ds-panel\"><div class=\"ds-panel__label\"><i class=\"ds-led is-on\"></i><b class=\"ds-panel__model\">TN-1</b>Chromatic tuner</div><p class=\"ds-panel__body\">Panel content sits here on flat charcoal.</p></section>",
+      "css": ".ds-panel { padding: 18px 24px 24px; background: #1a1b1e; border-top: 3px solid #35d07f; color: #f1efe9; font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; } .ds-panel__label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: #a3a29c; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; } .ds-panel__model { color: #35d07f; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-size: 18px; font-weight: 800; font-stretch: 75%; letter-spacing: 0.02em; } .ds-led { width: 8px; height: 8px; border-radius: 50%; background: #3a3b40; } .ds-led.is-on { background: #35d07f; } .ds-panel__body { margin: 0; font-size: 16px; line-height: 1.45; }"
+    },
+    {
+      "name": "Release Entry",
+      "kind": "custom",
+      "description": "Landing index row: catalogue number plus a huge condensed name that takes its tool colour when active.",
+      "html": "<ul class=\"ds-index\"><li class=\"ds-entry is-active\" style=\"--c:#ff5a1f\"><a href=\"#\"><span class=\"ds-entry__no\">BV 01</span><span class=\"ds-entry__name\">Synth Lab</span></a></li><li class=\"ds-entry\" style=\"--c:#f2c230\"><a href=\"#\"><span class=\"ds-entry__no\">BV 02</span><span class=\"ds-entry__name\">SongX</span></a></li></ul>",
+      "css": ".ds-index { margin: 0; padding: 0; list-style: none; background: #111214; } .ds-entry a { display: grid; grid-template-columns: 2.6em 1fr; column-gap: 10px; align-items: baseline; padding: 2px 0; text-decoration: none; } .ds-entry__no { color: #8a8984; font: 700 13px 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.06em; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-entry__name { color: #f1efe9; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-size: clamp(40px, 5.4vw, 84px); font-weight: 800; font-stretch: 75%; line-height: 0.98; letter-spacing: -0.02em; text-transform: uppercase; white-space: nowrap; transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-entry.is-active .ds-entry__no, .ds-entry.is-active .ds-entry__name, .ds-entry a:hover .ds-entry__name, .ds-entry a:hover .ds-entry__no { color: var(--c); } .ds-entry a:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }"
+    },
+    {
+      "name": "Instrument Readout",
+      "kind": "custom",
+      "description": "Recessed LCD screen on instrument tools: grid in the catalogue colour, condensed display readout.",
+      "html": "<div class=\"ds-screen\"><span class=\"ds-screen__note\">A<sub>4</sub></span><span class=\"ds-screen__sub\">+2 cents</span></div>",
+      "css": ".ds-screen { padding: 10px 14px 12px; border: 1px solid #2c2d30; border-radius: 6px; background: linear-gradient(color-mix(in srgb, #35d07f 6%, transparent) 1px, transparent 1px) 0 0 / 100% 16px, linear-gradient(90deg, color-mix(in srgb, #35d07f 6%, transparent) 1px, transparent 1px) 0 0 / 16px 100%, #0b0b0c; box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.08); color: #35d07f; font-family: 'Bricolage Grotesque', 'Hanken Grotesk', Arial, sans-serif; font-stretch: 75%; text-align: center; } .ds-screen__note { display: block; font-size: 64px; font-weight: 800; line-height: 1; } .ds-screen__sub { font-size: 18px; font-weight: 700; opacity: 0.7; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Loud Label Catalogue",
+    "overview": "**Creative North Star: \"The Loud Label Catalogue\"**\n\nThe site is a record label's catalogue turned up loud. Every tool is a numbered release (BV 01 to BV 06) with one saturated colour of its own, set against a near-black ground with warm off-white ink. Colour is not decoration on a card; it is a field. On the landing page the active release floods a big plate with its colour and the live art is printed on it in black, with print grain over the top. On each tool page the same colour floods the title band across the full width, and then recurs only where something is on, pressed or in focus.\n\nType carries the volume. Bricolage Grotesque at weight 800, pulled to its 75% width and set in uppercase, does the shouting: release names, band titles, buttons, readouts. Hanken Grotesk does the talking at a calm 16px. Everything else is square, flat and quiet so the colour floods and the big type can be loud without competing.\n\nThe world rejects the dark dev-portfolio card grid, the skeuomorphic hardware rack, and the quiet pale catalogue. Motion lives inside the plates (a waveform morph, covers drifting, a needle settling, a scale playing note by note, kana flipping) and stops completely under reduced motion.",
+    "keyCharacteristics": [
+      "Near-black ground, off-white ink, one saturated colour per tool.",
+      "Colour as a full flood printed in black, not as a gradient or glow.",
+      "Bricolage Grotesque 800, condensed, uppercase for everything loud; Hanken Grotesk for running text.",
+      "Square corners everywhere; circles only for LEDs, dots and portraits.",
+      "Flat surfaces separated by tone and 1px rules, not shadows.",
+      "Live, looping art inside plates; nothing moves under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The One Colour Per Page Rule",
+        "body": "A page shows one catalogue colour at a time. Tool pages set it with a `t-<tool>` class on `<body>`; the site bar's links each carry their own `t-<tool>` class so hovering a link previews that tool's colour. Never mix two catalogue colours in one component.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flood Rule",
+        "body": "The catalogue colour is used as a solid field (title band, landing plate, primary button, active chip, phone index sleeve) with Stage Black printed on it. Outside a field it appears only as small state marks: the 2px active underline in the site bar, the 3px top edge of a tool panel, focus rings, LCD readout text, link text. No gradients of it, no tinted glows as decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Body-Scoped Mapping Rule",
+        "body": "`--c` is set on `<body>` (by `t-<tool>`), so any page-level token that references `var(--c)` (for example `--lcd-fg`, `--accent`, `--chord-color`) must be declared on `body`, not `:root`. Declared on `:root` it resolves against the default orange and every tool turns orange.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Anything loud (names, titles, buttons, readouts) is Bricolage 800 condensed uppercase; anything read (sentences, descriptions, labels) is Hanken. There is no middle weight of display type.",
+        "section": "typography"
+      },
+      {
+        "name": "The Condensed Always Rule",
+        "body": "Bricolage never appears at its default width. If it is on the page, it is at 75% (or 85% for small button and track text).",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Stage Rule",
+        "body": "Surfaces are flat at rest. A shadow is allowed only for something that genuinely floats above the page or a readout that is recessed into a panel.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Print Grain Rule",
+        "body": "Texture belongs to the landing plates: an SVG fractal-noise grain at 0.4 opacity, multiplied over the flood. Photographs on a flood become duotones by grayscale plus multiply. Grain is not applied to panels or page backgrounds.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do give every new tool page a `t-<tool>` class on `<body>` and link `css/site.css` for the tokens, site bar and colour band.",
+      "Do declare any token that references `var(--c)` on `body`, never on `:root`.",
+      "Do print on a colour flood in Stage Black (#111214), not pure black or white.",
+      "Do set every display use of Bricolage Grotesque at weight 800, 75% width, uppercase.",
+      "Do keep buttons, chips, selects and panels square (0 radius).",
+      "Do use the catalogue colour for focus rings (2px solid) on every interactive element.",
+      "Do use `cubic-bezier(0.16, 1, 0.3, 1)` for state transitions (160 to 260ms for colour and opacity, 600ms for the plate wipe).",
+      "Do stop all animation and transitions under `prefers-reduced-motion: reduce`.",
+      "Do use --good and --bad for right/wrong and in/out of tune, not a catalogue colour."
+    ],
+    "donts": [
+      "Don't show two catalogue colours inside one component, or use another tool's colour as chrome (band, button, chip, focus) on a tool's page; the site switcher's hover preview is the exception, and data-coding hues such as the Matchups per-champion colours are content, not chrome.",
+      "Don't use gradients, glows or tints of the catalogue colour as decoration; it is a solid flood or a small state mark.",
+      "Don't add resting drop shadows to cards or panels.",
+      "Don't round buttons, chips, panels or bands, or use pill shapes.",
+      "Don't set Bricolage Grotesque at its default width or below weight 700.",
+      "Don't load fonts or scripts from anywhere but Google Fonts."
+    ]
+  }
+}

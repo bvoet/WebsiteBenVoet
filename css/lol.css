@@ -199,7 +199,7 @@ img.is-missing {
   align-items: center;
   gap: 5px;
   padding: 2px 8px 2px 2px;
-  border-radius: 99px;
+  border-radius: 0;
   background: rgba(0, 0, 0, 0.35);
   font-size: 13px;
   font-weight: 700;
@@ -230,11 +230,8 @@ img.is-missing {
   scroll-margin-top: 80px;
   margin-bottom: 24px;
   padding: 18px;
-  border-top: 1px solid #4a453b;
-  border-bottom: 1px solid #0b0a08;
-  border-radius: 0;
+  border-top: 3px solid var(--c);
   background: var(--panel);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 .detail__head {
@@ -395,7 +392,7 @@ img.is-missing {
 .badge {
   margin-left: auto;
   padding: 2px 10px;
-  border-radius: 99px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
